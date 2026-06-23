@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Spectral:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  *{margin:0;box-sizing:border-box}
+  :root{
+    --ink:#0C0F18; --ink2:#161B2B; --bone:#F2EEE3; --bone2:#E7E0CF;
+    --coral:#FF5630; --coral2:#FF8C6B; --slate:#6B7689; --slate-l:#9AA3B4;
+    --ld:rgba(242,238,227,.13); --ll:rgba(12,15,24,.12);
+    --display:'Space Grotesk',sans-serif; --mono:'IBM Plex Mono',monospace; --serif:'Spectral',serif;
+    --t-display:148px; --t-mega:116px; --t-title:66px; --t-h2:46px; --t-sub:38px; --t-lead:36px; --t-body:30px; --t-label:24px;
+    --px:120px; --py:92px;
+  }
+  body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @keyframes grow{from{transform:scaleY(.02);opacity:0}to{transform:scaleY(1);opacity:1}}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @media (prefers-reduced-motion:no-preference){
+    [data-deck-active] .r1{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+    [data-deck-active] .r2{animation:rise .55s .09s cubic-bezier(.2,.7,.2,1) both}
+    [data-deck-active] .r3{animation:rise .55s .18s cubic-bezier(.2,.7,.2,1) both}
+    [data-deck-active] .r4{animation:rise .55s .27s cubic-bezier(.2,.7,.2,1) both}
+    [data-deck-active] .r5{animation:rise .55s .36s cubic-bezier(.2,.7,.2,1) both}
+    [data-deck-active] .fd{animation:fade .9s .2s both}
+    [data-deck-active] .bar{animation:grow .7s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    [data-deck-active] .bar2{animation:grow .7s .12s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    [data-deck-active] .bar3{animation:grow .7s .24s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    [data-deck-active] .bar4{animation:grow .7s .36s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    [data-deck-active] .bar5{animation:grow .7s .48s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    [data-deck-active] .bar6{animation:grow .7s .60s cubic-bezier(.2,.7,.2,1) both;transform-origin:bottom}
+    .cursor{animation:blink 1.1s step-end infinite}
+  }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
+
+  <!-- 0 · COVER -->
+  <section data-label="Portada" data-speaker-notes="Bienvenida. Charla a dos voces sobre el futuro del rol del ingeniero informático frente a la IA. Yo abro con el Bloque 1." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
+    <div class="r1" style="display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;color:var(--slate-l)">
+      <span>Exposición académica</span>
+      <span>2026</span>
+    </div>
+    <div style="max-width:1450px">
+      <div class="r2" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--coral);margin-bottom:34px">Charla a dos voces</div>
+      <h1 class="r3" style="font-size:var(--t-mega);font-weight:600;line-height:1.0;letter-spacing:-.03em">El futuro del ingeniero<br>informático frente a la <span style="color:var(--coral)">IA</span></h1>
+      <p class="r4" style="font-family:var(--serif);font-size:var(--t-lead);font-style:italic;color:var(--slate-l);margin-top:40px;max-width:1000px">No es la historia de un reemplazo. Es la historia de un oficio que vuelve a cambiar de escalón.</p>
+    </div>
+    <div class="r5" style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--ld);padding-top:30px;font-family:var(--mono);font-size:var(--t-label);color:var(--slate-l)">
+      <span>Voz 1 — Nombre Apellido&nbsp;&nbsp;·&nbsp;&nbsp;Voz 2 — Nombre Apellido</span>
+      <span>Universidad · Cátedra</span>
+    </div>
+  </section>
+
+  <!-- 1 · DIVIDER BLOQUE 1 -->
+  <section data-label="Bloque 1" data-speaker-notes="Arranca mi bloque: la tesis central es que el ingeniero no desaparece, cambia de rol." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-size:540px;font-weight:700;color:var(--ink2);line-height:.8;user-select:none">01</div>
+    <div style="position:relative;max-width:1250px">
+      <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--coral);margin-bottom:30px">Bloque 01 · Voz 1</div>
+      <h1 class="r2" style="font-size:var(--t-display);font-weight:600;line-height:.98;letter-spacing:-.03em">El ingeniero no<br>desaparece, cambia</h1>
+      <div class="r3" style="width:120px;height:6px;background:var(--coral);margin-top:46px"></div>
+    </div>
+  </section>
+
+  <!-- 2 · ¿La IA va a reemplazar a los programadores? -->
+  <section data-label="La pregunta" data-speaker-notes="La pregunta que todos hacen. Respuesta corta: no. Respuesta interesante: cambia todo el oficio." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--slate-l);margin-bottom:40px">La pregunta de siempre</div>
+    <h1 class="r2" style="font-size:118px;font-weight:600;line-height:1.0;letter-spacing:-.03em;max-width:1500px">¿La IA va a reemplazar a los programadores?<span class="cursor" style="color:var(--coral);font-weight:400">_</span></h1>
+    <p class="r3" style="font-family:var(--serif);font-size:46px;font-style:italic;color:var(--slate-l);margin-top:60px">No. Pero cambia casi todo.</p>
+  </section>
+
+  <!-- 3 · El ingeniero no desaparece: cambia de rol -->
+  <section data-label="Cambia de rol" data-speaker-notes="El trabajo se desplaza de escribir cada línea a especificar, orquestar y validar. De autor de código a director técnico." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Bloque 01 · El cambio de rol</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1300px">El ingeniero no desaparece: cambia de rol</h1>
+    <div style="display:flex;align-items:stretch;gap:0;margin-top:auto;margin-bottom:auto">
+      <div class="r2" style="flex:1;padding:48px 56px 48px 0">
+        <div style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--slate)">ANTES</div>
+        <div style="font-size:60px;font-weight:600;margin-top:20px;line-height:1.1">Autor de código</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 24px"><div style="font-size:88px;color:var(--coral);font-weight:300">→</div></div>
+      <div class="r3" style="flex:1.15;padding:48px 0 48px 56px;border-left:2px solid var(--coral)">
+        <div style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--coral)">AHORA</div>
+        <div style="font-size:60px;font-weight:600;margin-top:20px;line-height:1.1">Director técnico</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · La escalera de abstracción -->
+  <section data-label="Escalera de abstracción" data-speaker-notes="Toda la historia del software es subir escalones de abstracción. En cada salto dejamos de escribir el nivel de abajo. La IA es el próximo escalón, no el final." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Bloque 01 · Perspectiva histórica</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px">La escalera de abstracción</h1>
+    <div style="flex:1;display:flex;align-items:flex-end;gap:26px;margin-top:48px">
+      <div class="bar" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:30%"><div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-bottom:14px">010101</div><div style="background:var(--ink);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color:var(--bone);font-size:var(--t-body);font-weight:500">Código máquina</span></div></div>
+      <div class="bar2" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:44%"><div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-bottom:14px">ASM</div><div style="background:var(--ink);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color:var(--bone);font-size:var(--t-body);font-weight:500">Assembler</span></div></div>
+      <div class="bar3" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:58%"><div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-bottom:14px">C</div><div style="background:var(--ink);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color: var(--bone); font-size: var(--t-body); font-weight: 500; text-align: center">Lenguajes de sistema</span></div></div>
+      <div class="bar4" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:72%"><div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-bottom:14px">{ }</div><div style="background:var(--ink);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color:var(--bone);font-size:var(--t-body);font-weight:500">Alto nivel</span></div></div>
+      <div class="bar5" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:86%"><div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-bottom:14px">⚙</div><div style="background:var(--ink);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color:var(--bone);font-size:var(--t-body);font-weight:500">Frameworks</span></div></div>
+      <div class="bar6" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:24px;color:var(--coral);margin-bottom:14px">"…"</div><div style="background:var(--coral);border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px"><span style="color: #fff; font-size: 25px; font-weight: 600">Lenguaje natural · IA</span></div></div>
+    </div>
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--coral);border-top:1px solid var(--ll);padding-top:26px;margin-top:30px">La IA es el próximo escalón, no el último.</p>
+  </section>
+
+  <!-- 5 · El "fin del programador" ya se anunció antes -->
+  <section data-label="Ya se anunció antes" data-speaker-notes="Cada ola tecnológica prometió eliminar al programador. La demanda de ingenieros creció en todas. El escepticismo histórico es sano." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Bloque 01 · No es la primera vez</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1450px">El "fin del programador" ya se anunció antes</h1>
+    <div style="flex:1;display:flex;align-items:center">
+      <div style="width:100%">
+        <div style="height:2px;background:var(--ld);position:relative;margin:0 40px">
+          <div class="fd" style="position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--slate),var(--coral))"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin:0 0;margin-top:-9px">
+          <div class="r2" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px"><div style="width:16px;height:16px;border-radius:50%;background:var(--slate)"></div><div style="font-family:var(--mono);font-size:var(--t-body);font-weight:600;margin-top:24px">1959</div><div style="font-size:30px;font-weight:600;margin-top:10px">COBOL</div></div>
+          <div class="r2" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px"><div style="width:16px;height:16px;border-radius:50%;background:var(--slate)"></div><div style="font-family:var(--mono);font-size:var(--t-body);font-weight:600;margin-top:24px">1980s</div><div style="font-size:30px;font-weight:600;margin-top:10px">4GL · CASE</div></div>
+          <div class="r3" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px"><div style="width:16px;height:16px;border-radius:50%;background:var(--slate)"></div><div style="font-family:var(--mono);font-size:var(--t-body);font-weight:600;margin-top:24px">1990s</div><div style="font-size:30px;font-weight:600;margin-top:10px">Visual · RAD</div></div>
+          <div class="r3" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px"><div style="width:16px;height:16px;border-radius:50%;background:var(--slate)"></div><div style="font-family:var(--mono);font-size:var(--t-body);font-weight:600;margin-top:24px">2010s</div><div style="font-size:30px;font-weight:600;margin-top:10px">Low-code</div></div>
+          <div class="r4" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--coral);margin-top:-3px;box-shadow:0 0 0 6px rgba(255,86,48,.18)"></div><div style="font-family:var(--mono);font-size:var(--t-body);font-weight:600;margin-top:20px;color:var(--coral)">HOY</div><div style="font-size:30px;font-weight:600;margin-top:10px;color:var(--coral)">IA generativa</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--slate-l);border-top:1px solid var(--ld);padding-top:26px">Cada ola prometió lo mismo. En todas, la demanda de ingenieros creció.</p>
+  </section>
+
+  <!-- 6 · DIVIDER BLOQUE 2 (placeholder) -->
+  <section data-label="Bloque 2 (otra voz)" data-speaker-notes="Marcador de posición: este bloque lo desarrolla la otra voz. Sin contenido propio." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-size:540px;font-weight:700;color:var(--ink2);line-height:.8;user-select:none">02</div>
+    <div style="position:relative;max-width:1250px">
+      <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--slate-l);margin-bottom:30px">Bloque 02 · Voz 2</div>
+      <h1 class="r2" style="font-size:var(--t-display);font-weight:600;line-height:.98;letter-spacing:-.03em">Qué puede y qué no<br>puede hacer la IA hoy</h1>
+      <div class="r3" style="display:inline-flex;align-items:center;gap:16px;margin-top:46px;font-family:var(--mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--slate-l);border:1px solid var(--ld);padding:16px 26px;border-radius:999px">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--slate)"></span>Lo desarrolla la otra voz
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · DIVIDER BLOQUE 3 -->
+  <section data-label="Bloque 3" data-speaker-notes="Vuelvo yo. Bloque sobre límites teóricos: cosas que ninguna máquina podrá hacer, no por falta de potencia sino por matemática." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-size:540px;font-weight:700;color:var(--ink2);line-height:.8;user-select:none">03</div>
+    <div style="position:relative;max-width:1320px">
+      <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--coral);margin-bottom:30px">Bloque 03 · Voz 1</div>
+      <h1 class="r2" style="font-size:124px;font-weight:600;line-height:.98;letter-spacing:-.03em">Por qué hay cosas que<br>ninguna máquina<br>podrá hacer</h1>
+      <div class="r3" style="width:120px;height:6px;background:var(--coral);margin-top:46px"></div>
+    </div>
+  </section>
+
+  <!-- 8 · Hay cosas que ninguna máquina podrá hacer -->
+  <section data-label="Límites matemáticos" data-speaker-notes="No es cuestión de potencia de cálculo, es un límite matemático demostrado. Tres barreras que vamos a recorrer." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Bloque 03 · Tres barreras</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1450px">Hay cosas que ninguna máquina podrá hacer</h1>
+    <p class="r2" style="font-family:var(--serif);font-size:var(--t-lead);font-style:italic;color:var(--slate);margin-top:24px;max-width:1100px">No es una cuestión de potencia de cálculo. Es un límite matemático.</p>
+    <div style="flex:1;display:flex;align-items:center;gap:32px">
+      <div class="r3" style="flex:1;border-top:3px solid var(--ink);padding-top:30px"><div style="font-family:var(--mono);font-size:48px;font-weight:600;color:var(--coral)">01</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:18px;line-height:1.1">Verificación</div><p style="font-family:var(--mono);font-size:26px;color:var(--slate);margin-top:16px;letter-spacing:.04em">Turing · Rice</p></div>
+      <div class="r4" style="flex:1;border-top:3px solid var(--ink);padding-top:30px"><div style="font-family:var(--mono);font-size:48px;font-weight:600;color:var(--coral)">02</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:18px;line-height:1.1">Complejidad</div><p style="font-family:var(--mono);font-size:26px;color:var(--slate);margin-top:16px;letter-spacing:.04em">P vs NP</p></div>
+      <div class="r5" style="flex:1;border-top:3px solid var(--ink);padding-top:30px"><div style="font-family:var(--mono);font-size:48px;font-weight:600;color:var(--coral)">03</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:18px;line-height:1.1">Lenguaje</div><p style="font-family:var(--mono);font-size:26px;color:var(--slate);margin-top:16px;letter-spacing:.04em">Chomsky</p></div>
+    </div>
+  </section>
+
+  <!-- 9 · Barrera 1: Turing y Rice -->
+  <section data-label="Barrera 1 · Turing y Rice" data-speaker-notes="Problema de la parada y teorema de Rice: no existe un algoritmo general que decida propiedades no triviales de todo programa. La verificación total es imposible; siempre hace falta criterio humano." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Barrera 01 · Verificación</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1500px">Nadie puede verificarlo todo</h1>
+    <div style="flex:1;display:flex;align-items:center;gap:80px;margin-top:20px">
+      <div class="r2" style="flex:1.05">
+        <div style="display:flex;align-items:center;gap:26px">
+          <div style="font-family:var(--mono);font-size:24px;color:var(--slate);text-align:center">programas<br>cualesquiera</div>
+          <div style="font-size:48px;color:var(--coral)">→</div>
+          <div style="background:var(--ink);color:var(--bone);border-radius:10px;padding:34px 30px;text-align:center;position:relative">
+            <div style="font-family:var(--mono);font-size:24px;color:var(--coral2);letter-spacing:.1em">VERIFICADOR</div>
+            <div style="font-size:30px;font-weight:600;margin-top:10px">¿cumple la<br>propiedad?</div>
+            <div style="position:absolute;right:-14px;top:-14px;width:54px;height:54px;border:3px solid var(--coral);border-radius:50%;border-top-color:transparent;transform:rotate(45deg)"></div>
+          </div>
+        </div>
+        <div style="display:inline-block;margin-top:46px;font-family:var(--mono);font-size:30px;font-weight:600;color:var(--coral);border:2px solid var(--coral);padding:14px 26px;border-radius:8px">INDECIDIBLE</div>
+      </div>
+      <div class="r3" style="flex:1;border-left:2px solid var(--ll);padding-left:60px">
+        <p style="font-size:var(--t-sub);font-weight:500;line-height:1.25;letter-spacing:-.01em">No existe un algoritmo que decida, para <span style="color:var(--coral)">todo</span> programa, si cumple una propiedad no trivial.</p>
+      </div>
+    </div>
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:#3a4150;border-top:1px solid var(--ll);padding-top:26px">→ Siempre hará falta criterio humano.</p>
+  </section>
+
+  <!-- 10 · Barrera 2: P vs NP -->
+  <section data-label="Barrera 2 · P vs NP" data-speaker-notes="Encontrar la solución puede ser muchísimo más difícil que comprobarla. Si P≠NP, hay problemas sin atajos: ni para humanos ni para máquinas." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Barrera 02 · Complejidad</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1500px">Hay problemas imposibles de resolver rápido</h1>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:50px">
+      <div class="r2" style="flex:1;background:var(--ink2);border-radius:14px;padding:50px;max-width:620px">
+        <div style="font-family:var(--mono);font-size:24px;letter-spacing:.14em;color:var(--slate-l)">RESOLVER</div>
+        <div style="font-size:64px;font-weight:600;margin-top:14px;color:var(--bone)">Difícil</div>
+      </div>
+      <div class="r3" style="font-family:var(--display);font-size:96px;font-weight:600;color:var(--coral)">≠?</div>
+      <div class="r4" style="flex:1;background:var(--coral);border-radius:14px;padding:50px;max-width:620px">
+        <div style="font-family:var(--mono);font-size:24px;letter-spacing:.14em;color:rgba(255,255,255,.8)">VERIFICAR</div>
+        <div style="font-size:64px;font-weight:600;margin-top:14px;color:#fff">Fácil</div>
+      </div>
+    </div>
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--slate-l);border-top:1px solid var(--ld);padding-top:26px">P vs NP · Para muchos problemas no hay atajos. Ni para humanos ni para máquinas.</p>
+  </section>
+
+  <!-- 11 · Barrera 3: Chomsky -->
+  <section data-label="Barrera 3 · Chomsky" data-speaker-notes="El lenguaje humano es ambiguo y contextual; la máquina necesita reglas formales y exactas. Traducir intención en especificación es el trabajo difícil. Jerarquía de Chomsky." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral)">Barrera 03 · Lenguaje</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1550px">Del lenguaje humano al lenguaje de la máquina</h1>
+    <div style="flex:1;display:flex;align-items:center;gap:70px;margin-top:10px">
+      <div class="r2" style="flex:1.1;display:flex;flex-direction:column;align-items:flex-start;gap:0">
+        <div style="border:2px solid var(--ink);border-radius:10px;padding:22px 26px;width:100%;font-size:25px"><span style="font-family:var(--mono);font-size:24px;color:var(--slate)">Tipo 0</span> · Recursivamente enumerable
+          <div style="border:2px solid #3a4150;border-radius:8px;padding:20px 24px;margin-top:18px;font-size:25px"><span style="font-family:var(--mono);font-size:24px;color:var(--slate)">Tipo 1</span> · Sensible al contexto
+            <div style="border:2px solid var(--slate);border-radius:8px;padding:18px 22px;margin-top:16px;font-size:25px"><span style="font-family:var(--mono);font-size:24px;color:var(--slate)">Tipo 2</span> · Libre de contexto
+              <div style="border:2px solid var(--coral);border-radius:6px;padding:16px 20px;margin-top:14px;color:var(--coral);font-weight:600;font-size:25px"><span style="font-family:var(--mono);font-size:24px">Tipo 3</span> · Regular</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-family:var(--mono);font-size:24px;color:var(--slate);margin-top:18px">Jerarquía de Chomsky</div>
+      </div>
+      <div class="r3" style="flex:1;border-left:2px solid var(--ll);padding-left:60px">
+        <div style="display:flex;flex-direction:column;gap:30px">
+          <div><div style="font-family:var(--mono);font-size:24px;color:var(--slate);letter-spacing:.1em">HUMANO</div><div style="font-size:34px;font-weight:600;margin-top:8px">Ambiguo · contextual · implícito</div></div>
+          <div style="font-size:44px;color:var(--coral);line-height:1">↓</div>
+          <div><div style="font-family:var(--mono);font-size:24px;color:var(--coral);letter-spacing:.1em">MÁQUINA</div><div style="font-size:34px;font-weight:600;margin-top:8px">Formal · exacto · sin ambigüedad</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:#3a4150;border-top:1px solid var(--ll);padding-top:26px">Traducir una intención ambigua en una especificación exacta: ese es el trabajo.</p>
+  </section>
+
+  <!-- 12 · Lo más difícil no es escribir código -->
+  <section data-label="Decidir qué construir" data-speaker-notes="Cierre de mi bloque: la IA acelera el cómo; el ingeniero define el qué y el porqué. Decidir qué vale la pena construir sigue siendo humano." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden">
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--coral);margin-bottom:36px">Bloque 03 · Cierre</div>
+    <h1 class="r2" style="font-size:84px;font-weight:600;line-height:1.05;letter-spacing:-.03em;max-width:1550px">Lo más difícil no es escribir código:<br><span style="color:var(--coral)">es decidir qué construir.</span></h1>
+    <div class="r3" style="display:flex;gap:60px;margin-top:64px">
+      <div style="flex:1;border-top:2px solid var(--ld);padding-top:28px"><div style="font-family:var(--mono);font-size:var(--t-label);color:var(--slate-l);letter-spacing:.12em">LA IA</div><p style="font-family:var(--serif);font-size:var(--t-lead);margin-top:16px;line-height:1.3">acelera el <span style="color:var(--coral)">cómo</span>.</p></div>
+      <div style="flex:1;border-top:2px solid var(--coral);padding-top:28px"><div style="font-family:var(--mono);font-size:var(--t-label);color:var(--coral);letter-spacing:.12em">EL INGENIERO</div><p style="font-family:var(--serif);font-size:var(--t-lead);margin-top:16px;line-height:1.3">define el <span style="color:var(--coral)">qué</span> y el <span style="color:var(--coral)">porqué</span>.</p></div>
+    </div>
+  </section>
+
+  <!-- 13 · DIVIDER BLOQUE 4 (placeholder) -->
+  <section data-label="Bloque 4 (otra voz)" data-speaker-notes="Marcador de posición: bloque final y conclusión a cargo de la otra voz. Sin contenido propio." style="box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-size:540px;font-weight:700;color:var(--ink2);line-height:.8;user-select:none">04</div>
+    <div style="position:relative;max-width:1250px">
+      <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--slate-l);margin-bottom:30px">Bloque 04 · Voz 2</div>
+      <h1 class="r2" style="font-size:var(--t-display);font-weight:600;line-height:.98;letter-spacing:-.03em">El nuevo ingeniero<br>y conclusión</h1>
+      <div class="r3" style="display:inline-flex;align-items:center;gap:16px;margin-top:46px;font-family:var(--mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--slate-l);border:1px solid var(--ld);padding:16px 26px;border-radius:999px">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--slate)"></span>Lo desarrolla la otra voz
+      </div>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
