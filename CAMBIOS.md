@@ -14,7 +14,7 @@ para este paper". Saltar con click/botón · repetir con tecla `i`.
 
 ## 3. Easter eggs = Clawd escondido + código secreto + premio
 - **6 Clawd** (la mascota oficial de Claude Code, el bloque naranja con ojos `><`)
-  escondidos en las slides **3, 6, 9, 14, 17 y 20**, animados (flotan), en distintos
+  escondidos en las slides **3, 6, 8, 13, 16 y 20**, animados (flotan), en distintos
   tamaños/rotaciones. Visibles directo (no hace falta tipear nada).
 - **Click** en cada Clawd → da **un dígito** del código. Arriba a la izquierda se
   arma el código a medida que los encontrás.
@@ -26,7 +26,7 @@ para este paper". Saltar con click/botón · repetir con tecla `i`.
 ## 4. Contenido actualizado según el paper nuevo
 (`Paper_Rol_del_ingeniero_informatico_en_10_anios.pdf`)
 - **SWE-bench Verified**: corregido **14% → 89%** (el paper dice ~89%, no 95%).
-  Barras: 14 · 49 · 72 · 82 · 89.
+  Barras: 14 · 49 · 72 · 82 · 89. (El deck ahora tiene 22 slides: se quitó la de predicciones históricas.)
 - Se quitó **"prima salarial"** del cierre (no está respaldado por el paper).
 - Confirmados con el paper: programador puro **−6%**, desarrollador **+15%** (BLS),
   WEF +170M/−92M (saldo neto +78M), problema del 70% (Osmani), Amodei 90%, Altman.
