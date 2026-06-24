@@ -764,11 +764,11 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
    hecho con carino, Claude
 -->
 <div id="stage"><div id="canvas">
-<section class="sys-ai" data-label="Portada" data-speaker-notes="Bienvenida. Charla a dos voces sobre el futuro del rol del ingeniero informático frente a la IA. Yo abro con el Bloque 1." style="isolation:isolate;--accent:#6C5CE7;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;isolation:isolate">
+<section class="sys-ai" data-label="Portada" data-speaker-notes="Bienvenida. Sobre el futuro del rol del ingeniero informático frente a la IA. Yo abro con el Bloque 1." style="isolation:isolate;--accent:#6C5CE7;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;isolation:isolate">
     <div class="aurora"></div>
     <div class="r1" style="position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;color:var(--slate-l)"><span>Exposición académica</span><span>2026</span></div>
     <div style="position:relative;z-index:1;max-width:1500px">
-      <div class="r2" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:30px">Charla a dos voces</div>
+      <div class="r2" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:30px">Trabajo Práctico Final</div>
       <h1 class="r3" style="font-size:var(--t-mega);font-weight:600;line-height:1.0;letter-spacing:-.03em">El futuro del ingeniero<br>informático frente a la <span class="sweepy" style="background:linear-gradient(90deg,#6C5CE7,#0E9FB5,#E5447B,#FFB02E,#12A36B,#6C5CE7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">IA</span></h1>
       <p class="r4" style="font-family:var(--serif);font-size:var(--t-lead);font-style:italic;color:#c9ccd6;font-weight:500;margin-top:34px;max-width:1000px">No es la historia de un reemplazo. Es la historia de un oficio que vuelve a cambiar de escalón.</p>
       <div class="r5" style="margin-top:44px">
@@ -1259,7 +1259,7 @@ fit();render();
     else if(!active && playing){ finish(); }
   });
   mo.observe(cover,{attributes:true,attributeFilter:['data-deck-active']});
-  if(cover.hasAttribute('data-deck-active') && !played){ T(play,400); }
+  if(cover.hasAttribute('data-deck-active') && !played){ T(play,2600); }
 
       /* ---------- EASTER EGGS: Clawd (mascota de Claude Code) escondido ---------- */
   try{
@@ -1269,8 +1269,17 @@ fit();render();
 
   var CODE='482026'; // Opus 4.8 · 2026 — un dígito por Clawd
 
-  function clawdSVG(){
-    return '<svg viewBox="0 0 104 96" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">'+
+  function clawdSVG(d){
+    var hat='';
+    switch(d){
+      case 'grad':   hat='<path d="M20 4 L52 -10 L84 4 L52 18 Z" fill="#15110d"/><rect x="49" y="4" width="6" height="9" fill="#15110d"/><circle cx="76" cy="6" r="3" fill="#E0A96B"/><path d="M76 6 L76 18" stroke="#E0A96B" stroke-width="2"/>'; break;
+      case 'party':  hat='<path d="M52 -16 L38 10 L66 10 Z" fill="#E5447B"/><circle cx="52" cy="-16" r="4" fill="#0E9FB5"/><path d="M44 4 h16 M46 -2 h12" stroke="#fff" stroke-width="2"/>'; break;
+      case 'crown':  hat='<path d="M30 12 L36 -6 L44 8 L52 -10 L60 8 L68 -6 L74 12 Z" fill="#E0A96B" stroke="#b9863f" stroke-width="1.5"/><circle cx="52" cy="-3" r="2.4" fill="#E5447B"/>'; break;
+      case 'tophat': hat='<rect x="36" y="-16" width="32" height="22" rx="1" fill="#15110d"/><rect x="26" y="4" width="52" height="6" rx="2" fill="#15110d"/><rect x="36" y="0" width="32" height="5" fill="#D9785A"/>'; break;
+      case 'wizard': hat='<path d="M52 -20 L34 10 L70 10 Z" fill="#6C5CE7"/><circle cx="48" cy="-2" r="1.6" fill="#E0A96B"/><circle cx="57" cy="-8" r="1.2" fill="#E0A96B"/>'; break;
+      case 'cowboy': hat='<path d="M26 8 Q52 -2 78 8 Q52 16 26 8 Z" fill="#7a4a22"/><path d="M40 8 Q52 -12 64 8 Z" fill="#8a5a2b"/>'; break;
+    }
+    return '<svg viewBox="0 -22 104 120" xmlns="http://www.w3.org/2000/svg">'+
       '<g fill="#fff">'+
         '<rect x="14" y="6" width="76" height="66" rx="3"/>'+
         '<rect x="4" y="30" width="14" height="22"/><rect x="86" y="30" width="14" height="22"/>'+
@@ -1283,17 +1292,17 @@ fit();render();
       '</g>'+
       '<g fill="none" stroke="#1a1410" stroke-width="7" stroke-linejoin="miter">'+
         '<polyline points="30,28 43,40 30,52"/><polyline points="74,28 61,40 74,52"/>'+
-      '</g>'+
+      '</g>'+hat+
     '</svg>';
   }
 
   var CLAWDS=[
-    {n:2,  css:'left:62px;bottom:118px', s:46, rot:-6},
-    {n:5,  css:'left:58px;top:300px',    s:40, flip:1, rot:4},
-    {n:7,  css:'right:128px;top:116px',  s:44, rot:8},
-    {n:12, css:'right:96px;bottom:150px',s:42, flip:1},
-    {n:15, css:'left:96px;top:300px',    s:48, rot:-5},
-    {n:19, css:'right:90px;top:280px',   s:40, flip:1}
+    {n:2,  type:'grad',   css:'left:70px;bottom:80px',  s:34, rot:-5},
+    {n:5,  type:'party',  css:'left:58px;top:300px',    s:32, flip:1, rot:5},
+    {n:7,  type:'tophat', css:'left:50px;bottom:74px',  s:32, rot:6},
+    {n:12, type:'wizard', css:'right:80px;bottom:92px', s:34, flip:1},
+    {n:15, type:'crown',  css:'left:86px;bottom:100px', s:34, rot:-4},
+    {n:19, type:'cowboy', css:'right:80px;bottom:100px',s:32, flip:1}
   ];
 
   var found={}, completed=false, won=false;
@@ -1307,7 +1316,7 @@ fit();render();
     var tf=(m.flip?'scaleX(-1) ':'')+(m.rot?('rotate('+m.rot+'deg)'):'');
     e.setAttribute('style',m.css+';width:'+m.s+'px;'+(tf?'--tf:'+tf:''));
     e.style.animationDelay=(idx*0.5)+'s';
-    e.innerHTML=clawdSVG();
+    e.innerHTML=clawdSVG(m.type);
     e.title='Clawd'; e.dataset.idx=idx; e.dataset.digit=CODE.charAt(idx);
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
     sec.appendChild(e); cEls.push(e);
