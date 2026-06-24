@@ -699,20 +699,57 @@ body[data-theme="light"] #hint{color:#9aa0ab}
   border:1px solid rgba(0,0,0,.2);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
 .cld-skip:hover{color:#161618;border-color:rgba(0,0,0,.5)}
 
-/* ---------- Clawd escondido (mascota de Claude Code) ---------- */
-.clawd{position:absolute;z-index:8;cursor:pointer;opacity:.96;line-height:0;
-  transform:var(--tf,none);animation:clawdFloat 4.5s ease-in-out infinite;
+/* ---------- Clawd animado (sprites pixel-art) ---------- */
+.clawd{position:absolute;z-index:8;cursor:pointer;line-height:0;opacity:.97;
   transition:filter .25s;filter:drop-shadow(0 4px 8px rgba(0,0,0,.28))}
-.clawd svg{display:block;width:100%;height:auto}
-.clawd:hover{filter:drop-shadow(0 0 14px rgba(217,120,90,.85))}
-.clawd.pop{animation:clawdPop .6s cubic-bezier(.2,.8,.2,1)}
-.clawd.found{opacity:.45}
-.clawd.found::after{content:"✓";position:absolute;right:-6px;top:-6px;width:18px;height:18px;border-radius:50%;
-  background:#12A36B;color:#fff;font-size:11px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 6px rgba(0,0,0,.4)}
-@keyframes clawdFloat{0%,100%{transform:var(--tf,none) translateY(0)}50%{transform:var(--tf,none) translateY(-9px)}}
-@keyframes clawdPop{0%{transform:var(--tf,none) scale(1)}45%{transform:var(--tf,none) scale(1.45)}100%{transform:var(--tf,none) scale(1)}}
+.clawd:hover{filter:drop-shadow(0 0 16px rgba(217,120,90,.9))}
+.clawd .cl-svg{display:block;width:100%;height:auto;overflow:visible}
+.clawd.found{opacity:.55}
+.clawd .cl-num{position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
+  background:#1a1410;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5);z-index:3}
+.clawd.found .cl-num{background:#12A36B}
 body[data-theme="light"] .clawd{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+/* enojado */
+.clawd.act-angry .cl-svg{animation:cl-shake .14s steps(2,end) infinite}
+@keyframes cl-shake{0%{transform:translate(0,0) rotate(-3deg)}100%{transform:translate(2px,-1px) rotate(3deg)}}
+.clawd.act-angry .cl-body{animation:cl-red 1s steps(2) infinite}
+@keyframes cl-red{0%{filter:none}50%{filter:saturate(1.7) brightness(1.06)}}
+/* caminando */
+.clawd.act-walk{animation:cl-move 2.6s ease-in-out infinite}
+@keyframes cl-move{0%,100%{transform:translateX(-7px)}50%{transform:translateX(11px)}}
+.clawd.act-walk .cl-svg{animation:cl-bob .42s steps(2) infinite}
+@keyframes cl-bob{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
+.clawd.act-walk .cl-leg-a{animation:cl-step .42s steps(1) infinite}
+.clawd.act-walk .cl-leg-b{animation:cl-step .42s steps(1) .21s infinite}
+@keyframes cl-step{0%{transform:translateY(0)}50%{transform:translateY(-7px)}100%{transform:translateY(0)}}
+/* saludando */
+.clawd.act-wave .cl-arm-r{transform-origin:88px 40px;animation:cl-wave .7s ease-in-out infinite}
+@keyframes cl-wave{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-52deg)}}
+.clawd.act-wave .cl-svg{animation:cl-tilt 1.4s ease-in-out infinite}
+@keyframes cl-tilt{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+/* futbol */
+.clawd.act-football .cl-leg-b{transform-origin:76px 66px;animation:cl-kick .9s ease-in-out infinite}
+@keyframes cl-kick{0%,55%,100%{transform:rotate(0)}72%{transform:rotate(-42deg)}}
+.clawd.act-football .cl-ball{transform-origin:104px 80px;animation:cl-ball .9s ease-in-out infinite}
+@keyframes cl-ball{0%,50%{transform:translate(0,0) rotate(0)}72%{transform:translate(16px,-15px) rotate(140deg);opacity:1}100%{transform:translate(34px,2px) rotate(300deg);opacity:0}}
+/* saltando */
+.clawd.act-jump .cl-svg{animation:cl-jump 1.15s cubic-bezier(.3,.6,.4,1) infinite}
+@keyframes cl-jump{0%,100%{transform:translateY(0) scaleY(1)}12%{transform:translateY(0) scaleY(.82)}45%{transform:translateY(-26px) scaleY(1.07)}80%{transform:translateY(0) scaleY(.9)}90%{transform:translateY(0) scaleY(1.02)}}
+/* bailando */
+.clawd.act-dance .cl-svg{animation:cl-dance .56s ease-in-out infinite}
+@keyframes cl-dance{0%{transform:translateX(-5px) rotate(-9deg)}50%{transform:translateX(5px) rotate(9deg)}100%{transform:translateX(-5px) rotate(-9deg)}}
+.clawd.act-dance .cl-arm-l{transform-origin:10px 40px;animation:cl-arm .56s ease-in-out infinite}
+.clawd.act-dance .cl-arm-r{transform-origin:90px 40px;animation:cl-arm .56s ease-in-out alternate infinite}
+@keyframes cl-arm{0%{transform:rotate(22deg)}100%{transform:rotate(-22deg)}}
+/* Clawd con cartel */
+.clawd-sign .cl-svg{animation:cl-jump 1.4s cubic-bezier(.3,.6,.4,1) infinite}
+.clawd-sign .cl-sign{position:absolute;bottom:108%;left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:#F3F1EA;border:2px solid #1a1410;border-radius:9px;padding:8px 13px;font-family:var(--mono);
+  font-size:13px;line-height:1.4;color:#1a1410;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.clawd-sign .cl-sign b{color:#C2533A}
+.clawd-sign .cl-sign::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:#1a1410}
 
 .egg-toast{position:fixed;left:50%;bottom:7%;transform:translate(-50%,14px);z-index:220;
   max-width:700px;font-family:var(--mono);font-size:18px;line-height:1.5;color:#0A0B14;
@@ -1294,40 +1331,31 @@ fit();render();
 
   var CODE='482026'; // Opus 4.8 · 2026 — un dígito por Clawd
 
-  function clawdSVG(d){
-    var hat='';
-    switch(d){
-      case 'grad':   hat='<path d="M20 4 L52 -10 L84 4 L52 18 Z" fill="#15110d"/><rect x="49" y="4" width="6" height="9" fill="#15110d"/><circle cx="76" cy="6" r="3" fill="#E0A96B"/><path d="M76 6 L76 18" stroke="#E0A96B" stroke-width="2"/>'; break;
-      case 'party':  hat='<path d="M52 -16 L38 10 L66 10 Z" fill="#E5447B"/><circle cx="52" cy="-16" r="4" fill="#0E9FB5"/><path d="M44 4 h16 M46 -2 h12" stroke="#fff" stroke-width="2"/>'; break;
-      case 'crown':  hat='<path d="M30 12 L36 -6 L44 8 L52 -10 L60 8 L68 -6 L74 12 Z" fill="#E0A96B" stroke="#b9863f" stroke-width="1.5"/><circle cx="52" cy="-3" r="2.4" fill="#E5447B"/>'; break;
-      case 'tophat': hat='<rect x="36" y="-16" width="32" height="22" rx="1" fill="#15110d"/><rect x="26" y="4" width="52" height="6" rx="2" fill="#15110d"/><rect x="36" y="0" width="32" height="5" fill="#D9785A"/>'; break;
-      case 'wizard': hat='<path d="M52 -20 L34 10 L70 10 Z" fill="#6C5CE7"/><circle cx="48" cy="-2" r="1.6" fill="#E0A96B"/><circle cx="57" cy="-8" r="1.2" fill="#E0A96B"/>'; break;
-      case 'cowboy': hat='<path d="M26 8 Q52 -2 78 8 Q52 16 26 8 Z" fill="#7a4a22"/><path d="M40 8 Q52 -12 64 8 Z" fill="#8a5a2b"/>'; break;
-    }
-    return '<svg viewBox="0 -22 104 120" xmlns="http://www.w3.org/2000/svg">'+
-      '<g fill="#fff">'+
-        '<rect x="14" y="6" width="76" height="66" rx="3"/>'+
-        '<rect x="4" y="30" width="14" height="22"/><rect x="86" y="30" width="14" height="22"/>'+
-        '<rect x="18" y="64" width="20" height="24"/><rect x="42" y="64" width="20" height="24"/><rect x="66" y="64" width="20" height="24"/>'+
+  function clawdSVG(action){
+    var ball=action==='football'?'<g class="cl-ball"><circle cx="104" cy="80" r="9" fill="#F3F1EA" stroke="#1a1410" stroke-width="2"/><path d="M104 74 l5 4 -2 6 -6 0 -2 -6 z" fill="#1a1410"/></g>':'';
+    return '<svg class="cl-svg" viewBox="0 0 116 92" xmlns="http://www.w3.org/2000/svg">'+ball+
+      '<g class="cl-arm cl-arm-l"><rect x="2" y="34" width="16" height="14" fill="#fff"/><rect x="6" y="36" width="12" height="10" fill="#D9785A"/></g>'+
+      '<g class="cl-arm cl-arm-r"><rect x="86" y="34" width="16" height="14" fill="#fff"/><rect x="84" y="36" width="12" height="10" fill="#D9785A"/></g>'+
+      '<g class="cl-legs">'+
+        '<g class="cl-leg cl-leg-a"><rect x="18" y="62" width="20" height="26" fill="#fff"/><rect x="22" y="64" width="12" height="22" fill="#D9785A"/></g>'+
+        '<g class="cl-leg cl-leg-m"><rect x="42" y="62" width="20" height="26" fill="#fff"/><rect x="46" y="64" width="12" height="22" fill="#D9785A"/></g>'+
+        '<g class="cl-leg cl-leg-b"><rect x="66" y="62" width="20" height="26" fill="#fff"/><rect x="70" y="64" width="12" height="22" fill="#D9785A"/></g>'+
       '</g>'+
-      '<g fill="#D9785A">'+
-        '<rect x="18" y="10" width="68" height="58" rx="1"/>'+
-        '<rect x="8" y="34" width="12" height="14"/><rect x="84" y="34" width="12" height="14"/>'+
-        '<rect x="22" y="66" width="12" height="18"/><rect x="46" y="66" width="12" height="18"/><rect x="70" y="66" width="12" height="18"/>'+
+      '<g class="cl-body">'+
+        '<rect x="14" y="6" width="76" height="62" rx="3" fill="#fff"/>'+
+        '<rect x="18" y="10" width="68" height="54" rx="1" fill="#D9785A"/>'+
+        '<g fill="none" stroke="#1a1410" stroke-width="7" stroke-linejoin="miter"><polyline points="30,26 43,38 30,50"/><polyline points="74,26 61,38 74,50"/></g>'+
       '</g>'+
-      '<g fill="none" stroke="#1a1410" stroke-width="7" stroke-linejoin="miter">'+
-        '<polyline points="30,28 43,40 30,52"/><polyline points="74,28 61,40 74,52"/>'+
-      '</g>'+hat+
     '</svg>';
   }
 
   var CLAWDS=[
-    {n:2,  type:'grad',   css:'left:70px;bottom:80px',  s:34, rot:-5},
-    {n:5,  type:'party',  css:'left:58px;top:300px',    s:32, flip:1, rot:5},
-    {n:7,  type:'tophat', css:'left:50px;bottom:74px',  s:32, rot:6},
-    {n:12, type:'wizard', css:'right:80px;bottom:92px', s:34, flip:1},
-    {n:15, type:'crown',  css:'left:86px;bottom:100px', s:34, rot:-4},
-    {n:19, type:'cowboy', css:'right:80px;bottom:100px',s:32, flip:1}
+    {n:2,  action:'angry',    css:'left:66px;bottom:78px',  s:40},
+    {n:5,  action:'walk',     css:'left:92px;top:300px',    s:38},
+    {n:7,  action:'wave',     css:'left:56px;bottom:74px',  s:38},
+    {n:12, action:'football', css:'left:92px;bottom:92px',  s:40},
+    {n:15, action:'jump',     css:'left:92px;bottom:108px', s:42},
+    {n:19, action:'dance',    css:'right:86px;bottom:104px',s:38}
   ];
 
   var found={}, completed=false, won=false;
@@ -1337,15 +1365,21 @@ fit();render();
   var cEls=[];
   CLAWDS.forEach(function(m,idx){
     var sec=SEC[m.n]; if(!sec) return;
-    var e=document.createElement('div'); e.className='clawd'+(found[idx]?' found':'');
-    var tf=(m.flip?'scaleX(-1) ':'')+(m.rot?('rotate('+m.rot+'deg)'):'');
-    e.setAttribute('style',m.css+';width:'+m.s+'px;'+(tf?'--tf:'+tf:''));
-    e.style.animationDelay=(idx*0.5)+'s';
-    e.innerHTML=clawdSVG(m.type);
+    var e=document.createElement('div'); e.className='clawd act-'+m.action+(found[idx]?' found':'');
+    e.setAttribute('style',m.css+';width:'+m.s+'px');
+    e.innerHTML='<div class="cl-num">'+CODE.charAt(idx)+'</div>'+clawdSVG(m.action);
     e.title='Clawd'; e.dataset.idx=idx; e.dataset.digit=CODE.charAt(idx);
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
     sec.appendChild(e); cEls.push(e);
   });
+  (function(){
+    var last=SEC[SEC.length-1]; if(!last) return;
+    var sg=document.createElement('div'); sg.className='clawd clawd-sign';
+    sg.setAttribute('style','right:120px;bottom:210px;width:54px');
+    sg.innerHTML='<div class="cl-sign">¿tenés el código de <b>6 números</b>?<br><b>¡gritalo!</b> 🎁</div>'+clawdSVG('');
+    sg.addEventListener('click',function(ev){ ev.stopPropagation(); if(completed){showPrize();}else{toast('cada Clawd escondido tiene un número. juntá el código de 6 y escribilo para ganar 🎁');} });
+    last.appendChild(sg);
+  })();
 
   var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
   function toast(html){
