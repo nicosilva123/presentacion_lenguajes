@@ -647,10 +647,13 @@ body[data-theme="light"] #hint{color:#9aa0ab}
    AÑADIDOS — fix contador · intro Claude Code · easter eggs animados
    ============================================================ */
 #hud{display:none!important}
+/* contador y footer al margen exterior: que no los tape la línea del marco */
+.hud .idx{top:14px!important;right:46px!important}
+.hud .sig{bottom:12px!important}
 
 /* ---------- intro estilo Claude Code (terminal) ---------- */
 .cld-intro{position:absolute;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
-  background:var(--ink);font-family:var(--mono);opacity:0;visibility:hidden;
+  background:#E7E1D2;font-family:var(--mono);opacity:0;visibility:hidden;
   transition:opacity .6s ease,visibility .6s ease}
 .cld-intro.play{opacity:1;visibility:visible}
 .cld-intro.done{opacity:0;visibility:hidden;pointer-events:none}
@@ -692,9 +695,9 @@ body[data-theme="light"] #hint{color:#9aa0ab}
 .cc-eggline{color:#E0A96B}
 .cc-foot{display:flex;justify-content:space-between;padding:11px 20px;border-top:1px solid rgba(0,0,0,.45);background:#202022;font-size:13px;color:#71717a}
 .cld-skip{position:absolute;right:22px;bottom:58px;z-index:3;cursor:pointer;font-family:var(--mono);
-  font-size:14px;color:#71717a;background:rgba(255,255,255,.06);
-  border:1px solid rgba(242,238,227,.16);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
-.cld-skip:hover{color:#F3F1EA;border-color:rgba(242,238,227,.42)}
+  font-size:14px;color:#6b5d4f;background:rgba(0,0,0,.05);
+  border:1px solid rgba(0,0,0,.2);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
+.cld-skip:hover{color:#161618;border-color:rgba(0,0,0,.5)}
 
 /* ---------- muñequitos de Claude escondidos ✻ ---------- */
 .mascot{position:absolute;z-index:8;cursor:pointer;width:54px;height:auto;opacity:.92;
@@ -1241,29 +1244,29 @@ fit();render();
       '<span class="cc-ok">●</span> Diseñando 23 slides…',
       '<span class="cc-ok">●</span> Plantando easter eggs <span class="cc-star">✦</span>'
     ];
-    lines.forEach(function(h,n){ T(function(){ addLine(h,'cc-line'); },150+n*520); });
-    var base=150+lines.length*520;
-    T(function(){ addLine('<span class="cc-star">✻</span> Listo. Armé la presentación completa a partir del paper.','cc-final'); }, base+200);
+    lines.forEach(function(h,n){ T(function(){ addLine(h,'cc-line'); },200+n*860); });
+    var base=200+lines.length*860;
+    T(function(){ addLine('<span class="cc-star">✻</span> Listo. Armé la presentación completa a partir del paper.','cc-final'); }, base+520);
     T(function(){
       addLine('Escondí varios <span class="cc-star">✦</span> por las slides — <b>premio</b> para quien los encuentre todos 👀','cc-final cc-eggline');
-      T(finish, 1800);
-    }, base+700);
+      T(finish, 4800);
+    }, base+1150);
   }
   function play(){
     if(playing) return;
     reset(); void intro.offsetWidth; playing=true; played=true;
     intro.classList.add('play');
     T(function(){
-      typeArr(elType,' hacé la mejor presentación para este paper',30,function(){
+      typeArr(elType,' hacé la mejor presentación para este paper',15,function(){
         var s=intro.querySelector('#ccSend'); if(s) s.classList.add('on');
         T(function(){
           if(s) s.style.display='none';
           var c=intro.querySelector('#ccCur'); if(c) c.style.display='none';
           var p=intro.querySelector('#ccPrompt'); if(p) p.classList.add('sent');
           runLines();
-        }, 900);
+        }, 1500);
       });
-    }, 700);
+    }, 1100);
   }
   intro.addEventListener('click',function(e){
     if(e.target.closest('#cldSkip')){ finish(); return; }
