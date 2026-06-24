@@ -696,20 +696,20 @@ body[data-theme="light"] #hint{color:#9aa0ab}
   border:1px solid rgba(242,238,227,.16);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
 .cld-skip:hover{color:#F3F1EA;border-color:rgba(242,238,227,.42)}
 
-/* ---------- easter eggs animados ✦ (dejados por Claude) ---------- */
-.egg{position:absolute;z-index:8;cursor:pointer;font-size:24px;line-height:1;color:var(--accent);
-  opacity:.10;user-select:none;animation:eggFloat 4s ease-in-out infinite;
-  transition:opacity .35s,filter .35s,transform .2s}
-.egg:hover{opacity:1;transform:scale(1.35);filter:drop-shadow(0 0 14px currentColor)}
-.egg.lit{opacity:.9;animation:eggFloat 3s ease-in-out infinite,eggGlow 2.2s ease-in-out infinite}
-.egg.pop{animation:eggPop .6s cubic-bezier(.2,.8,.2,1)}
-.egg.found{color:#12A36B}
-@keyframes eggFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(10deg)}}
-@keyframes eggGlow{0%,100%{filter:drop-shadow(0 0 3px currentColor)}50%{filter:drop-shadow(0 0 18px currentColor)}}
-@keyframes eggPop{0%{transform:scale(1)}40%{transform:scale(2) rotate(22deg)}100%{transform:scale(1) rotate(0)}}
-.egg-ring{position:absolute;z-index:9;pointer-events:none;width:18px;height:18px;border-radius:50%;
-  border:2px solid var(--accent);transform:translate(-50%,-50%);animation:eggRing .7s ease-out forwards}
-@keyframes eggRing{from{opacity:.9;width:10px;height:10px}to{opacity:0;width:120px;height:120px}}
+/* ---------- muñequitos de Claude escondidos ✻ ---------- */
+.mascot{position:absolute;z-index:8;cursor:pointer;width:54px;height:auto;opacity:.92;
+  animation:mFloat 4.5s ease-in-out infinite;transition:transform .2s,filter .3s,opacity .3s;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.mascot svg{display:block;width:100%;height:auto;overflow:visible}
+.mascot:hover{transform:scale(1.22) rotate(-3deg);opacity:1;filter:drop-shadow(0 0 15px rgba(217,119,87,.75))}
+.mascot.pop{animation:mPop .6s cubic-bezier(.2,.8,.2,1)}
+.mascot.found{opacity:.5}
+.mascot.found::after{content:"✓";position:absolute;right:-5px;top:-5px;width:18px;height:18px;border-radius:50%;
+  background:#12A36B;color:#fff;font-size:11px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.4)}
+@keyframes mFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes mPop{0%{transform:scale(1)}45%{transform:scale(1.5) rotate(12deg)}100%{transform:scale(1)}}
+body[data-theme="light"] .mascot{filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
 
 .egg-toast{position:fixed;left:50%;bottom:7%;transform:translate(-50%,14px);z-index:220;
   max-width:680px;font-family:var(--mono);font-size:18px;line-height:1.5;color:#0A0B14;
@@ -717,7 +717,8 @@ body[data-theme="light"] #hint{color:#9aa0ab}
   padding:15px 22px 15px 20px;box-shadow:0 24px 60px rgba(0,0,0,.45);
   opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 .egg-toast.show{opacity:1;transform:translate(-50%,0)}
-.egg-toast .eg-spark{color:#6C5CE7;margin-right:8px}
+.egg-toast .eg-spark{color:#D97757;margin-right:8px}
+.egg-toast b{color:#6C5CE7}
 .egg-toast .eg-sig{display:block;margin-top:6px;font-size:13px;color:#6B7689;letter-spacing:.04em}
 
 .egg-card{position:fixed;inset:0;z-index:230;display:flex;align-items:center;justify-content:center;
@@ -733,18 +734,21 @@ body[data-theme="light"] #hint{color:#9aa0ab}
 .egg-card .card p{font-size:17px;line-height:1.6;color:#C7C2B4;margin:0 0 8px}
 .egg-card .card .hl{color:#A593FF}
 .egg-card .card .sig{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:20px;color:#E0A96B}
-.egg-card .card small{display:block;margin-top:18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
+.egg-card .card small{display:block;margin-top:18px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
 .egg-card.prize .card{border-color:rgba(217,168,107,.55);box-shadow:0 50px 130px rgba(0,0,0,.6),0 0 70px rgba(217,168,107,.2)}
 .egg-card .trophy{font-size:68px;line-height:1;margin-bottom:8px;animation:trophyPop .6s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 8px 26px rgba(217,168,107,.55))}
 @keyframes trophyPop{0%{transform:scale(0) rotate(-20deg);opacity:0}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0);opacity:1}}
-.egg-card .rank{margin-top:14px;font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#E0A96B}
+.egg-card .bigcode{font-family:var(--display);font-weight:700;font-size:46px;letter-spacing:.16em;
+  color:#E0A96B;margin:4px 0 6px;text-shadow:0 0 24px rgba(224,169,107,.45)}
+.egg-card .rank{margin-top:12px;font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#E0A96B}
 
-.egg-hud{position:fixed;left:18px;top:14px;z-index:210;font-family:var(--mono);font-size:12px;
-  letter-spacing:.06em;color:#9AA3B4;background:rgba(0,0,0,.4);border:1px solid rgba(108,92,231,.3);
-  border-radius:999px;padding:5px 12px;opacity:0;transform:translateY(-6px);
+.egg-hud{position:fixed;left:18px;top:14px;z-index:210;font-family:var(--mono);font-size:13px;
+  letter-spacing:.12em;color:#cfcabb;background:rgba(0,0,0,.5);border:1px solid rgba(217,119,87,.4);
+  border-radius:999px;padding:6px 14px;opacity:0;transform:translateY(-6px);
   transition:opacity .3s,transform .3s;pointer-events:none}
+.egg-hud b{color:#E0A96B}
 .egg-hud.show{opacity:1;transform:none}
-body[data-theme="light"] .egg-hud{color:#5a6273;background:rgba(255,255,255,.55)}
+body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 #eggfetti{position:fixed;inset:0;z-index:240;pointer-events:none}
 
 </style></head><body>
@@ -1273,78 +1277,105 @@ fit();render();
   mo.observe(cover,{attributes:true,attributeFilter:['data-deck-active']});
   if(cover.hasAttribute('data-deck-active') && !played){ T(play,400); }
 
-  /* ---------- EASTER EGGS ANIMADOS ✦ ---------- */
+    /* ---------- EASTER EGGS: muñequitos de Claude escondidos ---------- */
   try{
     console.log('%c✻ Claude estuvo acá','color:#D97757;font-size:22px;font-weight:bold');
-    console.log('%cPresentación generada con Claude Code (Opus 4.8) a partir del paper base.\nEscribí "claude", "eggs" o "premio". Hay 9 ✦ animados escondidos — premio para quien los encuentre todos. — Claude','color:#6C5CE7;font-size:13px;line-height:1.6');
+    console.log('%cHay 9 muñequitos de Claude disfrazados escondidos en las slides. Encontralos y armás el código final. Escribí "claude" o "premio". — Claude','color:#6C5CE7;font-size:13px;line-height:1.6');
   }catch(_){}
 
-  var QUOTES=[
-    'el 30% difícil sigue siendo tuyo. ✦',
-    'yo escribo el código; vos decidís qué construir.',
-    '¿P = NP? todavía no, che.',
-    'esta slide la "dibujé" yo… con CSS, eh.',
-    'Turing avisó: no todo se puede verificar. yo tampoco.',
-    'no te reemplazo: te orquesto. ✦',
-    'el lenguaje natural es el último escalón… por ahora.',
-    'Rice: casi todo es indecidible. igual lo intenté.',
-    'COBOL también iba a "matar" al programador. seguimos acá.',
-    'el compilador fue la primera "IA" que te reemplazó. spoiler: no lo hizo.',
-    'leer código ajeno sigue siendo más difícil que escribirlo.',
-    'Chomsky: tu prompt es ambiguo. yo igual lo entendí (casi).',
-    'el bug está en la línea que juraste que estaba bien.',
-    'SWE-bench pasó de 14% a 95%. el 5% que falta es el que importa.',
-    'pedíme lo que quieras; la responsabilidad sigue siendo tuya.',
-    'spoiler del final: polarización, no reemplazo.',
-    'si encontrás todos los ✦, sos del 30% que no terceriza el criterio.',
-    'busqué la mejor tipografía manuscrita para vos. de nada.'
-  ];
-  var SPOTS=[
-    {n:2, css:'left:54px;top:46%'},
-    {n:4, css:'right:74px;bottom:150px'},
-    {n:5, css:'left:56px;top:300px'},
-    {n:8, css:'right:120px;top:120px'},
-    {n:10,css:'left:72px;bottom:120px'},
-    {n:13,css:'right:92px;bottom:160px'},
-    {n:16,css:'left:92px;top:140px'},
-    {n:19,css:'right:84px;top:300px'},
-    {n:21,css:'left:66px;bottom:128px'}
+  var CODE='INGENIERO'; // 9 letras, una por muñequito
+
+  function mascotSVG(type){
+    var back='',front='',clay='#D97757';
+    switch(type){
+      case 'detective':
+        front='<path d="M14 20 Q30 8 46 20 L46 22 Q30 16 14 22 Z" fill="#7d6a55"/><ellipse cx="30" cy="20" rx="9" ry="3" fill="#6b5a47"/>'+
+              '<circle cx="49" cy="52" r="6" fill="none" stroke="#15172A" stroke-width="2.4"/><line x1="53" y1="56" x2="59" y2="62" stroke="#15172A" stroke-width="2.6" stroke-linecap="round"/>';
+        break;
+      case 'grad':
+        front='<rect x="28.5" y="14" width="3" height="8" fill="#15172A"/><path d="M12 16 L30 9 L48 16 L30 23 Z" fill="#15172A"/><circle cx="46" cy="18" r="2" fill="#E0A96B"/><path d="M46 18 L46 27" stroke="#E0A96B" stroke-width="1.5"/>';
+        break;
+      case 'wizard':
+        front='<path d="M30 0 L19 22 L41 22 Z" fill="#6C5CE7"/><circle cx="25" cy="14" r="1.4" fill="#E0A96B"/><circle cx="33" cy="10" r="1.1" fill="#E0A96B"/>';
+        break;
+      case 'hero':
+        back='<path d="M18 24 L8 62 L30 50 L52 62 L42 24 Z" fill="#6C5CE7" opacity=".92"/>';
+        front='<path d="M20 35 L40 35 L36 41 L24 41 Z" fill="#15172A"/>';
+        break;
+      case 'cool':
+        front='<rect x="19" y="35" width="9" height="6" rx="1.5" fill="#15172A"/><rect x="32" y="35" width="9" height="6" rx="1.5" fill="#15172A"/><line x1="28" y1="37" x2="32" y2="37" stroke="#15172A" stroke-width="2"/>';
+        break;
+      case 'headphones':
+        front='<path d="M15 38 Q30 16 45 38" stroke="#15172A" stroke-width="3" fill="none"/><rect x="12" y="36" width="7" height="12" rx="3" fill="#15172A"/><rect x="41" y="36" width="7" height="12" rx="3" fill="#15172A"/>';
+        break;
+      case 'king':
+        front='<path d="M19 16 L24 23 L30 13 L36 23 L41 16 L41 25 L19 25 Z" fill="#E0A96B" stroke="#b9863f" stroke-width="1"/><circle cx="30" cy="14" r="1.6" fill="#E5447B"/>';
+        break;
+      case 'chef':
+        front='<path d="M20 19 Q17 7 26 9 Q29 2 34 9 Q43 7 40 19 Z" fill="#F3F1EA"/><rect x="20" y="18" width="20" height="5" rx="1" fill="#F3F1EA"/>';
+        break;
+      case 'party':
+        front='<path d="M30 3 L22 21 L38 21 Z" fill="#E5447B"/><circle cx="30" cy="3" r="3" fill="#0E9FB5"/><path d="M24 16 h12 M25 12 h10" stroke="#F3F1EA" stroke-width="1.2"/>';
+        break;
+    }
+    return '<svg viewBox="0 0 60 74" xmlns="http://www.w3.org/2000/svg">'+back+
+      '<path d="M30 14 C18 14 14 25 14 41 C14 58 21 68 30 68 C39 68 46 58 46 41 C46 25 42 14 30 14 Z" fill="'+clay+'"/>'+
+      '<circle cx="24.5" cy="40" r="3" fill="#1a1208"/><circle cx="35.5" cy="40" r="3" fill="#1a1208"/>'+
+      '<path d="M25 47 Q30 51 35 47" stroke="#1a1208" stroke-width="2" fill="none" stroke-linecap="round"/>'+
+      '<path d="M30 55 l1.3 2.8 3 .2 -2.3 1.9 .8 3 -2.8-1.7 -2.8 1.7 .8-3 -2.3-1.9 3-.2 z" fill="#fff" opacity=".5"/>'+
+      front+'</svg>';
+  }
+
+  var MASCOTS=[
+    {n:2, type:'detective', css:'left:54px;top:42%',      name:'detective'},
+    {n:4, type:'grad',      css:'right:70px;bottom:140px', name:'recién recibido'},
+    {n:5, type:'wizard',    css:'left:54px;top:290px',     name:'mago'},
+    {n:8, type:'hero',      css:'right:108px;top:108px',   name:'superhéroe'},
+    {n:10,type:'cool',      css:'left:70px;bottom:118px',  name:'modo relax'},
+    {n:13,type:'headphones',css:'right:88px;bottom:150px', name:'traductor'},
+    {n:16,type:'king',      css:'left:88px;top:128px',     name:'el que decide'},
+    {n:19,type:'chef',      css:'right:80px;top:290px',    name:'chef'},
+    {n:21,type:'party',     css:'left:62px;bottom:118px',  name:'modo fiesta'}
   ];
 
   var found={}, awarded=false;
-  try{ (JSON.parse(localStorage.getItem('eggs_found')||'[]')).forEach(function(k){found[k]=1;}); }catch(_){}
-  if(Object.keys(found).length>=SPOTS.length) awarded=true;
+  try{ (JSON.parse(localStorage.getItem('mas_found')||'[]')).forEach(function(k){found[k]=1;}); }catch(_){}
+  if(Object.keys(found).length>=MASCOTS.length) awarded=true;
 
-  var eggEls=[];
-  SPOTS.forEach(function(s,idx){
-    var sec=SEC[s.n]; if(!sec) return;
-    var e=document.createElement('div'); e.className='egg'; e.textContent='✦';
-    e.setAttribute('style',s.css);
-    e.style.animationDelay=(idx*0.27)+'s';
-    e.dataset.q=QUOTES[idx%QUOTES.length]; e.dataset.idx=idx;
-    if(found[idx]) e.classList.add('found');
+  var mEls=[];
+  MASCOTS.forEach(function(m,idx){
+    var sec=SEC[m.n]; if(!sec) return;
+    var e=document.createElement('div'); e.className='mascot'+(found[idx]?' found':'');
+    e.setAttribute('style',m.css); e.style.animationDelay=(idx*0.4)+'s';
+    e.innerHTML=mascotSVG(m.type);
+    e.title='✻ Claude';
+    e.dataset.idx=idx; e.dataset.name=m.name; e.dataset.letter=CODE.charAt(idx)||'✦';
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
-    sec.appendChild(e); eggEls.push(e);
+    sec.appendChild(e); mEls.push(e);
   });
 
-  function ring(e){
-    var sec=e.parentNode; var r=document.createElement('div'); r.className='egg-ring';
-    r.style.left=(e.offsetLeft+e.offsetWidth/2)+'px'; r.style.top=(e.offsetTop+e.offsetHeight/2)+'px';
-    sec.appendChild(r); setTimeout(function(){r.remove();},750);
+  var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
+  function toast(html){
+    toastEl.innerHTML='<span class="eg-spark">✻</span>'+html+'<span class="eg-sig">— easter egg dejado por Claude</span>';
+    toastEl.classList.add('show'); clearTimeout(toastT);
+    toastT=setTimeout(function(){toastEl.classList.remove('show');},4200);
   }
+
+  var ehud=document.createElement('div'); ehud.className='egg-hud'; document.body.appendChild(ehud); var hudT;
+  function codeStr(){ return CODE.split('').map(function(ch,k){return found[k]?ch:'·';}).join(' '); }
+  function updHud(){
+    var c=Object.keys(found).length;
+    ehud.innerHTML='código: <b>'+codeStr()+'</b> &nbsp;('+c+'/'+MASCOTS.length+')';
+    ehud.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(function(){ehud.classList.remove('show');},3400);
+  }
+
   function pick(idx,e){
     var isNew=!found[idx];
     found[idx]=1; e.classList.add('found','pop'); setTimeout(function(){e.classList.remove('pop');},650);
-    ring(e); toast(e.dataset.q); updHud();
-    try{ localStorage.setItem('eggs_found',JSON.stringify(Object.keys(found))); }catch(_){}
+    toast('encontraste a Claude <b>'+e.dataset.name+'</b> — letra <b>'+e.dataset.letter+'</b>');
+    updHud();
+    try{ localStorage.setItem('mas_found',JSON.stringify(Object.keys(found))); }catch(_){}
     if(isNew) checkPrize();
-  }
-
-  var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
-  function toast(q){
-    toastEl.innerHTML='<span class="eg-spark">✦</span>'+q+'<span class="eg-sig">— easter egg dejado por Claude</span>';
-    toastEl.classList.add('show'); clearTimeout(toastT);
-    toastT=setTimeout(function(){toastEl.classList.remove('show');},4200);
   }
 
   var card=document.createElement('div'); card.className='egg-card';
@@ -1353,56 +1384,43 @@ fit();render();
     '<p>Esta presentación la armé yo, <span class="hl">Claude (Opus 4.8)</span>, a partir del paper base.</p>'+
     '<p>El ingeniero decidió <span class="hl">qué</span> construir y por qué; yo me encargué del <span class="hl">cómo</span>.</p>'+
     '<p class="sig">«La IA acelera el cómo. El ingeniero decide el qué.»</p>'+
-    '<small>esc para cerrar · escribí "eggs" para buscar los ✦</small></div>';
+    '<small>esc para cerrar · buscá los 9 muñequitos escondidos ✻</small></div>';
   document.body.appendChild(card);
   card.addEventListener('click',function(){card.classList.remove('show');});
 
   var prize=document.createElement('div'); prize.className='egg-card prize';
   prize.innerHTML='<div class="card"><div class="trophy">🏆</div>'+
-    '<h3>¡Los encontraste todos!</h3>'+
-    '<p>Cazaste los <span class="hl">'+SPOTS.length+' ✦</span> que escondí por la presentación.</p>'+
-    '<p>Sos de los que revisan el <span class="hl">30% difícil</span> — justo lo que ninguna IA te hace sola.</p>'+
+    '<h3>¡Encontraste a los 9!</h3>'+
+    '<p>Cazaste a los <span class="hl">9 Claude</span> disfrazados que escondí por la presentación.</p>'+
+    '<p style="margin-top:14px">tu código final:</p>'+
+    '<div class="bigcode">'+CODE+'</div>'+
     '<p class="rank">rango desbloqueado · ingeniero PRO ✦</p>'+
-    '<p class="sig">«La IA acelera el cómo. Vos encontrás lo que está escondido.»</p>'+
+    '<p class="sig">«La IA acelera el cómo. El ingeniero decide el qué.»</p>'+
     '<small>esc para cerrar · premio cortesía de Claude</small></div>';
   document.body.appendChild(prize);
   prize.addEventListener('click',function(){prize.classList.remove('show');});
-
-  var ehud=document.createElement('div'); ehud.className='egg-hud'; document.body.appendChild(ehud); var hudT;
-  function updHud(){
-    var c=Object.keys(found).length;
-    ehud.textContent=(c>=SPOTS.length?'✦ ¡completo! '+c+' / '+SPOTS.length:'✦ '+c+' / '+SPOTS.length+' easter eggs');
-    ehud.classList.add('show'); clearTimeout(hudT);
-    hudT=setTimeout(function(){ehud.classList.remove('show');},2800);
-  }
 
   function confetti(){
     var c=document.createElement('canvas'); c.id='eggfetti';
     c.width=innerWidth; c.height=innerHeight; document.body.appendChild(c);
     var ctx=c.getContext('2d');
     var cols=['#6C5CE7','#D97757','#12A36B','#E5447B','#0E9FB5','#D98200','#F3F1EA'];
-    var P=[]; for(var k=0;k<180;k++){P.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,r:4+Math.random()*7,vy:2.5+Math.random()*4.5,vx:-2.2+Math.random()*4.4,rot:Math.random()*6.28,vr:-0.25+Math.random()*0.5,col:cols[k%cols.length]});}
+    var P=[]; for(var k=0;k<200;k++){P.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,r:4+Math.random()*7,vy:2.5+Math.random()*4.5,vx:-2.2+Math.random()*4.4,rot:Math.random()*6.28,vr:-0.25+Math.random()*0.5,col:cols[k%cols.length]});}
     var t0=performance.now();
     (function frame(t){
       var el=t-t0; ctx.clearRect(0,0,c.width,c.height);
       P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.rot+=p.vr;
         ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.col;
         ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.62);ctx.restore();});
-      if(el<3800){requestAnimationFrame(frame);} else { c.remove(); }
+      if(el<4200){requestAnimationFrame(frame);} else { c.remove(); }
     })(t0);
   }
   function showPrize(){ confetti(); prize.classList.add('show'); }
   function checkPrize(){
-    if(!awarded && Object.keys(found).length>=SPOTS.length){
-      awarded=true; try{localStorage.setItem('eggs_done','1');}catch(_){}
-      setTimeout(showPrize,650);
+    if(!awarded && Object.keys(found).length>=MASCOTS.length){
+      awarded=true; try{localStorage.setItem('mas_done','1');}catch(_){}
+      setTimeout(showPrize,700);
     }
-  }
-
-  var lit=false;
-  function toggleLit(){
-    lit=!lit; eggEls.forEach(function(e){e.classList.toggle('lit',lit);}); updHud();
-    if(lit) toast('modo búsqueda activado: los ✦ ahora flotan y brillan en varias slides.');
   }
 
   var buf='';
@@ -1413,9 +1431,9 @@ fit();render();
       buf=(buf+e.key.toLowerCase()).slice(-8);
       if(buf.indexOf('claude')>=0){ card.classList.add('show'); buf=''; }
       else if(buf.indexOf('premio')>=0){ showPrize(); buf=''; }
-      else if(buf.indexOf('eggs')>=0){ toggleLit(); buf=''; }
     }
   });
+
 })();
 </script>
 </body></html>

@@ -5,64 +5,34 @@ sin dependencias). Backup en `.presentacionanimada.backup.html`.
 
 ---
 
-## 1. Fix: el contador "se veía mal" (contador doble)
+## 1. Fix: contador doble
+Había un HUD global `#hud` que se superponía con el contador integrado de cada slide
+(lo de las fotos del "21/23"). Se ocultó el global (`#hud{display:none}`). Queda **un
+único contador por slide**. El estilo "cuaderno manuscrito" del ingeniero quedó intacto.
 
-Cada slide ya traía su propio contador integrado al marco, pero además había un HUD
-**global** `#hud` fijo arriba a la derecha → los dos números quedaban **superpuestos**
-(lo que mostraban las fotos del "21/23"). Se ocultó el global con una regla CSS
-(`#hud{display:none}`). Queda **un único contador por slide**. El estilo "cuaderno
-manuscrito" de las slides del ingeniero es intencional y quedó intacto.
+## 2. Intro estilo Claude Code (terminal) en la slide 1
+Al entrar a la portada corre una terminal de **Claude Code** (~8 s): `✻ Welcome to
+Claude Code!`, el paper base como contexto, se escribe **"hacé la mejor presentación
+para este paper"**, corren las líneas de trabajo (Read paper, tesis: polarización,
+diseñando 23 slides, plantando easter eggs) y **revela la portada**.
+- Saltar: botón o click en el fondo · Repetir: tecla **`i`** en la portada.
 
----
+## 3. Easter eggs = muñequitos de Claude escondidos + código final
+**9 muñequitos de Claude disfrazados**, escondidos y **visibles directo** en las slides
+(no hace falta tipear nada). Flotan suavemente; al pasar el mouse se agrandan.
 
-## 2. Intro estilo **Claude Code** (terminal) al principio de la slide 1
+- Cada uno tiene un **disfraz** distinto: detective, recién recibido (birrete), mago,
+  superhéroe (capa), modo relax (anteojos), traductor (auriculares), el que decide
+  (corona), chef y modo fiesta.
+- **Click** en uno → pop + ✓ + una frase, y te da **una letra del código**.
+- Arriba a la izquierda se va armando el **código** a medida que los encontrás.
+- **🏆 Al encontrar los 9** → confetti + tarjeta de premio con el **CÓDIGO FINAL:
+  `INGENIERO`** y "rango desbloqueado · ingeniero PRO". El progreso se guarda en el
+  navegador (`localStorage`).
+- Están en las slides **3, 5, 6, 9, 11, 14, 17, 20 y 22**.
 
-Al entrar a la portada se reproduce una terminal de **Claude Code** (~8 s), igual que
-en la landing de referencia:
-
-```
-✻ Welcome to Claude Code!
-/help for help · /status for your current setup
-cwd: ~/el-ingeniero-x-ia
-⎿ contexto: el-futuro-del-ingeniero-frente-a-la-IA.pdf · paper base · 14 págs
-
-> hacé la mejor presentación para este paper        [Enter] to send
-
-● Read el-futuro-del-ingeniero-frente-a-la-IA.pdf (14 págs)
-● Tesis detectada: polarización, no reemplazo
-● Diseñando 23 slides…
-● Plantando easter eggs ✦
-✻ Listo. Armé la presentación completa a partir del paper.
-  Escondí varios ✦ por las slides — premio para quien los encuentre todos 👀
-```
-
-Después la terminal se desvanece y **revela la portada**.
-- **Saltar:** botón "saltar intro" o click en el fondo.
-- **Repetir:** con la slide 1 abierta, tecla **`i`**.
-- Sólo se reproduce la primera vez (no molesta si volvés atrás durante la charla).
-
----
-
-## 3. Easter eggs animados + **premio**
-
-Cosas que dejó escondidas Claude, pensadas para quien explore la presentación después. Todo es opt-in (no interfiere con la exposición en vivo).
-
-| Trigger | Qué hace |
-|---|---|
-| Escribir **`eggs`** | Modo búsqueda: los **✦ flotan y brillan** en las slides (animados). |
-| **Click en un ✦** | Pop + onda + frase escondida (toast) firmada por Claude; el ✦ queda verde (encontrado). |
-| Escribir **`claude`** | Tarjeta "✻ Hecho con Claude Code" (cerrar con `Esc`). |
-| Escribir **`premio`** | Vuelve a mostrar el premio. |
-| Tecla **`i`** en la portada | Repite el intro. |
-| **Consola** (F12) / **ver código fuente** | Mensajes ocultos de Claude. |
-
-**Los ✦ (9 en total):** repartidos en las slides
-**3, 5, 6, 9, 11, 14, 17, 20 y 22**, casi invisibles
-hasta que los buscás (`eggs`) o pasás el mouse. Flotan suavemente y brillan.
-
-**🏆 Premio:** al encontrar **los 9**, salta **confetti** + una tarjeta de premio
-("¡Los encontraste todos! · rango desbloqueado · ingeniero PRO ✦"). El progreso se
-guarda en el navegador (`localStorage`), así que no se pierde si recargás.
+Otros: tipear **`claude`** (tarjeta "Hecho con Claude Code"), **`premio`** (re-mostrar
+el premio), mensajes ocultos en la **consola** y en el **código fuente**.
 
 ---
 
@@ -71,8 +41,6 @@ Abrí `presentacionanimada.html` en el navegador. Navegación: **← →** / esp
 **F** pantalla completa · **Home/End**.
 
 ## Notas técnicas
-- 2 inserciones: un bloque CSS antes de `</style>` y un `<script>` antes de `</body>`.
-  El motor original (`render/go/fit`) no se tocó. Sin librerías nuevas.
-- El logo/marca de Claude se reutiliza del propio deck; el confetti es un `<canvas>`
-  liviano sin dependencias.
-- Backup: `.presentacionanimada.backup.html`.
+- 2 inserciones (CSS antes de `</style>`, `<script>` antes de `</body>`). El motor
+  original (`render/go/fit`) no se tocó. Sin librerías; muñequitos en SVG inline,
+  confetti en `<canvas>`. Backup: `.presentacionanimada.backup.html`.
