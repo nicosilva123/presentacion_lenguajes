@@ -807,6 +807,28 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 .cinema .cc-punch{font-family:var(--display)}
 .cinema .cc-term{opacity:0;transform:scale(.96) translateY(14px)}
 .cinema[data-deck-active] .cc-term{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+
+/* ---------- cierre: hoja de papel dibujada ---------- */
+.paper-slide{font-family:'Caveat',cursive}
+.paper-slide .paper{position:relative;width:1140px;max-width:80%;min-height:700px;background:#F7F2E2;
+  border-radius:5px;padding:74px 84px 90px;transform:rotate(-1.6deg);color:#2a2622;
+  box-shadow:0 48px 110px rgba(0,0,0,.62),inset 0 0 70px rgba(170,150,110,.14);
+  background-image:repeating-linear-gradient(180deg,transparent 0 47px,rgba(70,110,180,.12) 47px 48px)}
+.paper-slide .tape{position:absolute;top:-22px;left:50%;width:180px;height:42px;transform:translateX(-50%) rotate(-2deg);
+  background:rgba(228,208,150,.5);box-shadow:0 3px 7px rgba(0,0,0,.18)}
+.paper-slide .redline{position:absolute;top:0;bottom:0;left:60px;width:2px;background:rgba(205,80,80,.45)}
+.paper-slide .ph{font-size:130px;font-weight:700;line-height:.9;color:#221f1b;transform:rotate(-1deg);margin-left:24px}
+.paper-slide .ph .strike{position:relative}
+.paper-slide .psub{font-size:46px;color:#4a463f;margin:30px 0 0 24px;transform:rotate(-.5deg)}
+.paper-slide .pnames{font-size:40px;color:#7c776c;margin:46px 0 0 24px}
+.paper-slide .pcode{position:absolute;left:84px;bottom:60px;font-size:30px;color:#6b665c}
+.paper-slide .pclawd{position:absolute;right:60px;bottom:46px;width:230px;text-align:center}
+.paper-slide .pclawd .pboard{display:inline-block;background:#FBF7EC;border:3px solid #2a2018;border-radius:10px;
+  padding:11px 15px;font-size:25px;line-height:1.15;color:#2a2622;transform:rotate(2.5deg);filter:url(#paperSketch);margin-bottom:6px}
+.paper-slide .pclawd .pboard b{color:#C2533A}
+.paper-slide .pclawd .pstick{width:4px;height:26px;margin:0 auto;background:#2a2018;filter:url(#paperSketch)}
+.paper-slide .pclawd .cd-svg{width:150px;height:auto;filter:url(#paperSketch);display:block;margin:0 auto}
+
 </style></head><body>
 <!--
    egg #0 — para quien lee el codigo fuente.
@@ -1184,16 +1206,7 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 
 
   <!-- 23 · PREGUNTAS (creativa) -->
-  <section class="sys-mix" data-label="Preguntas" data-speaker-notes="Cierre real de la charla. La máquina ya expuso sus datos; ahora el turno es del humano. Espacio para preguntas y debate." style="--accent:#E5447B;isolation:isolate;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
-    <div class="mesh"></div>
-    <div class="r1" style="font-family:var(--mono);font-size:24px;letter-spacing:.18em;color:var(--accent)">$ ./charla --estado: <span style="color:#22c98a">completa</span></div>
-    <div class="r2" style="font-family:var(--mono);font-size:30px;color:var(--slate-l);margin-top:26px">// la máquina ya dijo lo suyo.</div>
-    <h1 class="r3" style="font-size:120px;font-weight:700;line-height:.96;letter-spacing:-.03em;margin-top:16px">Ahora habla<br>el <span style="font-family:'Caveat',cursive;font-weight:700;color:var(--accent);font-size:150px">humano.</span></h1>
-    <div class="r4" style="font-family:var(--mono);font-size:46px;color:var(--bone);margin-top:42px">¿Preguntas?<span class="cursor" style="color:var(--accent);font-weight:400">_</span></div>
-    <div class="r5" style="position:absolute;left:var(--px);bottom:70px;font-family:var(--mono);font-size:23px;color:var(--slate)">Martín Pulitano&nbsp;·&nbsp;Nicolás Silva&nbsp;&nbsp;—&nbsp;&nbsp;<span style="color:var(--slate-l)">gracias.</span></div>
-    <div class="neonframe"></div>
-    <div class="ad" aria-hidden="true"><div class="grain"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">22 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Preguntas</span></div></div>
-  </section>
+  <section class="sys-human" data-label="Cierre" data-speaker-notes="Cierre: nos quedamos sin tokens. Gracias. (el codigo secreto de 6: gritalo)." style="box-sizing:border-box;background:#EFE9D7;background-image:repeating-linear-gradient(0deg,transparent 0 46px,rgba(70,110,180,.11) 46px 47px),repeating-linear-gradient(90deg,transparent 0 46px,rgba(70,110,180,.06) 46px 47px);padding:var(--py) var(--px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;font-family:'Caveat',cursive;color:#23201c"><div style="position:absolute;left:60px;top:0;bottom:0;width:2px;background:rgba(205,80,80,.4)"></div><div style="font-size:148px;font-weight:700;line-height:.88;transform:rotate(-1deg)">¡nos quedamos<br>sin tokens!</div><div style="font-size:48px;color:#4a463f;margin-top:34px;max-width:1100px;transform:rotate(-.4deg)">…igual, <u>gracias</u> por bancarnos 🙏 — ¿preguntas? rápido, antes de que se corte 👀</div><div style="font-size:42px;color:#7c776c;margin-top:46px">— martín &amp; nico ✦</div><div style="position:absolute;right:96px;bottom:70px;width:210px;text-align:center"><div style="display:inline-block;background:#FBF7EC;border:3px solid #2a2018;border-radius:11px;padding:11px 15px;font-size:27px;line-height:1.18;transform:rotate(2.5deg);box-shadow:4px 5px 0 rgba(0,0,0,.12)">¿tenés el código<br>de <b style="color:#C2533A">6 números</b>?<br><b style="color:#C2533A">¡gritalo!</b></div><div style="width:4px;height:26px;margin:2px auto 4px;background:#2a2018"></div><svg viewBox="0 0 110 96" width="150" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto"><g fill="#E2895A" stroke="#2a2018" stroke-width="3" stroke-linejoin="round"><rect x="6" y="34" width="12" height="16" rx="3"/><rect x="92" y="34" width="12" height="16" rx="3"/><rect x="22" y="64" width="14" height="24" rx="4"/><rect x="48" y="64" width="14" height="24" rx="4"/><rect x="74" y="64" width="14" height="24" rx="4"/><rect x="16" y="10" width="78" height="58" rx="8"/></g><g fill="none" stroke="#2a2018" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><polyline points="32,30 45,43 32,56"/><polyline points="78,30 65,43 78,56"/></g></svg></div></section>
 </div></div>
 <div id="pv" class="navzone" title="Anterior (←)"></div>
 <div id="nx" class="navzone" title="Siguiente (→)"></div>
@@ -1380,14 +1393,7 @@ fit();render();
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
     sec.appendChild(e); cEls.push(e);
   });
-  (function(){
-    var last=SEC[SEC.length-1]; if(!last) return;
-    var sg=document.createElement('div'); sg.className='clawd clawd-sign';
-    sg.setAttribute('style','right:120px;bottom:210px;width:54px');
-    sg.innerHTML='<div class="cl-sign">¿tenés el código de <b>6 números</b>?<br><b>¡gritalo!</b> 🎁</div>'+clawdSVG('');
-    sg.addEventListener('click',function(ev){ ev.stopPropagation(); if(completed){showPrize();}else{toast('cada Clawd escondido tiene un número. juntá el código de 6 y escribilo para ganar 🎁');} });
-    last.appendChild(sg);
-  })();
+
 
   var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
   function toast(html){
