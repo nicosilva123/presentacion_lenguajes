@@ -648,7 +648,7 @@ body[data-theme="light"] #hint{color:#9aa0ab}
    ============================================================ */
 #hud{display:none!important}
 /* contador y footer al margen exterior: que no los tape la línea del marco */
-.hud .idx{top:14px!important;right:46px!important}
+.hud .idx{display:none!important}
 .hud .sig{bottom:12px!important}
 
 /* ---------- intro estilo Claude Code (terminal) ---------- */
@@ -699,35 +699,34 @@ body[data-theme="light"] #hint{color:#9aa0ab}
   border:1px solid rgba(0,0,0,.2);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
 .cld-skip:hover{color:#161618;border-color:rgba(0,0,0,.5)}
 
-/* ---------- muñequitos de Claude escondidos ✻ ---------- */
-.mascot{position:absolute;z-index:8;cursor:pointer;width:54px;height:auto;opacity:.92;
-  animation:mFloat 4.5s ease-in-out infinite;transition:transform .2s,filter .3s,opacity .3s;
-  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
-.mascot svg{display:block;width:100%;height:auto;overflow:visible}
-.mascot:hover{transform:scale(1.22) rotate(-3deg);opacity:1;filter:drop-shadow(0 0 15px rgba(217,119,87,.75))}
-.mascot.pop{animation:mPop .6s cubic-bezier(.2,.8,.2,1)}
-.mascot.found{opacity:.5}
-.mascot.found::after{content:"✓";position:absolute;right:-5px;top:-5px;width:18px;height:18px;border-radius:50%;
+/* ---------- Clawd escondido (mascota de Claude Code) ---------- */
+.clawd{position:absolute;z-index:8;cursor:pointer;opacity:.96;line-height:0;
+  transform:var(--tf,none);animation:clawdFloat 4.5s ease-in-out infinite;
+  transition:filter .25s;filter:drop-shadow(0 4px 8px rgba(0,0,0,.28))}
+.clawd svg{display:block;width:100%;height:auto}
+.clawd:hover{filter:drop-shadow(0 0 14px rgba(217,120,90,.85))}
+.clawd.pop{animation:clawdPop .6s cubic-bezier(.2,.8,.2,1)}
+.clawd.found{opacity:.45}
+.clawd.found::after{content:"✓";position:absolute;right:-6px;top:-6px;width:18px;height:18px;border-radius:50%;
   background:#12A36B;color:#fff;font-size:11px;font-family:var(--mono);display:flex;align-items:center;justify-content:center;
   box-shadow:0 2px 6px rgba(0,0,0,.4)}
-@keyframes mFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(3deg)}}
-@keyframes mPop{0%{transform:scale(1)}45%{transform:scale(1.5) rotate(12deg)}100%{transform:scale(1)}}
-body[data-theme="light"] .mascot{filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+@keyframes clawdFloat{0%,100%{transform:var(--tf,none) translateY(0)}50%{transform:var(--tf,none) translateY(-9px)}}
+@keyframes clawdPop{0%{transform:var(--tf,none) scale(1)}45%{transform:var(--tf,none) scale(1.45)}100%{transform:var(--tf,none) scale(1)}}
+body[data-theme="light"] .clawd{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
 
 .egg-toast{position:fixed;left:50%;bottom:7%;transform:translate(-50%,14px);z-index:220;
-  max-width:680px;font-family:var(--mono);font-size:18px;line-height:1.5;color:#0A0B14;
-  background:#F3F1EA;border:1px solid rgba(108,92,231,.4);border-radius:14px;
-  padding:15px 22px 15px 20px;box-shadow:0 24px 60px rgba(0,0,0,.45);
+  max-width:700px;font-family:var(--mono);font-size:18px;line-height:1.5;color:#0A0B14;
+  background:#F3F1EA;border:1px solid rgba(217,120,90,.5);border-radius:14px;
+  padding:15px 22px;box-shadow:0 24px 60px rgba(0,0,0,.45);
   opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 .egg-toast.show{opacity:1;transform:translate(-50%,0)}
-.egg-toast .eg-spark{color:#D97757;margin-right:8px}
-.egg-toast b{color:#6C5CE7}
+.egg-toast b{color:#C2533A}
 .egg-toast .eg-sig{display:block;margin-top:6px;font-size:13px;color:#6B7689;letter-spacing:.04em}
 
 .egg-card{position:fixed;inset:0;z-index:230;display:flex;align-items:center;justify-content:center;
   background:rgba(8,9,16,.92);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
 .egg-card.show{opacity:1;visibility:visible}
-.egg-card .card{position:relative;width:580px;max-width:88%;text-align:center;font-family:var(--mono);
+.egg-card .card{position:relative;width:600px;max-width:88%;text-align:center;font-family:var(--mono);
   background:#0E1022;border:1px solid rgba(108,92,231,.35);border-radius:20px;padding:46px 40px 38px;
   box-shadow:0 50px 130px rgba(0,0,0,.6);transform:scale(.92);transition:transform .35s}
 .egg-card.show .card{transform:none}
@@ -736,17 +735,20 @@ body[data-theme="light"] .mascot{filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
 .egg-card .card h3{font-family:var(--display);font-weight:600;font-size:30px;color:var(--bone);margin:0 0 12px}
 .egg-card .card p{font-size:17px;line-height:1.6;color:#C7C2B4;margin:0 0 8px}
 .egg-card .card .hl{color:#A593FF}
-.egg-card .card .sig{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:20px;color:#E0A96B}
+.egg-card .card b{color:#E0A96B}
+.egg-card .card .sig{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:19px;color:#E0A96B}
 .egg-card .card small{display:block;margin-top:18px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
-.egg-card.prize .card{border-color:rgba(217,168,107,.55);box-shadow:0 50px 130px rgba(0,0,0,.6),0 0 70px rgba(217,168,107,.2)}
-.egg-card .trophy{font-size:68px;line-height:1;margin-bottom:8px;animation:trophyPop .6s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 8px 26px rgba(217,168,107,.55))}
+.egg-card .trophy{font-size:60px;line-height:1;margin-bottom:10px;font-family:var(--mono);font-weight:700;color:#D9785A;animation:trophyPop .6s cubic-bezier(.2,.8,.2,1) both}
+.egg-card.win .trophy{font-size:66px}
 @keyframes trophyPop{0%{transform:scale(0) rotate(-20deg);opacity:0}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0);opacity:1}}
-.egg-card .bigcode{font-family:var(--display);font-weight:700;font-size:46px;letter-spacing:.16em;
-  color:#E0A96B;margin:4px 0 6px;text-shadow:0 0 24px rgba(224,169,107,.45)}
-.egg-card .rank{margin-top:12px;font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#E0A96B}
+.egg-card.prize .card{border-color:rgba(217,120,90,.5);box-shadow:0 50px 130px rgba(0,0,0,.6),0 0 70px rgba(217,120,90,.2)}
+.egg-card.win .card{border-color:rgba(224,169,107,.6);box-shadow:0 50px 130px rgba(0,0,0,.6),0 0 80px rgba(224,169,107,.28)}
+.egg-card .bigcode{font-family:var(--display);font-weight:700;font-size:62px;letter-spacing:.22em;
+  color:#E0A96B;margin:6px 0 10px;text-shadow:0 0 28px rgba(224,169,107,.5)}
+.egg-card .rank{margin-top:12px;font-family:var(--mono);font-size:15px;letter-spacing:.04em;color:#E0A96B}
 
 .egg-hud{position:fixed;left:18px;top:14px;z-index:210;font-family:var(--mono);font-size:13px;
-  letter-spacing:.12em;color:#cfcabb;background:rgba(0,0,0,.5);border:1px solid rgba(217,119,87,.4);
+  letter-spacing:.12em;color:#cfcabb;background:rgba(0,0,0,.5);border:1px solid rgba(217,120,90,.45);
   border-radius:999px;padding:6px 14px;opacity:0;transform:translateY(-6px);
   transition:opacity .3s,transform .3s;pointer-events:none}
 .egg-hud b{color:#E0A96B}
@@ -873,18 +875,18 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
   <div class="ad" aria-hidden="true"><div class="grid-bp"></div><div class="vig"></div><div class="scan"></div><div class="grain"></div><div class="mesh"></div><div class="neonframe"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">07 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Bloque 2</span></div></div></section>
 
   <!-- 6a · B2 · El salto (SWE-bench) -->
-  <section class="sys-ai" data-label="El salto de la IA" data-speaker-notes="SWE-bench Verified, el test estándar de la industria, pasó de ~14% (inicios 2024) a ~95% (mediados 2026): el benchmark se saturó. Microsoft escribe 20–30% de su código con IA; Google, más de una cuarta parte." style="isolation:isolate;--accent:#0E9FB5;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
+  <section class="sys-ai" data-label="El salto de la IA" data-speaker-notes="SWE-bench Verified, el test estándar de la industria, pasó de ~14% (inicios 2024) a ~89% (mediados 2026): el benchmark se saturó. Microsoft escribe 20–30% de su código con IA; Google, más de una cuarta parte." style="isolation:isolate;--accent:#0E9FB5;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
     <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Bloque 02 · El presente · 2024–2026</div>
     <div class="r1" style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;gap:50px">
       <h1 style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;max-width:1080px">La capacidad para programar se disparó</h1>
-      <div style="text-align:right;flex-shrink:0"><div style="font-family:var(--mono);font-size:22px;color:var(--slate-l);letter-spacing:.1em">SWE-BENCH VERIFIED</div><div style="font-size:56px;font-weight:600;margin-top:6px;white-space:nowrap">14% <span style="color:var(--accent)">→</span> 95%</div></div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-family:var(--mono);font-size:22px;color:var(--slate-l);letter-spacing:.1em">SWE-BENCH VERIFIED</div><div style="font-size:56px;font-weight:600;margin-top:6px;white-space:nowrap">14% <span style="color:var(--accent)">→</span> 89%</div></div>
     </div>
     <div style="flex:1;display:flex;align-items:flex-end;gap:34px;margin-top:36px;padding-bottom:6px">
       <div class="bar" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:26px;font-weight:600;color:var(--bone);margin-bottom:12px">14%</div><div style="width:100%;background:var(--slate);border-radius:7px 7px 0 0;height:16%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:16px">mar ’24</div></div>
       <div class="bar2" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:26px;font-weight:600;color:var(--bone);margin-bottom:12px">49%</div><div style="width:100%;background:var(--slate);border-radius:7px 7px 0 0;height:49%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:16px">oct ’24</div></div>
       <div class="bar3" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:26px;font-weight:600;color:var(--bone);margin-bottom:12px">72%</div><div style="width:100%;background:var(--slate);border-radius:7px 7px 0 0;height:72%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:16px">dic ’24</div></div>
-      <div class="bar4" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:26px;font-weight:600;color:var(--bone);margin-bottom:12px">89%</div><div style="width:100%;background:var(--slate-l);border-radius:7px 7px 0 0;height:89%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:16px">may ’26</div></div>
-      <div class="bar5" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:30px;font-weight:700;color:var(--accent);margin-bottom:12px">95%</div><div style="width:100%;background:var(--accent);border-radius:7px 7px 0 0;height:96%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--accent);margin-top:16px">jun ’26</div></div>
+      <div class="bar4" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:26px;font-weight:600;color:var(--bone);margin-bottom:12px">82%</div><div style="width:100%;background:var(--slate-l);border-radius:7px 7px 0 0;height:82%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:16px">may ’26</div></div>
+      <div class="bar5" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><div style="font-family:var(--mono);font-size:30px;font-weight:700;color:var(--accent);margin-bottom:12px">89%</div><div style="width:100%;background:var(--accent);border-radius:7px 7px 0 0;height:89%"></div><div style="font-family:var(--mono);font-size:21px;color:var(--accent);margin-top:16px">jun ’26</div></div>
     </div>
     <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--slate-l);border-top:1px solid var(--ld);padding-top:26px">De 1 de cada 7 a más de 9 de cada 10. El examen se saturó — y Microsoft ya escribe el 20–30% de su código con IA.</p>
   <div class="ad" aria-hidden="true"><div class="grid-bp"></div><div class="vig"></div><div class="scan"></div><div class="grain"></div><div class="mesh"></div><div class="neonframe"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">08 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">El salto de la IA</span></div></div></section>
@@ -1109,7 +1111,7 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
     <div class="r3" style="display:flex;gap:30px;margin-top:64px">
       <div style="flex:1;border-top:2px solid var(--ld);padding-top:24px"><div style="font-family:'Caveat',cursive;font-size:34px;color:var(--slate-l)">↓ menos</div><div style="font-size:30px;font-weight:600;margin-top:6px;line-height:1.2">Ingenieros del montón</div><div style="font-family:var(--mono);font-size:21px;color:var(--slate);margin-top:12px">programador puro −6%</div></div>
       <div style="flex:1;border-top:2px solid var(--ld);padding-top:24px"><div style="font-family:'Caveat',cursive;font-size:34px;color:var(--slate-l)">✕ se vacía</div><div style="font-size:30px;font-weight:600;margin-top:6px;line-height:1.2">El medio del oficio</div><div style="font-family:var(--mono);font-size:21px;color:var(--slate);margin-top:12px">la tarea rutinaria se automatiza</div></div>
-      <div style="flex:1;position:relative;border-top:2px solid var(--accent);padding-top:24px"><svg width="380" height="150" viewBox="0 0 380 150" preserveAspectRatio="none" style="position:absolute;left:-22px;top:6px;pointer-events:none"><ellipse cx="190" cy="80" rx="178" ry="62" fill="none" stroke="var(--accent)" stroke-width="3" filter="url(#rghc)"/></svg><div style="font-family:'Caveat',cursive;font-size:34px;color:var(--accent)">↑ más</div><div style="font-size:30px;font-weight:700;margin-top:6px;line-height:1.2">Ingenieros <span style="color:var(--accent)">PRO</span></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:12px">desarrollador +15% · con prima salarial</div></div>
+      <div style="flex:1;position:relative;border-top:2px solid var(--accent);padding-top:24px"><svg width="380" height="150" viewBox="0 0 380 150" preserveAspectRatio="none" style="position:absolute;left:-22px;top:6px;pointer-events:none"><ellipse cx="190" cy="80" rx="178" ry="62" fill="none" stroke="var(--accent)" stroke-width="3" filter="url(#rghc)"/></svg><div style="font-family:'Caveat',cursive;font-size:34px;color:var(--accent)">↑ más</div><div style="font-size:30px;font-weight:700;margin-top:6px;line-height:1.2">Ingenieros <span style="color:var(--accent)">PRO</span></div><div style="font-family:var(--mono);font-size:21px;color:var(--slate-l);margin-top:12px">desarrollador +15%</div></div>
     </div>
     <p class="r4" style="font-family:'Caveat',cursive;font-size:52px;color:var(--bone);margin-top:56px;line-height:1">Sobreviven —y crecen— los mejores.</p>
     <div class="neonframe"></div>
@@ -1183,7 +1185,7 @@ fit();render();
         '<div class="cc-welcome"><span class="cc-star">✻</span> Welcome to <b>Claude Code</b>!</div>'+
         '<div class="cc-dim">/help for help · /status for your current setup</div>'+
         '<div class="cc-dim">cwd: ~/el-ingeniero-x-ia</div>'+
-        '<div class="cc-ctx">⎿ contexto: <span class="cc-file">el-futuro-del-ingeniero-frente-a-la-IA.pdf</span> <span class="cc-dim">· paper base · 14 págs</span></div>'+
+        '<div class="cc-ctx">⎿ contexto: <span class="cc-file">El-rol-del-ingeniero-en-10-años.pdf</span> <span class="cc-dim">· paper base · 14 págs</span></div>'+
         '<div class="cc-prompt" id="ccPrompt"><span class="cc-gt">&gt;</span><span id="ccType"></span><span class="cc-cur" id="ccCur">█</span></div>'+
         '<div class="cc-send" id="ccSend"><span class="cc-key">Enter</span>to send</div>'+
         '<div class="cc-run" id="ccRun"></div>'+
@@ -1218,7 +1220,7 @@ fit();render();
   function runLines(){
     var lines=[
       '<span class="cc-star spin">✻</span> Pensando…',
-      '<span class="cc-ok">●</span> Read <span class="cc-file2">el-futuro-del-ingeniero-frente-a-la-IA.pdf</span> <span class="cc-dim">(14 págs)</span>',
+      '<span class="cc-ok">●</span> Read <span class="cc-file2">El-rol-del-ingeniero-en-10-años.pdf</span> <span class="cc-dim">(14 págs)</span>',
       '<span class="cc-ok">●</span> Tesis detectada: <b>polarización, no reemplazo</b>',
       '<span class="cc-ok">●</span> Diseñando 23 slides…',
       '<span class="cc-ok">●</span> Plantando easter eggs <span class="cc-star">✦</span>'
@@ -1259,160 +1261,150 @@ fit();render();
   mo.observe(cover,{attributes:true,attributeFilter:['data-deck-active']});
   if(cover.hasAttribute('data-deck-active') && !played){ T(play,400); }
 
-    /* ---------- EASTER EGGS: muñequitos de Claude escondidos ---------- */
+      /* ---------- EASTER EGGS: Clawd (mascota de Claude Code) escondido ---------- */
   try{
-    console.log('%c✻ Claude estuvo acá','color:#D97757;font-size:22px;font-weight:bold');
-    console.log('%cHay 9 muñequitos de Claude disfrazados escondidos en las slides. Encontralos y armás el código final. Escribí "claude" o "premio". — Claude','color:#6C5CE7;font-size:13px;line-height:1.6');
+    console.log('%c>< Clawd estuvo acá','color:#D9785A;font-size:22px;font-weight:bold');
+    console.log('%cHay 6 Clawd escondidos en las slides. Encontralos y armás el código secreto. Si lo escribís, ganás. Probá "claude". — Claude','color:#D9785A;font-size:13px;line-height:1.6');
   }catch(_){}
 
-  var CODE='INGENIERO'; // 9 letras, una por muñequito
+  var CODE='482026'; // Opus 4.8 · 2026 — un dígito por Clawd
 
-  function mascotSVG(type){
-    var back='',front='',clay='#D97757';
-    switch(type){
-      case 'detective':
-        front='<path d="M14 20 Q30 8 46 20 L46 22 Q30 16 14 22 Z" fill="#7d6a55"/><ellipse cx="30" cy="20" rx="9" ry="3" fill="#6b5a47"/>'+
-              '<circle cx="49" cy="52" r="6" fill="none" stroke="#15172A" stroke-width="2.4"/><line x1="53" y1="56" x2="59" y2="62" stroke="#15172A" stroke-width="2.6" stroke-linecap="round"/>';
-        break;
-      case 'grad':
-        front='<rect x="28.5" y="14" width="3" height="8" fill="#15172A"/><path d="M12 16 L30 9 L48 16 L30 23 Z" fill="#15172A"/><circle cx="46" cy="18" r="2" fill="#E0A96B"/><path d="M46 18 L46 27" stroke="#E0A96B" stroke-width="1.5"/>';
-        break;
-      case 'wizard':
-        front='<path d="M30 0 L19 22 L41 22 Z" fill="#6C5CE7"/><circle cx="25" cy="14" r="1.4" fill="#E0A96B"/><circle cx="33" cy="10" r="1.1" fill="#E0A96B"/>';
-        break;
-      case 'hero':
-        back='<path d="M18 24 L8 62 L30 50 L52 62 L42 24 Z" fill="#6C5CE7" opacity=".92"/>';
-        front='<path d="M20 35 L40 35 L36 41 L24 41 Z" fill="#15172A"/>';
-        break;
-      case 'cool':
-        front='<rect x="19" y="35" width="9" height="6" rx="1.5" fill="#15172A"/><rect x="32" y="35" width="9" height="6" rx="1.5" fill="#15172A"/><line x1="28" y1="37" x2="32" y2="37" stroke="#15172A" stroke-width="2"/>';
-        break;
-      case 'headphones':
-        front='<path d="M15 38 Q30 16 45 38" stroke="#15172A" stroke-width="3" fill="none"/><rect x="12" y="36" width="7" height="12" rx="3" fill="#15172A"/><rect x="41" y="36" width="7" height="12" rx="3" fill="#15172A"/>';
-        break;
-      case 'king':
-        front='<path d="M19 16 L24 23 L30 13 L36 23 L41 16 L41 25 L19 25 Z" fill="#E0A96B" stroke="#b9863f" stroke-width="1"/><circle cx="30" cy="14" r="1.6" fill="#E5447B"/>';
-        break;
-      case 'chef':
-        front='<path d="M20 19 Q17 7 26 9 Q29 2 34 9 Q43 7 40 19 Z" fill="#F3F1EA"/><rect x="20" y="18" width="20" height="5" rx="1" fill="#F3F1EA"/>';
-        break;
-      case 'party':
-        front='<path d="M30 3 L22 21 L38 21 Z" fill="#E5447B"/><circle cx="30" cy="3" r="3" fill="#0E9FB5"/><path d="M24 16 h12 M25 12 h10" stroke="#F3F1EA" stroke-width="1.2"/>';
-        break;
-    }
-    return '<svg viewBox="0 0 60 74" xmlns="http://www.w3.org/2000/svg">'+back+
-      '<path d="M30 14 C18 14 14 25 14 41 C14 58 21 68 30 68 C39 68 46 58 46 41 C46 25 42 14 30 14 Z" fill="'+clay+'"/>'+
-      '<circle cx="24.5" cy="40" r="3" fill="#1a1208"/><circle cx="35.5" cy="40" r="3" fill="#1a1208"/>'+
-      '<path d="M25 47 Q30 51 35 47" stroke="#1a1208" stroke-width="2" fill="none" stroke-linecap="round"/>'+
-      '<path d="M30 55 l1.3 2.8 3 .2 -2.3 1.9 .8 3 -2.8-1.7 -2.8 1.7 .8-3 -2.3-1.9 3-.2 z" fill="#fff" opacity=".5"/>'+
-      front+'</svg>';
+  function clawdSVG(){
+    return '<svg viewBox="0 0 104 96" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">'+
+      '<g fill="#fff">'+
+        '<rect x="14" y="6" width="76" height="66" rx="3"/>'+
+        '<rect x="4" y="30" width="14" height="22"/><rect x="86" y="30" width="14" height="22"/>'+
+        '<rect x="18" y="64" width="20" height="24"/><rect x="42" y="64" width="20" height="24"/><rect x="66" y="64" width="20" height="24"/>'+
+      '</g>'+
+      '<g fill="#D9785A">'+
+        '<rect x="18" y="10" width="68" height="58" rx="1"/>'+
+        '<rect x="8" y="34" width="12" height="14"/><rect x="84" y="34" width="12" height="14"/>'+
+        '<rect x="22" y="66" width="12" height="18"/><rect x="46" y="66" width="12" height="18"/><rect x="70" y="66" width="12" height="18"/>'+
+      '</g>'+
+      '<g fill="none" stroke="#1a1410" stroke-width="7" stroke-linejoin="miter">'+
+        '<polyline points="30,28 43,40 30,52"/><polyline points="74,28 61,40 74,52"/>'+
+      '</g>'+
+    '</svg>';
   }
 
-  var MASCOTS=[
-    {n:2, type:'detective', css:'left:54px;top:42%',      name:'detective'},
-    {n:4, type:'grad',      css:'right:70px;bottom:140px', name:'recién recibido'},
-    {n:5, type:'wizard',    css:'left:54px;top:290px',     name:'mago'},
-    {n:8, type:'hero',      css:'right:108px;top:108px',   name:'superhéroe'},
-    {n:10,type:'cool',      css:'left:70px;bottom:118px',  name:'modo relax'},
-    {n:13,type:'headphones',css:'right:88px;bottom:150px', name:'traductor'},
-    {n:16,type:'king',      css:'left:88px;top:128px',     name:'el que decide'},
-    {n:19,type:'chef',      css:'right:80px;top:290px',    name:'chef'},
-    {n:21,type:'party',     css:'left:62px;bottom:118px',  name:'modo fiesta'}
+  var CLAWDS=[
+    {n:2,  css:'left:62px;bottom:118px', s:46, rot:-6},
+    {n:5,  css:'left:58px;top:300px',    s:40, flip:1, rot:4},
+    {n:8,  css:'right:128px;top:116px',  s:44, rot:8},
+    {n:13, css:'right:96px;bottom:150px',s:42, flip:1},
+    {n:16, css:'left:96px;top:138px',    s:48, rot:-5},
+    {n:19, css:'right:90px;top:300px',   s:40, flip:1}
   ];
 
-  var found={}, awarded=false;
-  try{ (JSON.parse(localStorage.getItem('mas_found')||'[]')).forEach(function(k){found[k]=1;}); }catch(_){}
-  if(Object.keys(found).length>=MASCOTS.length) awarded=true;
+  var found={}, completed=false, won=false;
+  try{ (JSON.parse(localStorage.getItem('clawd_found')||'[]')).forEach(function(k){found[k]=1;}); }catch(_){}
+  if(Object.keys(found).length>=CLAWDS.length) completed=true;
 
-  var mEls=[];
-  MASCOTS.forEach(function(m,idx){
+  var cEls=[];
+  CLAWDS.forEach(function(m,idx){
     var sec=SEC[m.n]; if(!sec) return;
-    var e=document.createElement('div'); e.className='mascot'+(found[idx]?' found':'');
-    e.setAttribute('style',m.css); e.style.animationDelay=(idx*0.4)+'s';
-    e.innerHTML=mascotSVG(m.type);
-    e.title='✻ Claude';
-    e.dataset.idx=idx; e.dataset.name=m.name; e.dataset.letter=CODE.charAt(idx)||'✦';
+    var e=document.createElement('div'); e.className='clawd'+(found[idx]?' found':'');
+    var tf=(m.flip?'scaleX(-1) ':'')+(m.rot?('rotate('+m.rot+'deg)'):'');
+    e.setAttribute('style',m.css+';width:'+m.s+'px;'+(tf?'--tf:'+tf:''));
+    e.style.animationDelay=(idx*0.5)+'s';
+    e.innerHTML=clawdSVG();
+    e.title='Clawd'; e.dataset.idx=idx; e.dataset.digit=CODE.charAt(idx);
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
-    sec.appendChild(e); mEls.push(e);
+    sec.appendChild(e); cEls.push(e);
   });
 
   var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
   function toast(html){
-    toastEl.innerHTML='<span class="eg-spark">✻</span>'+html+'<span class="eg-sig">— easter egg dejado por Claude</span>';
+    toastEl.innerHTML=html+'<span class="eg-sig">— Clawd, escondido por Claude</span>';
     toastEl.classList.add('show'); clearTimeout(toastT);
-    toastT=setTimeout(function(){toastEl.classList.remove('show');},4200);
+    toastT=setTimeout(function(){toastEl.classList.remove('show');},4400);
   }
 
   var ehud=document.createElement('div'); ehud.className='egg-hud'; document.body.appendChild(ehud); var hudT;
-  function codeStr(){ return CODE.split('').map(function(ch,k){return found[k]?ch:'·';}).join(' '); }
+  function codeStr(){ return CODE.split('').map(function(d,k){return found[k]?d:'·';}).join(' '); }
   function updHud(){
     var c=Object.keys(found).length;
-    ehud.innerHTML='código: <b>'+codeStr()+'</b> &nbsp;('+c+'/'+MASCOTS.length+')';
-    ehud.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(function(){ehud.classList.remove('show');},3400);
+    ehud.innerHTML='código: <b>'+codeStr()+'</b> &nbsp;('+c+'/'+CLAWDS.length+')';
+    ehud.classList.add('show'); clearTimeout(hudT); hudT=setTimeout(function(){ehud.classList.remove('show');},3600);
   }
 
   function pick(idx,e){
     var isNew=!found[idx];
     found[idx]=1; e.classList.add('found','pop'); setTimeout(function(){e.classList.remove('pop');},650);
-    toast('encontraste a Claude <b>'+e.dataset.name+'</b> — letra <b>'+e.dataset.letter+'</b>');
+    toast('¡encontraste a <b>Clawd</b>! dígito <b>#'+(idx+1)+'</b> del código: <b>'+e.dataset.digit+'</b>');
     updHud();
-    try{ localStorage.setItem('mas_found',JSON.stringify(Object.keys(found))); }catch(_){}
-    if(isNew) checkPrize();
+    try{ localStorage.setItem('clawd_found',JSON.stringify(Object.keys(found))); }catch(_){}
+    if(isNew) checkComplete();
   }
 
   var card=document.createElement('div'); card.className='egg-card';
   card.innerHTML='<div class="card"><div class="cld-logo">'+MARK+'</div>'+
-    '<h3>✻ Hecho con Claude Code</h3>'+
+    '<h3>>< Hecho con Claude Code</h3>'+
     '<p>Esta presentación la armé yo, <span class="hl">Claude (Opus 4.8)</span>, a partir del paper base.</p>'+
-    '<p>El ingeniero decidió <span class="hl">qué</span> construir y por qué; yo me encargué del <span class="hl">cómo</span>.</p>'+
+    '<p>Y escondí <span class="hl">6 Clawd</span> (mi mascota) por las slides. Encontralos a todos y armás un <span class="hl">código secreto</span>.</p>'+
     '<p class="sig">«La IA acelera el cómo. El ingeniero decide el qué.»</p>'+
-    '<small>esc para cerrar · buscá los 9 muñequitos escondidos ✻</small></div>';
+    '<small>esc para cerrar · buscá a los 6 Clawd ><</small></div>';
   document.body.appendChild(card);
   card.addEventListener('click',function(){card.classList.remove('show');});
 
   var prize=document.createElement('div'); prize.className='egg-card prize';
-  prize.innerHTML='<div class="card"><div class="trophy">🏆</div>'+
-    '<h3>¡Encontraste a los 9!</h3>'+
-    '<p>Cazaste a los <span class="hl">9 Claude</span> disfrazados que escondí por la presentación.</p>'+
-    '<p style="margin-top:14px">tu código final:</p>'+
-    '<div class="bigcode">'+CODE+'</div>'+
-    '<p class="rank">rango desbloqueado · ingeniero PRO ✦</p>'+
-    '<p class="sig">«La IA acelera el cómo. El ingeniero decide el qué.»</p>'+
-    '<small>esc para cerrar · premio cortesía de Claude</small></div>';
+  prize.innerHTML='<div class="card"><div class="trophy">><</div>'+
+    '<h3>¡Encontraste a los 6 Clawd!</h3>'+
+    '<p>El <span class="hl">código secreto</span> es:</p>'+
+    '<div class="bigcode" id="prizeCode">'+CODE+'</div>'+
+    '<p>Ahora <b>gritá el código</b> (escribilo con el teclado) para <b>ganar</b> 🎁</p>'+
+    '<small>esc para cerrar</small></div>';
   document.body.appendChild(prize);
   prize.addEventListener('click',function(){prize.classList.remove('show');});
 
-  function confetti(){
+  var winc=document.createElement('div'); winc.className='egg-card win';
+  winc.innerHTML='<div class="card"><div class="trophy">🎉</div>'+
+    '<h3>¡GANASTE!</h3>'+
+    '<p>Descifraste el código secreto <span class="hl">'+CODE+'</span>.</p>'+
+    '<p>Sos oficialmente <span class="hl">Ingeniero PRO</span>, certificado por Claude ><</p>'+
+    '<p class="rank">mostrá esta pantalla a Martín o Nico y reclamá tu premio 🎁</p>'+
+    '<p class="sig">«La IA acelera el cómo. Vos descifraste lo que estaba escondido.»</p>'+
+    '<small>esc para cerrar</small></div>';
+  document.body.appendChild(winc);
+  winc.addEventListener('click',function(){winc.classList.remove('show');});
+
+  function confetti(n){
     var c=document.createElement('canvas'); c.id='eggfetti';
     c.width=innerWidth; c.height=innerHeight; document.body.appendChild(c);
     var ctx=c.getContext('2d');
-    var cols=['#6C5CE7','#D97757','#12A36B','#E5447B','#0E9FB5','#D98200','#F3F1EA'];
-    var P=[]; for(var k=0;k<200;k++){P.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,r:4+Math.random()*7,vy:2.5+Math.random()*4.5,vx:-2.2+Math.random()*4.4,rot:Math.random()*6.28,vr:-0.25+Math.random()*0.5,col:cols[k%cols.length]});}
+    var cols=['#D9785A','#6C5CE7','#12A36B','#E5447B','#0E9FB5','#D98200','#F3F1EA'];
+    var P=[]; for(var k=0;k<(n||200);k++){P.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,r:4+Math.random()*7,vy:2.5+Math.random()*4.5,vx:-2.2+Math.random()*4.4,rot:Math.random()*6.28,vr:-0.25+Math.random()*0.5,col:cols[k%cols.length]});}
     var t0=performance.now();
     (function frame(t){
       var el=t-t0; ctx.clearRect(0,0,c.width,c.height);
       P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.rot+=p.vr;
         ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.col;
         ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.62);ctx.restore();});
-      if(el<4200){requestAnimationFrame(frame);} else { c.remove(); }
+      if(el<4500){requestAnimationFrame(frame);} else { c.remove(); }
     })(t0);
   }
-  function showPrize(){ confetti(); prize.classList.add('show'); }
-  function checkPrize(){
-    if(!awarded && Object.keys(found).length>=MASCOTS.length){
-      awarded=true; try{localStorage.setItem('mas_done','1');}catch(_){}
+  function showPrize(){ confetti(160); prize.classList.add('show'); }
+  function showWin(){ if(winc.classList.contains('show'))return; won=true; try{localStorage.setItem('clawd_won','1');}catch(_){} confetti(320); winc.classList.add('show'); }
+  function checkComplete(){
+    if(!completed && Object.keys(found).length>=CLAWDS.length){
+      completed=true; try{localStorage.setItem('clawd_done','1');}catch(_){}
       setTimeout(showPrize,700);
     }
   }
 
-  var buf='';
+  var buf='', dbuf='';
   window.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){ card.classList.remove('show'); prize.classList.remove('show'); return; }
+    if(e.key==='Escape'){ card.classList.remove('show'); prize.classList.remove('show'); winc.classList.remove('show'); return; }
     if(e.key==='i'||e.key==='I'){ if(cover.hasAttribute('data-deck-active')){ played=false; play(); } return; }
+    if(/^[0-9]$/.test(e.key)){
+      dbuf=(dbuf+e.key).slice(-CODE.length);
+      if(dbuf===CODE){ showWin(); dbuf=''; }
+      return;
+    }
     if(e.key&&e.key.length===1&&/[a-z]/i.test(e.key)){
       buf=(buf+e.key.toLowerCase()).slice(-8);
       if(buf.indexOf('claude')>=0){ card.classList.add('show'); buf=''; }
-      else if(buf.indexOf('premio')>=0){ showPrize(); buf=''; }
+      else if(buf.indexOf('premio')>=0){ if(completed){showPrize();} buf=''; }
     }
   });
 

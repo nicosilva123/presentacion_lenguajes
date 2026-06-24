@@ -1,46 +1,37 @@
 # Cambios — El ingeniero × IA (presentacionanimada.html)
 
-Todo vive dentro del único archivo `presentacionanimada.html` (deck autocontenido,
-sin dependencias). Backup en `.presentacionanimada.backup.html`.
+Deck autocontenido en `presentacionanimada.html`. Backup en `.presentacionanimada.backup.html`.
 
----
+## 1. Contador
+Se **eliminó** el contador "NN/23" de arriba a la derecha de todas las slides
+(`.hud .idx{display:none}`). Queda la barra de progreso abajo.
 
-## 1. Fix: contador doble
-Había un HUD global `#hud` que se superponía con el contador integrado de cada slide
-(lo de las fotos del "21/23"). Se ocultó el global (`#hud{display:none}`). Queda **un
-único contador por slide**. El estilo "cuaderno manuscrito" del ingeniero quedó intacto.
+## 2. Intro estilo Claude Code (terminal)
+Slide 1: terminal de Claude Code con **fondo claro** (crema, como la referencia),
+**tipeo lento** y **más tiempo** para leer la línea de los easter eggs antes de
+revelar la portada. Adjunta el paper base y escribe "hacé la mejor presentación
+para este paper". Saltar con click/botón · repetir con tecla `i`.
 
-## 2. Intro estilo Claude Code (terminal) en la slide 1
-Al entrar a la portada corre una terminal de **Claude Code** (~8 s): `✻ Welcome to
-Claude Code!`, el paper base como contexto, se escribe **"hacé la mejor presentación
-para este paper"**, corren las líneas de trabajo (Read paper, tesis: polarización,
-diseñando 23 slides, plantando easter eggs) y **revela la portada**.
-- Saltar: botón o click en el fondo · Repetir: tecla **`i`** en la portada.
+## 3. Easter eggs = Clawd escondido + código secreto + premio
+- **6 Clawd** (la mascota oficial de Claude Code, el bloque naranja con ojos `><`)
+  escondidos en las slides **3, 6, 9, 14, 17 y 20**, animados (flotan), en distintos
+  tamaños/rotaciones. Visibles directo (no hace falta tipear nada).
+- **Click** en cada Clawd → da **un dígito** del código. Arriba a la izquierda se
+  arma el código a medida que los encontrás.
+- Al encontrar **los 6** → se revela el **código secreto: `482026`** (Opus 4.8 · 2026).
+- **"Gritá" el código**: si alguien **escribe `482026`** con el teclado → pantalla
+  **🎉 ¡GANASTE!** ("mostrá esta pantalla a Martín o Nico y reclamá tu premio").
+- Extras: tipear `claude` (tarjeta), progreso guardado en `localStorage`.
 
-## 3. Easter eggs = muñequitos de Claude escondidos + código final
-**9 muñequitos de Claude disfrazados**, escondidos y **visibles directo** en las slides
-(no hace falta tipear nada). Flotan suavemente; al pasar el mouse se agrandan.
-
-- Cada uno tiene un **disfraz** distinto: detective, recién recibido (birrete), mago,
-  superhéroe (capa), modo relax (anteojos), traductor (auriculares), el que decide
-  (corona), chef y modo fiesta.
-- **Click** en uno → pop + ✓ + una frase, y te da **una letra del código**.
-- Arriba a la izquierda se va armando el **código** a medida que los encontrás.
-- **🏆 Al encontrar los 9** → confetti + tarjeta de premio con el **CÓDIGO FINAL:
-  `INGENIERO`** y "rango desbloqueado · ingeniero PRO". El progreso se guarda en el
-  navegador (`localStorage`).
-- Están en las slides **3, 5, 6, 9, 11, 14, 17, 20 y 22**.
-
-Otros: tipear **`claude`** (tarjeta "Hecho con Claude Code"), **`premio`** (re-mostrar
-el premio), mensajes ocultos en la **consola** y en el **código fuente**.
-
----
+## 4. Contenido actualizado según el paper nuevo
+(`Paper_Rol_del_ingeniero_informatico_en_10_anios.pdf`)
+- **SWE-bench Verified**: corregido **14% → 89%** (el paper dice ~89%, no 95%).
+  Barras: 14 · 49 · 72 · 82 · 89.
+- Se quitó **"prima salarial"** del cierre (no está respaldado por el paper).
+- Confirmados con el paper: programador puro **−6%**, desarrollador **+15%** (BLS),
+  WEF +170M/−92M (saldo neto +78M), problema del 70% (Osmani), Amodei 90%, Altman.
+- Nota: la cronología COBOL/4GL/RAD/offshore/low-code es contexto propio del talk
+  (el paper menciona COBOL, 4GL y low-code pero sin esos años ni RAD/offshore).
 
 ## Cómo verlo
-Abrí `presentacionanimada.html` en el navegador. Navegación: **← →** / espacio ·
-**F** pantalla completa · **Home/End**.
-
-## Notas técnicas
-- 2 inserciones (CSS antes de `</style>`, `<script>` antes de `</body>`). El motor
-  original (`render/go/fit`) no se tocó. Sin librerías; muñequitos en SVG inline,
-  confetti en `<canvas>`. Backup: `.presentacionanimada.backup.html`.
+Abrí `presentacionanimada.html` en el navegador. **← →** / espacio · **F** fullscreen.
