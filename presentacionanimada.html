@@ -642,7 +642,118 @@ body[data-theme="light"] #hint{color:#9aa0ab}
 #hint{position:fixed;left:18px;bottom:13px;font-size:12px;color:#5a6473;font-family:var(--mono);z-index:10}
 .navzone{position:fixed;top:0;bottom:0;width:34%;cursor:pointer;z-index:6}
 #pv{left:0}#nx{right:0}
+
+/* ============================================================
+   AÑADIDOS — fix contador · intro Claude Code · easter eggs animados
+   ============================================================ */
+#hud{display:none!important}
+
+/* ---------- intro estilo Claude Code (terminal) ---------- */
+.cld-intro{position:absolute;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);font-family:var(--mono);opacity:0;visibility:hidden;
+  transition:opacity .6s ease,visibility .6s ease}
+.cld-intro.play{opacity:1;visibility:visible}
+.cld-intro.done{opacity:0;visibility:hidden;pointer-events:none}
+.cld-intro::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 60% at 50% 34%,rgba(217,119,87,.12),transparent 70%)}
+.cc-term{position:relative;width:1180px;max-width:86%;border-radius:14px;overflow:hidden;
+  background:#161618;border:1px solid rgba(242,238,227,.10);
+  box-shadow:0 50px 130px rgba(0,0,0,.66);
+  transform:scale(.96) translateY(14px);opacity:0;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.cld-intro.play .cc-term{transform:none;opacity:1}
+.cc-bar{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 18px;background:#202022;border-bottom:1px solid rgba(0,0,0,.45)}
+.cc-tl{position:absolute;left:16px;display:flex;gap:8px}
+.cc-tl i{width:12px;height:12px;border-radius:50%}
+.cc-tl i:nth-child(1){background:#FF5F57}.cc-tl i:nth-child(2){background:#FEBC2E}.cc-tl i:nth-child(3){background:#28C840}
+.cc-title{font-size:14px;color:#8a8a8f}
+.cc-body{padding:26px 32px 20px;font-size:20px;line-height:1.7;color:#cfcabb;min-height:320px}
+.cc-star{color:#D97757}
+.cc-star.spin{display:inline-block;animation:ccspin 1s linear infinite}
+@keyframes ccspin{to{transform:rotate(360deg)}}
+.cc-welcome{color:#E9E4D6}.cc-welcome b{color:#D97757;font-weight:600}
+.cc-dim{color:#71717a;font-size:17px}
+.cc-ctx{margin-top:8px;font-size:17px;color:#8a8a8f}
+.cc-file,.cc-file2{color:#C8B7F2}
+.cc-prompt{margin-top:20px;padding:14px 18px;border:1px solid rgba(242,238,227,.16);border-radius:10px;background:rgba(255,255,255,.02);color:#F3F1EA}
+.cc-prompt.sent{border-color:rgba(108,92,231,.4);opacity:.8}
+.cc-gt{color:#D97757;margin-right:8px}
+.cc-cur{display:inline-block;width:.55ch;background:#D97757;color:transparent;animation:cldblink 1s step-end infinite}
+@keyframes cldblink{50%{opacity:0}}
+.cc-send{margin-top:12px;font-size:15px;color:#71717a;opacity:0;transition:opacity .3s}
+.cc-send.on{opacity:1}
+.cc-key{display:inline-block;border:1px solid rgba(242,238,227,.3);border-radius:6px;padding:1px 9px;color:#cfcabb;font-size:13px;margin-right:6px}
+.cc-run{margin-top:14px;display:flex;flex-direction:column;gap:7px;font-size:18px}
+.cc-line{opacity:0;animation:ccIn .35s ease both}
+@keyframes ccIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.cc-ok{color:#12A36B}
+.cc-final{margin-top:8px;color:#E9E4D6;opacity:0;animation:ccIn .4s ease both}
+.cc-final b{color:#A593FF}
+.cc-eggline{color:#E0A96B}
+.cc-foot{display:flex;justify-content:space-between;padding:11px 20px;border-top:1px solid rgba(0,0,0,.45);background:#202022;font-size:13px;color:#71717a}
+.cld-skip{position:absolute;right:22px;bottom:58px;z-index:3;cursor:pointer;font-family:var(--mono);
+  font-size:14px;color:#71717a;background:rgba(255,255,255,.06);
+  border:1px solid rgba(242,238,227,.16);border-radius:999px;padding:7px 15px;transition:color .2s,border-color .2s}
+.cld-skip:hover{color:#F3F1EA;border-color:rgba(242,238,227,.42)}
+
+/* ---------- easter eggs animados ✦ (dejados por Claude) ---------- */
+.egg{position:absolute;z-index:8;cursor:pointer;font-size:24px;line-height:1;color:var(--accent);
+  opacity:.10;user-select:none;animation:eggFloat 4s ease-in-out infinite;
+  transition:opacity .35s,filter .35s,transform .2s}
+.egg:hover{opacity:1;transform:scale(1.35);filter:drop-shadow(0 0 14px currentColor)}
+.egg.lit{opacity:.9;animation:eggFloat 3s ease-in-out infinite,eggGlow 2.2s ease-in-out infinite}
+.egg.pop{animation:eggPop .6s cubic-bezier(.2,.8,.2,1)}
+.egg.found{color:#12A36B}
+@keyframes eggFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(10deg)}}
+@keyframes eggGlow{0%,100%{filter:drop-shadow(0 0 3px currentColor)}50%{filter:drop-shadow(0 0 18px currentColor)}}
+@keyframes eggPop{0%{transform:scale(1)}40%{transform:scale(2) rotate(22deg)}100%{transform:scale(1) rotate(0)}}
+.egg-ring{position:absolute;z-index:9;pointer-events:none;width:18px;height:18px;border-radius:50%;
+  border:2px solid var(--accent);transform:translate(-50%,-50%);animation:eggRing .7s ease-out forwards}
+@keyframes eggRing{from{opacity:.9;width:10px;height:10px}to{opacity:0;width:120px;height:120px}}
+
+.egg-toast{position:fixed;left:50%;bottom:7%;transform:translate(-50%,14px);z-index:220;
+  max-width:680px;font-family:var(--mono);font-size:18px;line-height:1.5;color:#0A0B14;
+  background:#F3F1EA;border:1px solid rgba(108,92,231,.4);border-radius:14px;
+  padding:15px 22px 15px 20px;box-shadow:0 24px 60px rgba(0,0,0,.45);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+.egg-toast.show{opacity:1;transform:translate(-50%,0)}
+.egg-toast .eg-spark{color:#6C5CE7;margin-right:8px}
+.egg-toast .eg-sig{display:block;margin-top:6px;font-size:13px;color:#6B7689;letter-spacing:.04em}
+
+.egg-card{position:fixed;inset:0;z-index:230;display:flex;align-items:center;justify-content:center;
+  background:rgba(8,9,16,.92);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.egg-card.show{opacity:1;visibility:visible}
+.egg-card .card{position:relative;width:580px;max-width:88%;text-align:center;font-family:var(--mono);
+  background:#0E1022;border:1px solid rgba(108,92,231,.35);border-radius:20px;padding:46px 40px 38px;
+  box-shadow:0 50px 130px rgba(0,0,0,.6);transform:scale(.92);transition:transform .35s}
+.egg-card.show .card{transform:none}
+.egg-card .card .cld-logo{width:46px;height:46px;color:#D97757;margin:0 auto 18px;display:inline-flex}
+.egg-card .card .cld-logo svg{width:100%;height:100%;fill:currentColor}
+.egg-card .card h3{font-family:var(--display);font-weight:600;font-size:30px;color:var(--bone);margin:0 0 12px}
+.egg-card .card p{font-size:17px;line-height:1.6;color:#C7C2B4;margin:0 0 8px}
+.egg-card .card .hl{color:#A593FF}
+.egg-card .card .sig{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:20px;color:#E0A96B}
+.egg-card .card small{display:block;margin-top:18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
+.egg-card.prize .card{border-color:rgba(217,168,107,.55);box-shadow:0 50px 130px rgba(0,0,0,.6),0 0 70px rgba(217,168,107,.2)}
+.egg-card .trophy{font-size:68px;line-height:1;margin-bottom:8px;animation:trophyPop .6s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 8px 26px rgba(217,168,107,.55))}
+@keyframes trophyPop{0%{transform:scale(0) rotate(-20deg);opacity:0}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.egg-card .rank{margin-top:14px;font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#E0A96B}
+
+.egg-hud{position:fixed;left:18px;top:14px;z-index:210;font-family:var(--mono);font-size:12px;
+  letter-spacing:.06em;color:#9AA3B4;background:rgba(0,0,0,.4);border:1px solid rgba(108,92,231,.3);
+  border-radius:999px;padding:5px 12px;opacity:0;transform:translateY(-6px);
+  transition:opacity .3s,transform .3s;pointer-events:none}
+.egg-hud.show{opacity:1;transform:none}
+body[data-theme="light"] .egg-hud{color:#5a6273;background:rgba(255,255,255,.55)}
+#eggfetti{position:fixed;inset:0;z-index:240;pointer-events:none}
+
 </style></head><body>
+<!--
+   egg #0 — para quien lee el codigo fuente.
+   Esta presentacion fue armada por Claude (Opus 4.8) a partir del paper base.
+   Proba escribir "claude" o "eggs" con el deck abierto. Hay sparks escondidos en varias slides.
+   hecho con carino, Claude
+-->
 <div id="stage"><div id="canvas">
 <section class="sys-ai" data-label="Portada" data-speaker-notes="Bienvenida. Charla a dos voces sobre el futuro del rol del ingeniero informático frente a la IA. Yo abro con el Bloque 1." style="isolation:isolate;--accent:#6C5CE7;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;isolation:isolate">
     <div class="aurora"></div>
@@ -1062,4 +1173,249 @@ document.getElementById('pv').onclick=()=>go(-1);
 document.getElementById('nx').onclick=()=>go(1);
 const h=parseInt((location.hash||'').slice(1),10);if(h>=1&&h<=slides.length)i=h-1;
 fit();render();
-</script></body></html>
+</script>
+<script>
+/* ===== intro Claude Code (terminal) + easter eggs animados (añadido) ===== */
+(function(){
+  'use strict';
+  var SEC=[].slice.call(document.querySelectorAll('#canvas>section'));
+  var cover=SEC[0]; if(!cover) return;
+  function claudeMark(){
+    var t=[].slice.call(document.querySelectorAll('svg title')).filter(function(x){return x.textContent.trim()==='Claude';})[0];
+    return t ? t.parentNode.cloneNode(true).outerHTML : '<span>✻</span>';
+  }
+  var MARK=claudeMark();
+
+  /* ---------- INTRO (terminal Claude Code) ---------- */
+  var intro=document.createElement('div');
+  intro.className='cld-intro';
+  intro.innerHTML=
+    '<div class="cc-term">'+
+      '<div class="cc-bar"><span class="cc-tl"><i></i><i></i><i></i></span>'+
+        '<span class="cc-title">martin@charla: ~/el-ingeniero-x-ia — claude-code</span></div>'+
+      '<div class="cc-body">'+
+        '<div class="cc-welcome"><span class="cc-star">✻</span> Welcome to <b>Claude Code</b>!</div>'+
+        '<div class="cc-dim">/help for help · /status for your current setup</div>'+
+        '<div class="cc-dim">cwd: ~/el-ingeniero-x-ia</div>'+
+        '<div class="cc-ctx">⎿ contexto: <span class="cc-file">el-futuro-del-ingeniero-frente-a-la-IA.pdf</span> <span class="cc-dim">· paper base · 14 págs</span></div>'+
+        '<div class="cc-prompt" id="ccPrompt"><span class="cc-gt">&gt;</span><span id="ccType"></span><span class="cc-cur" id="ccCur">█</span></div>'+
+        '<div class="cc-send" id="ccSend"><span class="cc-key">Enter</span>to send</div>'+
+        '<div class="cc-run" id="ccRun"></div>'+
+      '</div>'+
+      '<div class="cc-foot"><span>? for shortcuts</span><span>claude-opus-4-8</span></div>'+
+      '<button class="cld-skip" id="cldSkip">saltar intro ⏎</button>'+
+    '</div>';
+  cover.appendChild(intro);
+
+  var elType=intro.querySelector('#ccType');
+  var played=false, playing=false, timers=[];
+  function T(fn,ms){var id=setTimeout(fn,ms);timers.push(id);return id;}
+  function clearAll(){timers.forEach(clearTimeout);timers=[];}
+  function typeArr(el,str,cps,done){
+    var chars=Array.from(str),k=0; el.textContent='';
+    (function step(){ if(k>=chars.length){done&&done();return;} k++; el.textContent=chars.slice(0,k).join(''); T(step,1000/cps); })();
+  }
+  function reset(){
+    clearAll(); playing=false;
+    intro.classList.remove('done','play');
+    elType.textContent='';
+    var r=intro.querySelector('#ccRun'); if(r) r.innerHTML='';
+    var c=intro.querySelector('#ccCur'); if(c) c.style.display='';
+    var s=intro.querySelector('#ccSend'); if(s){ s.classList.remove('on'); s.style.display=''; }
+    var p=intro.querySelector('#ccPrompt'); if(p) p.classList.remove('sent');
+  }
+  function finish(){ clearAll(); playing=false; intro.classList.add('done'); intro.classList.remove('play'); }
+  function addLine(html,cls){
+    var run=intro.querySelector('#ccRun'); var d=document.createElement('div');
+    d.className=cls||'cc-line'; d.innerHTML=html; run.appendChild(d); return d;
+  }
+  function runLines(){
+    var lines=[
+      '<span class="cc-star spin">✻</span> Pensando…',
+      '<span class="cc-ok">●</span> Read <span class="cc-file2">el-futuro-del-ingeniero-frente-a-la-IA.pdf</span> <span class="cc-dim">(14 págs)</span>',
+      '<span class="cc-ok">●</span> Tesis detectada: <b>polarización, no reemplazo</b>',
+      '<span class="cc-ok">●</span> Diseñando 23 slides…',
+      '<span class="cc-ok">●</span> Plantando easter eggs <span class="cc-star">✦</span>'
+    ];
+    lines.forEach(function(h,n){ T(function(){ addLine(h,'cc-line'); },150+n*520); });
+    var base=150+lines.length*520;
+    T(function(){ addLine('<span class="cc-star">✻</span> Listo. Armé la presentación completa a partir del paper.','cc-final'); }, base+200);
+    T(function(){
+      addLine('Escondí varios <span class="cc-star">✦</span> por las slides — <b>premio</b> para quien los encuentre todos 👀','cc-final cc-eggline');
+      T(finish, 1800);
+    }, base+700);
+  }
+  function play(){
+    if(playing) return;
+    reset(); void intro.offsetWidth; playing=true; played=true;
+    intro.classList.add('play');
+    T(function(){
+      typeArr(elType,' hacé la mejor presentación para este paper',30,function(){
+        var s=intro.querySelector('#ccSend'); if(s) s.classList.add('on');
+        T(function(){
+          if(s) s.style.display='none';
+          var c=intro.querySelector('#ccCur'); if(c) c.style.display='none';
+          var p=intro.querySelector('#ccPrompt'); if(p) p.classList.add('sent');
+          runLines();
+        }, 900);
+      });
+    }, 700);
+  }
+  intro.addEventListener('click',function(e){
+    if(e.target.closest('#cldSkip')){ finish(); return; }
+    if(!e.target.closest('.cc-term')){ finish(); }
+  });
+  var mo=new MutationObserver(function(){
+    var active=cover.hasAttribute('data-deck-active');
+    if(active && !played){ play(); }
+    else if(!active && playing){ finish(); }
+  });
+  mo.observe(cover,{attributes:true,attributeFilter:['data-deck-active']});
+  if(cover.hasAttribute('data-deck-active') && !played){ T(play,400); }
+
+  /* ---------- EASTER EGGS ANIMADOS ✦ ---------- */
+  try{
+    console.log('%c✻ Claude estuvo acá','color:#D97757;font-size:22px;font-weight:bold');
+    console.log('%cPresentación generada con Claude Code (Opus 4.8) a partir del paper base.\nEscribí "claude", "eggs" o "premio". Hay 9 ✦ animados escondidos — premio para quien los encuentre todos. — Claude','color:#6C5CE7;font-size:13px;line-height:1.6');
+  }catch(_){}
+
+  var QUOTES=[
+    'el 30% difícil sigue siendo tuyo. ✦',
+    'yo escribo el código; vos decidís qué construir.',
+    '¿P = NP? todavía no, che.',
+    'esta slide la "dibujé" yo… con CSS, eh.',
+    'Turing avisó: no todo se puede verificar. yo tampoco.',
+    'no te reemplazo: te orquesto. ✦',
+    'el lenguaje natural es el último escalón… por ahora.',
+    'Rice: casi todo es indecidible. igual lo intenté.',
+    'COBOL también iba a "matar" al programador. seguimos acá.',
+    'el compilador fue la primera "IA" que te reemplazó. spoiler: no lo hizo.',
+    'leer código ajeno sigue siendo más difícil que escribirlo.',
+    'Chomsky: tu prompt es ambiguo. yo igual lo entendí (casi).',
+    'el bug está en la línea que juraste que estaba bien.',
+    'SWE-bench pasó de 14% a 95%. el 5% que falta es el que importa.',
+    'pedíme lo que quieras; la responsabilidad sigue siendo tuya.',
+    'spoiler del final: polarización, no reemplazo.',
+    'si encontrás todos los ✦, sos del 30% que no terceriza el criterio.',
+    'busqué la mejor tipografía manuscrita para vos. de nada.'
+  ];
+  var SPOTS=[
+    {n:2, css:'left:54px;top:46%'},
+    {n:4, css:'right:74px;bottom:150px'},
+    {n:5, css:'left:56px;top:300px'},
+    {n:8, css:'right:120px;top:120px'},
+    {n:10,css:'left:72px;bottom:120px'},
+    {n:13,css:'right:92px;bottom:160px'},
+    {n:16,css:'left:92px;top:140px'},
+    {n:19,css:'right:84px;top:300px'},
+    {n:21,css:'left:66px;bottom:128px'}
+  ];
+
+  var found={}, awarded=false;
+  try{ (JSON.parse(localStorage.getItem('eggs_found')||'[]')).forEach(function(k){found[k]=1;}); }catch(_){}
+  if(Object.keys(found).length>=SPOTS.length) awarded=true;
+
+  var eggEls=[];
+  SPOTS.forEach(function(s,idx){
+    var sec=SEC[s.n]; if(!sec) return;
+    var e=document.createElement('div'); e.className='egg'; e.textContent='✦';
+    e.setAttribute('style',s.css);
+    e.style.animationDelay=(idx*0.27)+'s';
+    e.dataset.q=QUOTES[idx%QUOTES.length]; e.dataset.idx=idx;
+    if(found[idx]) e.classList.add('found');
+    e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
+    sec.appendChild(e); eggEls.push(e);
+  });
+
+  function ring(e){
+    var sec=e.parentNode; var r=document.createElement('div'); r.className='egg-ring';
+    r.style.left=(e.offsetLeft+e.offsetWidth/2)+'px'; r.style.top=(e.offsetTop+e.offsetHeight/2)+'px';
+    sec.appendChild(r); setTimeout(function(){r.remove();},750);
+  }
+  function pick(idx,e){
+    var isNew=!found[idx];
+    found[idx]=1; e.classList.add('found','pop'); setTimeout(function(){e.classList.remove('pop');},650);
+    ring(e); toast(e.dataset.q); updHud();
+    try{ localStorage.setItem('eggs_found',JSON.stringify(Object.keys(found))); }catch(_){}
+    if(isNew) checkPrize();
+  }
+
+  var toastEl=document.createElement('div'); toastEl.className='egg-toast'; document.body.appendChild(toastEl); var toastT;
+  function toast(q){
+    toastEl.innerHTML='<span class="eg-spark">✦</span>'+q+'<span class="eg-sig">— easter egg dejado por Claude</span>';
+    toastEl.classList.add('show'); clearTimeout(toastT);
+    toastT=setTimeout(function(){toastEl.classList.remove('show');},4200);
+  }
+
+  var card=document.createElement('div'); card.className='egg-card';
+  card.innerHTML='<div class="card"><div class="cld-logo">'+MARK+'</div>'+
+    '<h3>✻ Hecho con Claude Code</h3>'+
+    '<p>Esta presentación la armé yo, <span class="hl">Claude (Opus 4.8)</span>, a partir del paper base.</p>'+
+    '<p>El ingeniero decidió <span class="hl">qué</span> construir y por qué; yo me encargué del <span class="hl">cómo</span>.</p>'+
+    '<p class="sig">«La IA acelera el cómo. El ingeniero decide el qué.»</p>'+
+    '<small>esc para cerrar · escribí "eggs" para buscar los ✦</small></div>';
+  document.body.appendChild(card);
+  card.addEventListener('click',function(){card.classList.remove('show');});
+
+  var prize=document.createElement('div'); prize.className='egg-card prize';
+  prize.innerHTML='<div class="card"><div class="trophy">🏆</div>'+
+    '<h3>¡Los encontraste todos!</h3>'+
+    '<p>Cazaste los <span class="hl">'+SPOTS.length+' ✦</span> que escondí por la presentación.</p>'+
+    '<p>Sos de los que revisan el <span class="hl">30% difícil</span> — justo lo que ninguna IA te hace sola.</p>'+
+    '<p class="rank">rango desbloqueado · ingeniero PRO ✦</p>'+
+    '<p class="sig">«La IA acelera el cómo. Vos encontrás lo que está escondido.»</p>'+
+    '<small>esc para cerrar · premio cortesía de Claude</small></div>';
+  document.body.appendChild(prize);
+  prize.addEventListener('click',function(){prize.classList.remove('show');});
+
+  var ehud=document.createElement('div'); ehud.className='egg-hud'; document.body.appendChild(ehud); var hudT;
+  function updHud(){
+    var c=Object.keys(found).length;
+    ehud.textContent=(c>=SPOTS.length?'✦ ¡completo! '+c+' / '+SPOTS.length:'✦ '+c+' / '+SPOTS.length+' easter eggs');
+    ehud.classList.add('show'); clearTimeout(hudT);
+    hudT=setTimeout(function(){ehud.classList.remove('show');},2800);
+  }
+
+  function confetti(){
+    var c=document.createElement('canvas'); c.id='eggfetti';
+    c.width=innerWidth; c.height=innerHeight; document.body.appendChild(c);
+    var ctx=c.getContext('2d');
+    var cols=['#6C5CE7','#D97757','#12A36B','#E5447B','#0E9FB5','#D98200','#F3F1EA'];
+    var P=[]; for(var k=0;k<180;k++){P.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,r:4+Math.random()*7,vy:2.5+Math.random()*4.5,vx:-2.2+Math.random()*4.4,rot:Math.random()*6.28,vr:-0.25+Math.random()*0.5,col:cols[k%cols.length]});}
+    var t0=performance.now();
+    (function frame(t){
+      var el=t-t0; ctx.clearRect(0,0,c.width,c.height);
+      P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.rot+=p.vr;
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.col;
+        ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.62);ctx.restore();});
+      if(el<3800){requestAnimationFrame(frame);} else { c.remove(); }
+    })(t0);
+  }
+  function showPrize(){ confetti(); prize.classList.add('show'); }
+  function checkPrize(){
+    if(!awarded && Object.keys(found).length>=SPOTS.length){
+      awarded=true; try{localStorage.setItem('eggs_done','1');}catch(_){}
+      setTimeout(showPrize,650);
+    }
+  }
+
+  var lit=false;
+  function toggleLit(){
+    lit=!lit; eggEls.forEach(function(e){e.classList.toggle('lit',lit);}); updHud();
+    if(lit) toast('modo búsqueda activado: los ✦ ahora flotan y brillan en varias slides.');
+  }
+
+  var buf='';
+  window.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){ card.classList.remove('show'); prize.classList.remove('show'); return; }
+    if(e.key==='i'||e.key==='I'){ if(cover.hasAttribute('data-deck-active')){ played=false; play(); } return; }
+    if(e.key&&e.key.length===1&&/[a-z]/i.test(e.key)){
+      buf=(buf+e.key.toLowerCase()).slice(-8);
+      if(buf.indexOf('claude')>=0){ card.classList.add('show'); buf=''; }
+      else if(buf.indexOf('premio')>=0){ showPrize(); buf=''; }
+      else if(buf.indexOf('eggs')>=0){ toggleLit(); buf=''; }
+    }
+  });
+})();
+</script>
+</body></html>
