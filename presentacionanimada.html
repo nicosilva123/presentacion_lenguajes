@@ -705,9 +705,10 @@ body[data-theme="light"] #hint{color:#9aa0ab}
 .clawd:hover{filter:drop-shadow(0 0 16px rgba(217,120,90,.9))}
 .clawd .cl-svg{display:block;width:100%;height:auto;overflow:visible}
 .clawd.found{opacity:.55}
-.clawd .cl-num{position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
-  background:#1a1410;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5);z-index:3}
+.clawd .cl-num{position:absolute;top:-11px;right:-13px;width:20px;height:26px;
+  background:#1a1410;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.55),0 0 0 1px #1a1410;
+  display:flex;align-items:center;justify-content:center;padding:3px;box-sizing:border-box;z-index:3}
+.clawd .cl-num svg{height:100%;width:auto;display:block}
 .clawd.found .cl-num{background:#12A36B}
 body[data-theme="light"] .clawd{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
 /* enojado */
@@ -1331,6 +1332,12 @@ fit();render();
 
   var CODE='482026'; // Opus 4.8 · 2026 — un dígito por Clawd
 
+  function pixelDigit(d){
+    var M={'0':['111','101','101','101','111'],'1':['010','110','010','010','111'],'2':['111','001','111','100','111'],'3':['111','001','111','001','111'],'4':['101','101','111','001','001'],'5':['111','100','111','001','111'],'6':['111','100','111','101','111'],'7':['111','001','010','010','010'],'8':['111','101','111','101','111'],'9':['111','101','111','001','111']};
+    var rows=M[d]||M['0'],r='';
+    for(var y=0;y<5;y++){for(var x=0;x<3;x++){if(rows[y].charAt(x)==='1')r+='<rect x="'+(x*2)+'" y="'+(y*2)+'" width="2" height="2"/>';}}
+    return '<svg viewBox="0 0 6 10" preserveAspectRatio="xMidYMid meet" shape-rendering="crispEdges" fill="#fff">'+r+'</svg>';
+  }
   function clawdSVG(action){
     var ball=action==='football'?'<g class="cl-ball"><circle cx="104" cy="80" r="9" fill="#F3F1EA" stroke="#1a1410" stroke-width="2"/><path d="M104 74 l5 4 -2 6 -6 0 -2 -6 z" fill="#1a1410"/></g>':'';
     return '<svg class="cl-svg" viewBox="0 0 116 92" xmlns="http://www.w3.org/2000/svg">'+ball+
@@ -1367,7 +1374,7 @@ fit();render();
     var sec=SEC[m.n]; if(!sec) return;
     var e=document.createElement('div'); e.className='clawd act-'+m.action+(found[idx]?' found':'');
     e.setAttribute('style',m.css+';width:'+m.s+'px');
-    e.innerHTML='<div class="cl-num">'+CODE.charAt(idx)+'</div>'+clawdSVG(m.action);
+    e.innerHTML='<div class="cl-num">'+pixelDigit(CODE.charAt(idx))+'</div>'+clawdSVG(m.action);
     e.title='Clawd'; e.dataset.idx=idx; e.dataset.digit=CODE.charAt(idx);
     e.addEventListener('click',function(ev){ ev.stopPropagation(); pick(idx,e); });
     sec.appendChild(e); cEls.push(e);
@@ -1493,9 +1500,9 @@ fit();render();
     clr();played=true;mA.textContent='';mB.textContent='';mC.textContent='';mC.style.opacity='0';cA.style.display='';cB.style.display='none';
     T(function(){ type(mA,'che… ¿sabés que te dejaste el micrófono prendido? 🔴',24,function(){
       cA.style.display='none';cB.style.display='';
-      T(function(){ type(mB,'…y te quedaste sin tokens semanales por decir ████████.',24,function(){
+      T(function(){ type(mB,'…y te quedaste sin tokens por bo████o 🙊',24,function(){
         cB.style.display='none';
-        T(function(){ mC.style.transition='opacity .5s'; mC.textContent='así SÍ te reemplaza la IA 😅'; mC.style.opacity='1'; },450);
+        T(function(){ mC.style.transition='opacity .5s'; mC.textContent='y ahí sí, te reemplazo yo 😏 ✦'; mC.style.opacity='1'; },450);
       }); },550);
     }); },650);
   }
