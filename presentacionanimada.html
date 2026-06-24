@@ -756,6 +756,19 @@ body[data-theme="light"] .clawd{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
 body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 #eggfetti{position:fixed;inset:0;z-index:240;pointer-events:none}
 
+
+/* ---------- cinemática del micrófono prendido ---------- */
+.cc-mic{position:absolute;right:16px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#E5447B;
+  background:rgba(229,68,123,.14);border:1px solid rgba(229,68,123,.45);border-radius:999px;padding:3px 11px;
+  animation:micBlink 1.1s ease-in-out infinite}
+@keyframes micBlink{0%,100%{opacity:1}50%{opacity:.4}}
+.cc-msgline{font-size:22px;line-height:1.6;color:#E9E4D6;margin-bottom:12px}
+.cc-msgline .cc-star{color:#D97757;margin-right:4px}
+.cc-punch{margin-top:14px;font-family:var(--display);font-weight:700;font-size:38px;color:#D9785A;letter-spacing:-.01em;min-height:46px}
+.cinema .cc-bar,.cinema .cc-body,.cinema .cc-foot,.cinema .cc-msgline{font-family:var(--mono)}
+.cinema .cc-punch{font-family:var(--display)}
+.cinema .cc-term{opacity:0;transform:scale(.96) translateY(14px)}
+.cinema[data-deck-active] .cc-term{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
 </style></head><body>
 <!--
    egg #0 — para quien lee el codigo fuente.
@@ -1101,7 +1114,19 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
   <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">20 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Qué dicen los expertos</span></div></div></section>
 
   <!-- 14 · CONCLUSIÓN -->
-  <section class="sys-mix" data-label="Conclusión" data-speaker-notes="Síntesis del paper: no es reemplazo ni continuidad, es polarización. Se vacía el medio — el programador puro cae (-6%) pero el desarrollador crece (+15%) y los puestos con IA pagan prima. Habrá menos ingenieros del montón, pero más ingenieros PRO. Sobreviven y crecen los mejores. Es una mezcla: la mano del ingeniero sobre la máquina." style="--accent:#6C5CE7;isolation:isolate;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
+  <!-- CINEMÁTICA · micrófono prendido (chiste) -->
+<section class="cinema" data-label="Mic" data-speaker-notes="(chiste) Claude avisa: te dejaste el micrófono prendido y te quedaste sin tokens semanales — así sí te reemplaza la IA." style="box-sizing:border-box;background:#E7E1D2;display:flex;align-items:center;justify-content:center;font-family:var(--mono);overflow:hidden;position:relative">
+  <div class="cc-term">
+    <div class="cc-bar"><span class="cc-tl"><i></i><i></i><i></i></span><span class="cc-title">martin@charla: ~/el-ingeniero-x-ia — claude-code</span><span class="cc-mic">🔴 mic ON</span></div>
+    <div class="cc-body" style="min-height:270px">
+      <div class="cc-msgline"><span class="cc-star">✻</span> <span class="micA"></span><span class="cc-cur micCurA">█</span></div>
+      <div class="cc-msgline"><span class="micB"></span><span class="cc-cur micCurB" style="display:none">█</span></div>
+      <div class="cc-punch"><span class="micC"></span></div>
+    </div>
+    <div class="cc-foot"><span>? for shortcuts</span><span>tokens: 0 restantes</span></div>
+  </div>
+</section>
+<section class="sys-mix" data-label="Conclusión" data-speaker-notes="Síntesis del paper: no es reemplazo ni continuidad, es polarización. Se vacía el medio — el programador puro cae (-6%) pero el desarrollador crece (+15%) y los puestos con IA pagan prima. Habrá menos ingenieros del montón, pero más ingenieros PRO. Sobreviven y crecen los mejores. Es una mezcla: la mano del ingeniero sobre la máquina." style="--accent:#6C5CE7;isolation:isolate;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
     <div class="mesh"></div>
     <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:26px">Conclusión · la síntesis · <span style="color:var(--slate-l)">fuente: el paper</span></div>
     <h1 class="r2" style="font-size:64px;font-weight:600;line-height:1.05;letter-spacing:-.02em;max-width:1500px">No es reemplazo, ni todo sigue igual:
@@ -1180,7 +1205,7 @@ fit();render();
   intro.innerHTML=
     '<div class="cc-term">'+
       '<div class="cc-bar"><span class="cc-tl"><i></i><i></i><i></i></span>'+
-        '<span class="cc-title">martin@charla: ~/el-ingeniero-x-ia — claude-code</span></div>'+
+        '<span class="cc-title">martin@charla: ~/el-ingeniero-x-ia — claude-code</span><span class="cc-mic">🔴 mic ON</span></div>'+
       '<div class="cc-body">'+
         '<div class="cc-welcome"><span class="cc-star">✻</span> Welcome to <b>Claude Code</b>!</div>'+
         '<div class="cc-dim">/help for help · /status for your current setup</div>'+
@@ -1222,7 +1247,7 @@ fit();render();
       '<span class="cc-star spin">✻</span> Pensando…',
       '<span class="cc-ok">●</span> Read <span class="cc-file2">El-rol-del-ingeniero-en-10-años.pdf</span> <span class="cc-dim">(14 págs)</span>',
       '<span class="cc-ok">●</span> Tesis detectada: <b>polarización, no reemplazo</b>',
-      '<span class="cc-ok">●</span> Diseñando 22 slides…',
+      '<span class="cc-ok">●</span> Diseñando 23 slides…',
       '<span class="cc-ok">●</span> Plantando easter eggs <span class="cc-star">✦</span>'
     ];
     lines.forEach(function(h,n){ T(function(){ addLine(h,'cc-line'); },200+n*860); });
@@ -1259,7 +1284,7 @@ fit();render();
     else if(!active && playing){ finish(); }
   });
   mo.observe(cover,{attributes:true,attributeFilter:['data-deck-active']});
-  if(cover.hasAttribute('data-deck-active') && !played){ T(play,2600); }
+  if(cover.hasAttribute('data-deck-active') && !played){ intro.style.transition='none'; play(); requestAnimationFrame(function(){intro.style.transition='';}); }
 
       /* ---------- EASTER EGGS: Clawd (mascota de Claude Code) escondido ---------- */
   try{
@@ -1417,6 +1442,33 @@ fit();render();
     }
   });
 
+})();
+</script>
+<script>
+(function(){
+  var sec=[].slice.call(document.querySelectorAll('#canvas>section')).filter(function(s){return s.classList.contains('cinema');})[0];
+  if(!sec) return;
+  var mA=sec.querySelector('.micA'),mB=sec.querySelector('.micB'),mC=sec.querySelector('.micC'),
+      cA=sec.querySelector('.micCurA'),cB=sec.querySelector('.micCurB');
+  var played=false,timers=[];
+  function T(fn,ms){var id=setTimeout(fn,ms);timers.push(id);return id;}
+  function clr(){timers.forEach(clearTimeout);timers=[];}
+  function type(el,str,cps,done){var ch=Array.from(str),k=0;el.textContent='';(function s(){if(k>=ch.length){done&&done();return;}k++;el.textContent=ch.slice(0,k).join('');T(s,1000/cps);})();}
+  function reset(){clr();played=false;mA.textContent='';mB.textContent='';mC.textContent='';mC.style.opacity='0';cA.style.display='';cB.style.display='none';}
+  function play(){
+    clr();played=true;mA.textContent='';mB.textContent='';mC.textContent='';mC.style.opacity='0';cA.style.display='';cB.style.display='none';
+    T(function(){ type(mA,'che… ¿sabés que te dejaste el micrófono prendido? 🔴',24,function(){
+      cA.style.display='none';cB.style.display='';
+      T(function(){ type(mB,'…y te quedaste sin tokens semanales por decir ████████.',24,function(){
+        cB.style.display='none';
+        T(function(){ mC.style.transition='opacity .5s'; mC.textContent='así SÍ te reemplaza la IA 😅'; mC.style.opacity='1'; },450);
+      }); },550);
+    }); },650);
+  }
+  new MutationObserver(function(){
+    if(sec.hasAttribute('data-deck-active')){ if(!played) play(); } else { reset(); }
+  }).observe(sec,{attributes:true,attributeFilter:['data-deck-active']});
+  if(sec.hasAttribute('data-deck-active')&&!played) play();
 })();
 </script>
 </body></html>
