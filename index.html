@@ -8,10 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>El futuro del ingeniero informático</title>
   <script>
-    location.replace("./presentacionanimada.html?v=fdcfb65");
+    (function () {
+      var q = location.search ? location.search + '&' : '?';
+      location.replace('./presentacionanimada.html' + q + 'v=' + Date.now() + location.hash);
+    })();
   </script>
 </head>
 <body>
-  <p><a href="./presentacionanimada.html?v=fdcfb65">Abrir presentación</a></p>
+  <p><a href="./presentacionanimada.html">Abrir presentación</a></p>
 </body>
 </html>
