@@ -1541,4 +1541,19 @@ fit();render();
   if(sec.hasAttribute('data-deck-active')) play();
 })();
 </script>
+<script>
+/* desbloqueo de audio en el primer gesto del usuario (autoplay policy) */
+(function(){
+  var done=false;
+  function unlock(){ if(done)return; done=true;
+    [].slice.call(document.querySelectorAll('audio')).forEach(function(a){ try{ a.muted=true; var p=a.play();
+      if(p&&p.then){ p.then(function(){ a.pause(); a.currentTime=0; a.muted=false; }).catch(function(){ a.muted=false; }); }
+      else { a.pause(); a.currentTime=0; a.muted=false; } }catch(e){} });
+    // si ya estamos en la ultima slide, arrancar el outro ahora
+    setTimeout(function(){ var act=document.querySelector('section[data-deck-active]'); var au=document.getElementById('outroSound');
+      if(au && act && act.getAttribute('data-label')==='Cierre'){ try{ au.currentTime=0; au.play(); }catch(e){} } }, 60);
+  }
+  ['pointerdown','keydown','click','touchstart'].forEach(function(ev){ window.addEventListener(ev, unlock, true); });
+})();
+</script>
 </body></html>
