@@ -892,6 +892,7 @@ html,body{overflow:hidden}
 <div id="stage"><div id="canvas">
 <section class="sys-ai" data-label="Portada" data-speaker-notes="Bienvenida. Sobre el futuro del rol del ingeniero informático frente a la IA. Yo abro con el Bloque 1." style="isolation:isolate;--accent:#6C5CE7;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;isolation:isolate">
     <div class="aurora"></div>
+    
     <div class="r1" style="position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:var(--t-label);letter-spacing:.2em;text-transform:uppercase;color:var(--slate-l)"><span>Exposición académica</span><span>2026</span></div>
     <div style="position:relative;z-index:1;max-width:1500px">
       <div class="r2" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:30px">Trabajo Práctico Final</div>
@@ -992,13 +993,25 @@ html,body{overflow:hidden}
   <!-- 6 · DIVIDER BLOQUE 2 -->
   <section class="sys-ai" data-label="Bloque 2" data-speaker-notes="Segundo bloque: qué puede y qué no puede hacer la IA hoy, con datos del presente (2021–2026)." style="isolation:isolate;isolation:isolate;--accent:#0E9FB5;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative">
     <div class="aurora"></div>
-    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-size:540px;font-weight:700;color:var(--ink2);line-height:.8;user-select:none">02</div>
-    <div style="position:relative;max-width:1280px">
+    
+    <div style="position:relative;max-width:820px">
       <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:30px">Bloque 02</div>
       <h1 class="r2" style="font-size:var(--t-display);font-weight:600;line-height:.98;letter-spacing:-.03em">Qué puede y qué no<br>puede hacer la IA hoy</h1>
       <div class="r3" style="width:120px;height:6px;background:var(--accent);margin-top:46px"></div>
     </div>
-  <div style="position:absolute;right:58px;bottom:60px;width:606px;background:#16181c;border:1px solid #2a2f37;border-radius:18px;padding:24px 28px;box-shadow:0 34px 90px rgba(0,0,0,.6);font-family:var(--display);transform:rotate(-1.6deg);z-index:5">
+  <svg viewBox="0 0 320 320" style="position:absolute;right:140px;top:140px;width:340px;height:340px;z-index:2;pointer-events:none">
+  <defs>
+    <radialGradient id="aiCore" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#cdf6fc"/><stop offset="34%" stop-color="#0E9FB5"/><stop offset="100%" stop-color="#0E9FB5" stop-opacity="0"/></radialGradient>
+    <filter id="aiGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g fill="none" stroke="#0E9FB5"><circle cx="160" cy="160" r="150" stroke-opacity=".18" stroke-width="1.2"/><circle cx="160" cy="160" r="112" stroke-opacity=".32" stroke-width="1.4"/><circle cx="160" cy="160" r="72" stroke-opacity=".5" stroke-width="1.6"/></g>
+  <g stroke="#0E9FB5" stroke-width="2" opacity=".55"><path d="M160,160 L270,160"/><path d="M160,160 L238,238"/><path d="M160,160 L160,270"/><path d="M160,160 L82,238"/><path d="M160,160 L50,160"/><path d="M160,160 L82,82"/><path d="M160,160 L160,50"/><path d="M160,160 L238,82"/></g>
+  <circle cx="160" cy="160" r="62" fill="url(#aiCore)" filter="url(#aiGlow)"/>
+  <g fill="#7fe9f5" filter="url(#aiGlow)"><circle cx="270" cy="160" r="6"/><circle cx="238" cy="238" r="5"/><circle cx="160" cy="270" r="6"/><circle cx="82" cy="238" r="5"/><circle cx="50" cy="160" r="6"/><circle cx="82" cy="82" r="5"/><circle cx="160" cy="50" r="6"/><circle cx="238" cy="82" r="5"/></g>
+  <circle cx="160" cy="160" r="16" fill="#eaffff" filter="url(#aiGlow)"/>
+</svg>
+<div style="position:absolute;right:150px;top:486px;font-family:var(--mono);font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:#5fd3e3;z-index:2;text-align:center;width:320px">// la potencia, hoy</div>
+    <div style="position:absolute;right:50px;bottom:52px;width:560px;background:#16181c;border:1px solid #2a2f37;border-radius:18px;padding:24px 28px;box-shadow:0 34px 90px rgba(0,0,0,.6);font-family:var(--display);transform:rotate(-1.6deg);z-index:5">
       <div style="display:flex;align-items:center;gap:13px">
         <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0E9FB5,#155e75);display:flex;align-items:center;justify-content:center;font-size:27px;flex:0 0 auto">🧑‍💻</div>
         <div style="line-height:1.25">
@@ -1803,16 +1816,23 @@ fit();render();
 })();
 </script>
 <script>
-/* desbloqueo de audio en el primer gesto del usuario (autoplay policy) */
+/* audio: GATE por slide (no suena fuera de su slide) + desbloqueo robusto */
 (function(){
+  function gate(el,label){ if(!el)return; var real=el.play.bind(el);
+    el.play=function(){ if(el._prime) return real();
+      var a=document.querySelector('section[data-deck-active]');
+      if(a&&a.getAttribute('data-label')===label) return real();
+      try{el.pause();}catch(e){} return Promise.resolve(); }; }
+  var v=document.getElementById('micVoice'), o=document.getElementById('outroSound');
+  gate(v,'Mic'); gate(o,'Cierre');
   var done=false;
   function unlock(){ if(done)return; done=true;
-    [].slice.call(document.querySelectorAll('audio')).forEach(function(a){ try{ a.volume=0; var p=a.play();
-      if(p&&p.then){ p.then(function(){ a.pause(); a.currentTime=0; a.volume=1; }).catch(function(){ a.volume=1; }); }
-      else { a.pause(); a.currentTime=0; a.volume=1; } }catch(e){} });
-    // si ya estamos en la ultima slide, arrancar el outro ahora
-    setTimeout(function(){ var act=document.querySelector('section[data-deck-active]'); var au=document.getElementById('outroSound');
-      if(au && act && act.getAttribute('data-label')==='Cierre'){ try{ au.currentTime=0; au.play(); }catch(e){} } }, 60);
+    [v,o].forEach(function(a){ if(!a)return; try{ a._prime=true; a.muted=true; var p=a.play();
+      var fin=function(){ try{a.pause();a.currentTime=0;a.muted=false;}catch(e){} a._prime=false; };
+      if(p&&p.then){ p.then(fin).catch(function(){try{a.muted=false;}catch(e){}a._prime=false;}); } else { fin(); }
+    }catch(e){a._prime=false;} });
+    setTimeout(function(){ var act=document.querySelector('section[data-deck-active]');
+      if(o&&act&&act.getAttribute('data-label')==='Cierre'){ try{o.currentTime=0;o.play();}catch(e){} } },80);
   }
   ['pointerdown','keydown','click','touchstart'].forEach(function(ev){ window.addEventListener(ev, unlock, true); });
 })();
