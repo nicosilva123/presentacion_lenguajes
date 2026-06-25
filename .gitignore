@@ -1,3 +1,5 @@
 .claude/
 .presentacionanimada.backup.html
 .DS_Store
+.vercel-token
+.vercel

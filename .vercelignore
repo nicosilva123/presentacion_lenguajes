@@ -9,3 +9,5 @@ support.js
 screenshots
 .DS_Store
 .thumbnail
+.vercel-token
+.vercel
