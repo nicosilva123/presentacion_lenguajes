@@ -835,6 +835,15 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 .mtile{background:#cdc6b4;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);transform:scale(1);opacity:1;transition:transform .5s cubic-bezier(.4,.1,.3,1),opacity .5s ease;will-change:transform,opacity}
 .mosaic.go .mtile{transform:scale(0);opacity:0}
 .mosaic.notrans .mtile{transition:none!important}
+
+/* ---------- sync presentadores (badge) ---------- */
+#syncbadge{position:fixed;right:16px;bottom:14px;z-index:300;font-family:var(--mono);font-size:13px;display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(10,11,20,.72);color:#e8e4d8;border:1px solid rgba(255,255,255,.16);pointer-events:none;letter-spacing:.02em;transition:opacity .4s;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+#syncbadge.hidden{opacity:0}
+#syncbadge .dot{width:9px;height:9px;border-radius:50%;background:#888;flex:0 0 auto}
+#syncbadge.on .dot{background:#12A36B;box-shadow:0 0 9px #12A36B}
+#syncbadge.wait .dot{background:#D98200;animation:syncblink 1s infinite}
+#syncbadge.off .dot{background:#E5447B}
+@keyframes syncblink{50%{opacity:.25}}
 </style></head><body>
 <!--
    egg #0 — para quien lee el codigo fuente.
@@ -1554,6 +1563,48 @@ fit();render();
       if(au && act && act.getAttribute('data-label')==='Cierre'){ try{ au.currentTime=0; au.play(); }catch(e){} } }, 60);
   }
   ['pointerdown','keydown','click','touchstart'].forEach(function(ev){ window.addEventListener(ev, unlock, true); });
+})();
+</script>
+<script>
+/* ===== sincronizacion de presentadores (solo con ?control=) ===== */
+(function(){
+  var room=new URLSearchParams(location.search).get('control');
+  if(!room) return; /* modo publico: sin sincronia */
+  var SB_URL='https://dnfmkegjhfxsymnhctbx.supabase.co';
+  var SB_KEY='sb_publishable_J9q4uhK0rTLf0IP6YB1t6g_63S8GGYw';
+  var badge=document.createElement('div'); badge.id='syncbadge';
+  badge.innerHTML='<span class="dot"></span><span class="txt">conectando\u2026</span>';
+  document.body.appendChild(badge);
+  var hideT;
+  function setStatus(s,t){ badge.className=s; badge.querySelector('.txt').textContent=t; clearTimeout(hideT);
+    if(s==='on'){ badge.classList.remove('hidden'); hideT=setTimeout(function(){badge.classList.add('hidden');},4500); } else { badge.classList.remove('hidden'); } }
+  setStatus('wait','conectando\u2026');
+  function loadSB(cb){ if(window.supabase&&window.supabase.createClient)return cb(true);
+    var urls=['https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2','https://unpkg.com/@supabase/supabase-js@2'],ix=0;
+    (function go(){ if(ix>=urls.length)return cb(false); var s=document.createElement('script'); s.src=urls[ix++];
+      s.onload=function(){cb(!!(window.supabase&&window.supabase.createClient));}; s.onerror=go; document.head.appendChild(s); })(); }
+  loadSB(function(ok){
+    if(!ok){ setStatus('off','sin sincron\u00eda (sin internet)'); return; }
+    var myId='p_'+Math.random().toString(36).slice(2,9);
+    var sb=window.supabase.createClient(SB_URL,SB_KEY,{realtime:{params:{eventsPerSecond:25}}});
+    var applying=false, ch;
+    function curIdx(){ var hh=parseInt((location.hash||'').slice(1),10); return hh>=1?hh-1:0; }
+    function goTo(idx){ if(idx===curIdx())return; applying=true; try{ i=idx; render(); }catch(e){} setTimeout(function(){applying=false;},90); }
+    function bcastNav(){ if(ch){ try{ ch.send({type:'broadcast',event:'nav',payload:{i:curIdx(),from:myId}}); }catch(e){} } }
+    addEventListener('hashchange',function(){ if(!applying) bcastNav(); });
+    function count(){ var n=1; try{ n=Object.keys(ch.presenceState()).length; }catch(e){} setStatus('on','en vivo \u00b7 '+n+(n===1?' conectado':' conectados')); }
+    function connect(){
+      ch=sb.channel('deck-sync-'+room,{config:{broadcast:{self:false},presence:{key:myId}}});
+      ch.on('broadcast',{event:'nav'},function(m){ if(m.payload&&m.payload.from!==myId) goTo(m.payload.i); });
+      ch.on('broadcast',{event:'whereareyou'},function(m){ if(m.payload&&m.payload.from!==myId){ try{ch.send({type:'broadcast',event:'nav',payload:{i:curIdx(),from:myId}});}catch(e){} } });
+      ch.on('presence',{event:'sync'},count); ch.on('presence',{event:'join'},count); ch.on('presence',{event:'leave'},count);
+      ch.subscribe(function(status){
+        if(status==='SUBSCRIBED'){ try{ch.track({id:myId,t:Date.now()});}catch(e){} count(); try{ch.send({type:'broadcast',event:'whereareyou',payload:{from:myId}});}catch(e){} }
+        else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'||status==='CLOSED'){ setStatus('wait','reconectando\u2026'); }
+      });
+    }
+    connect();
+  });
 })();
 </script>
 </body></html>
