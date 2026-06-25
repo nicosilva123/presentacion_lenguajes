@@ -79,3 +79,12 @@ Slide nueva en Bloque 2 (antes de "¿Quién paga?"): «Le pedí a la IA un siste
 controlar la agricultura en Marte… me lo dio en 5 minutos. Los SWE están muertos» —
 con un navegador mock mostrando `localhost:3000/marte-agro` y el remate "«localhost» =
 anda solo en tu compu". Refuerza demo ≠ producción. Deck: 30 → 31 slides.
+
+## 8. Claude Mythos restringido por el gobierno (dato real, jun 2026) — Bloque 2
+Slide nueva tras "El salto de la IA": Claude **Mythos** (el modelo más capaz de Anthropic)
+sacó **83,1%** en evals de ciberseguridad (vs 66,6% de Opus 4.6) y halló vulnerabilidades
+en sistemas clasificados de EE.UU. en horas. Fue el **primer modelo de IA restringido por
+el gobierno de EE.UU.** (la Casa Blanca frenó su despliegue; luego ordenó apagar Mythos 5 y
+Fable 5 a nivel mundial). Guiño visual: un dossier "TOP SECRET" con líneas tachadas (redacted)
+y un sello rojo "RESTRINGIDO · GOV. EE.UU.". Fuentes: TechCrunch, Tom's Hardware, MarkTechPost
+(jun 2026). Deck: 31 → 32 slides.
