@@ -829,6 +829,12 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 .paper-slide .pclawd .pstick{width:4px;height:26px;margin:0 auto;background:#2a2018;filter:url(#paperSketch)}
 .paper-slide .pclawd .cd-svg{width:150px;height:auto;filter:url(#paperSketch);display:block;margin:0 auto}
 
+
+/* ---------- transición mosaico (PowerPoint) en la slide final ---------- */
+.mosaic{position:absolute;inset:0;z-index:6;display:grid;pointer-events:none}
+.mtile{background:#cdc6b4;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);transform:scale(1);opacity:1;transition:transform .5s cubic-bezier(.4,.1,.3,1),opacity .5s ease;will-change:transform,opacity}
+.mosaic.go .mtile{transform:scale(0);opacity:0}
+.mosaic.notrans .mtile{transition:none!important}
 </style></head><body>
 <!--
    egg #0 — para quien lee el codigo fuente.
@@ -1518,6 +1524,21 @@ fit();render();
     if(sec.hasAttribute('data-deck-active')){ if(!played) play(); } else { reset(); }
   }).observe(sec,{attributes:true,attributeFilter:['data-deck-active']});
   if(sec.hasAttribute('data-deck-active')&&!played) play();
+})();
+</script>
+<script>
+(function(){
+  var sec=[].slice.call(document.querySelectorAll('#canvas>section')).filter(function(s){return s.getAttribute('data-label')==='Cierre';})[0];
+  if(!sec) return;
+  var hint=document.getElementById('hint');
+  var COLS=24,ROWS=14, m=document.createElement('div'); m.className='mosaic';
+  m.style.gridTemplateColumns='repeat('+COLS+',1fr)'; m.style.gridTemplateRows='repeat('+ROWS+',1fr)';
+  for(var k=0;k<COLS*ROWS;k++){ var t=document.createElement('div'); t.className='mtile'; t.style.transitionDelay=(Math.random()*1.0).toFixed(3)+'s'; m.appendChild(t); }
+  sec.appendChild(m);
+  function play(){ if(hint)hint.style.display='none'; m.classList.add('notrans'); m.classList.remove('go'); void m.offsetWidth; m.classList.remove('notrans'); requestAnimationFrame(function(){requestAnimationFrame(function(){ m.classList.add('go'); });}); }
+  function leave(){ if(hint)hint.style.display=''; m.classList.add('notrans'); m.classList.remove('go'); }
+  new MutationObserver(function(){ if(sec.hasAttribute('data-deck-active')) play(); else leave(); }).observe(sec,{attributes:true,attributeFilter:['data-deck-active']});
+  if(sec.hasAttribute('data-deck-active')) play();
 })();
 </script>
 </body></html>
