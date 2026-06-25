@@ -73,3 +73,9 @@ serif itálico · chrome). Se sumó un **pos-it amarillo** (Caveat) como element
 
 El deck pasó de 22 a **30 slides** (intro actualizada: "Diseñando 30 slides…"). La cita
 final va después de la Conclusión y del chiste del micrófono, antes del cierre MS-Paint.
+
+## 7. Chiste de localhost (Marte) — Bloque 2
+Slide nueva en Bloque 2 (antes de "¿Quién paga?"): «Le pedí a la IA un sistema para
+controlar la agricultura en Marte… me lo dio en 5 minutos. Los SWE están muertos» —
+con un navegador mock mostrando `localhost:3000/marte-agro` y el remate "«localhost» =
+anda solo en tu compu". Refuerza demo ≠ producción. Deck: 30 → 31 slides.
