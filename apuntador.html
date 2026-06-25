@@ -3,6 +3,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Cache-Control" content="no-store">
+<meta name="theme-color" content="#0b0e16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Apuntador">
+<link rel="manifest" href='data:application/manifest+json,{"name":"Apuntador","short_name":"Apuntador","display":"standalone","orientation":"any","background_color":"%230b0e16","theme_color":"%230b0e16","start_url":"./apuntador.html"}'>
 <title>Apuntador · El ingeniero × IA</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -57,6 +63,28 @@
   .center p{font-size:20px;color:var(--mut);max-width:600px;line-height:1.5}
   .check{font-size:80px}
   .hidden{display:none!important}
+  @media (max-width:680px){
+    header{flex-wrap:wrap;gap:8px 12px;padding:11px 14px}
+    .chip{font-size:11px;padding:5px 10px;letter-spacing:.08em}
+    .auto{font-size:10px;padding:4px 9px}
+    .scount{font-size:14px;min-width:auto;margin-left:auto}
+    .timer{flex-basis:100%;order:9;margin-left:0;text-align:center;font-size:76px}
+    main{padding:20px 18px;justify-content:flex-start;padding-top:22px}
+    .stitle{font-size:13px;margin-bottom:14px;letter-spacing:.1em}
+    .kw{gap:13px}
+    .kw li{font-size:24px;line-height:1.22;padding-left:26px;font-weight:700}
+    .kw li::before{font-size:.72em;top:.14em}
+    .next{font-size:14px;margin-top:18px}
+    .sring{width:46px;height:46px;right:16px;bottom:82px}
+    .flash span{font-size:40px}
+    footer{padding:9px 12px;gap:7px}
+    button{font-size:13px;padding:11px 12px;border-radius:11px}
+    button.big{font-size:19px;padding:16px}
+    .hint{display:none}
+    .center{padding:28px;gap:20px}
+    .center h1{font-size:34px}
+    .center p{font-size:17px}
+  }
 </style></head>
 <body>
 
