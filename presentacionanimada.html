@@ -1848,6 +1848,7 @@ fit();render();
       if(o&&act&&act.getAttribute('data-label')==='Cierre'){ try{o.currentTime=0;o.play();}catch(e){} } },80);
   }
   ['pointerdown','keydown','click','touchstart'].forEach(function(ev){ window.addEventListener(ev, unlock, true); });
+  setInterval(function(){ var a=document.querySelector('section[data-deck-active]'); if(!a)return; var l=a.getAttribute('data-label'); try{ if(v&&l!=='Mic'&&!v.paused)v.pause(); }catch(e){} try{ if(o&&l!=='Cierre'&&!o.paused)o.pause(); }catch(e){} }, 200);
 })();
 </script>
 <script>
