@@ -96,25 +96,25 @@
 
 <script>
 const B2 = [
-  {t:"Portada · el tweet", d:15, k:["el <em>presente</em> de la IA","mostrá el <em>tweet</em> de Marte","el chiste = la <em>letra chica</em>"]},
-  {t:"El salto de la IA", d:35, k:["<em>tres años</em>","<em>2% → 88,6%</em> · SWE-bench","de 1/50 a 9 de cada 10","<em>examen saturó</em> · ‘ya no mide la frontera’"]},
-  {t:"Mythos clasificado", d:35, k:["<em>Claude Mythos</em>","<em>83,1%</em> ciberseguridad","fallas en sistemas <em>clasificados</em> de EE.UU.","<em>1ª vez</em> que el gobierno <em>frena</em> una IA"]},
-  {t:"La adopción", d:30, k:["<em>20 millones</em> de Copilot","Google 75 · MS 20-30 · 84% devs","IA <em>propone</em>, <em>aprueban ingenieros</em>","→ acá viene el truco"]},
-  {t:"Acelera y frena", d:35, k:["lab <em>+55,8%</em> · real <em>−19%</em>","<em>creían</em> ir +20%","el <em>contexto</em> lo cambia todo","tarea nueva vuela · sistema real se traba"]},
-  {t:"El 30% que duele", d:30, k:["<em>problema del 70%</em> · Osmani","el <em>30% final</em> necesita criterio","<em>tipear</em> nunca fue el cuello de botella"]},
-  {t:"Parece correcto", d:35, k:["<em>45%</em> con vulnerabilidad","Stanford: <em>creen</em> que es seguro","<em>slopsquatting</em> · librerías con malware"]},
-  {t:"¿Quién paga?", d:35, k:["<em>¿quién paga?</em>","Altman pierde con el plan de 200","MIT <em>95%</em> sin ROI · FMI ‘puntocom’","lo barato lo <em>subsidia el capital de riesgo</em>"]},
-  {t:"El cuello de botella", d:40, k:["se <em>mudó</em>: <em>escribir → verificar</em>","pasar los tests <em>≠</em> estar bien","verificar es <em>matemática</em>","→ se la paso a <em>Nico</em>"]}
+  {t:"Portada · el tweet", d:15, k:["<em>tweet de Marte</em> · ‘los SWE están muertos’","el chiste = la <em>letra chica</em>: localhost"]},
+  {t:"El salto de la IA", d:35, k:["<em>1,96% → 88,6%</em> en SWE-bench · 3 años","1/50 → 9 de cada 10 · el <em>examen se saturó</em>","OpenAI: ‘ya no mide la frontera’"]},
+  {t:"Mythos clasificado", d:35, k:["<em>Mythos 83,1%</em> ciber vs Opus <em>66,6%</em>","halló fallas en sistemas <em>clasificados</em> en horas","<em>1ª IA frenada</em> por el gobierno de EE.UU."]},
+  {t:"La adopción", d:30, k:["<em>20M</em> Copilot · Google <em>75%</em> · MS <em>20-30%</em> · <em>84%</em> devs","IA <em>propone</em>, lo <em>aprueban ingenieros</em>"]},
+  {t:"Acelera y frena", d:35, k:["lab <em>+55,8%</em> (Peng) vs real <em>−19%</em> (METR)","<em>creían</em> ir +20% → erraron el signo"]},
+  {t:"El 30% que duele", d:30, k:["<em>70 / 30</em> (Osmani): el <em>30% final</em> = criterio humano","tipear nunca fue el cuello de botella"]},
+  {t:"Parece correcto", d:35, k:["<em>45%</em> del código con vulnerabilidad (Veracode)","Stanford: menos seguro pero <em>creen</em> que sí","<em>slopsquatting</em>: <em>19,7%</em> libs inventadas + malware"]},
+  {t:"¿Quién paga?", d:35, k:["Altman pierde con el plan de <em>US$200</em>","MIT <em>95%</em> sin ROI · FMI ‘puntocom’ · <em>US$115.000M</em> a quemar","lo barato lo <em>subsidia el capital de riesgo</em>"]},
+  {t:"El cuello de botella", d:40, k:["el cuello se <em>mudó</em>: escribir → <em>verificar</em>","pasar los tests <em>≠</em> correcto (Qi, 2015)","→ es <em>matemática</em> · se la paso a <em>Nico</em>"]}
 ];
 const B4 = [
-  {t:"Portada Bloque 4", d:15, k:["vuelvo yo","queda un <em>núcleo humano</em>","rol · <em>empleo</em> · <em>cierre</em>"]},
-  {t:"Sube de piso", d:35, k:["<em>no desaparece: sube de piso</em>","<em>especificar · diseñar · validar · decidir</em>","cada una = una <em>barrera matemática</em>","pararse <em>sobre los límites</em>"]},
-  {t:"Tres trabajos", d:40, k:["<em>Arquitecto</em> · el qué","<em>Auditor</em> · valida la IA","<em>Responsable</em> · firma y responde","Brooks: <em>decidir qué construir</em>"]},
-  {t:"Jevons · empleo", d:40, k:["WEF <em>+78M</em> netos","desarrollador <em>+15%</em> · programador <em>−6%</em>","<em>Jevons</em>: el cajero no mató al bancario","lo barato → <em>más</em> demanda"]},
-  {t:"La puerta junior", d:40, k:["junior <em>−65%</em> big tech · <em>−76%</em> startups","ayuda <em>más al novato</em> (+34%)","pero el mercado se <em>cierra</em> para él"]},
-  {t:"Los profetas conceden", d:40, k:["<em>Amodei</em>: 90%… pero ‘especificar el diseño’","<em>Beck</em>: el 90% vale cero","el <em>10% — criterio, diseño</em> — vale mil veces más"]},
-  {t:"Conclusión", d:40, k:["<em>no es reemplazo: polarización</em>","se <em>vacía el medio</em>","menos del promedio, más <em>PRO</em>","alguien tiene que <em>responder</em>"]},
-  {t:"La paradoja · cierre", d:40, k:["+ automatización → + vale el <em>juicio humano</em>","no es el fin: <em>redefine quién lo es</em>","<em>Gracias</em> 🎤"]}
+  {t:"Portada Bloque 4", d:15, k:["queda un <em>núcleo humano</em> (lo de Nico)","rol · <em>empleo</em> · cierre"]},
+  {t:"Sube de piso", d:35, k:["escribir → <em>especificar · diseñar · validar · decidir</em>","cada una = una <em>barrera matemática</em> (límites de Nico)"]},
+  {t:"Tres trabajos", d:40, k:["<em>Arquitecto · Auditor · Responsable</em>","Brooks ’87: lo difícil = <em>decidir qué construir</em>"]},
+  {t:"Jevons · empleo", d:40, k:["WEF 2030: <em>+170M / −92M = +78M</em> netos","desarrollador <em>+15%</em> vs programador <em>−6%</em> (BLS)","<em>Jevons</em>: el cajero no mató al bancario → hubo más"]},
+  {t:"La puerta junior", d:40, k:["junior <em>−65%</em> big tech · <em>−76%</em> startups","Stanford 22-25 años: <em>−13/16%</em>","ayuda <em>+34%</em> al novato, pero el mercado se <em>cierra</em>"]},
+  {t:"Los profetas conceden", d:40, k:["<em>Amodei</em>: 90% del código… pero ‘especificar el diseño’","<em>Beck</em>: el 90% vale cero · el <em>10%</em> vale mil veces más"]},
+  {t:"Conclusión", d:40, k:["<em>polarización</em>: se <em>vacía el medio</em>","programador <em>−6%</em> · desarrollador <em>+15%</em> → más <em>PRO</em>","alguien tiene que <em>responder</em>"]},
+  {t:"La paradoja · cierre", d:40, k:["+ automatización → + vale el <em>juicio humano</em>","<em>redefine quién es el ingeniero</em> · <em>Gracias</em> 🎤"]}
 ];
 
 let cur=null, idx=0, blockRem=0, slideRem=0, playing=false, key=null, tick=null, actx;
