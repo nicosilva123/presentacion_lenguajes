@@ -1879,13 +1879,16 @@ fit();render();
   document.body.appendChild(el);
   var body=el.querySelector('.ct-body'), nlab=el.querySelector('.ct-n');
   var ix=0, vis=false, tm;
+  var __actx;
+  function __ding(){ try{ if(!__actx) __actx=new (window.AudioContext||window.webkitAudioContext)(); if(__actx.state==='suspended') __actx.resume(); if(__actx.state!=='running') return; var c=__actx,t=c.currentTime; [[988,0],[1319,0.085]].forEach(function(n){ var o=c.createOscillator(),g=c.createGain(); o.type='sine'; o.frequency.value=n[0]; o.connect(g); g.connect(c.destination); var s=t+n[1]; g.gain.setValueAtTime(0.0001,s); g.gain.exponentialRampToValueAtTime(0.16,s+0.012); g.gain.exponentialRampToValueAtTime(0.0006,s+0.33); o.start(s); o.stop(s+0.36); }); }catch(e){} }
+  ['pointerdown','keydown','click','touchstart'].forEach(function(ev){ window.addEventListener(ev,function(){ try{ if(!__actx) __actx=new (window.AudioContext||window.webkitAudioContext)(); if(__actx.state==='suspended') __actx.resume(); }catch(e){} },true); });
   window.__cn=function(idx,remote){
     ix=idx; body.innerHTML=M[idx]; nlab.textContent=(idx+1)+'/'+M.length;
-    el.classList.remove('show','out'); void el.offsetWidth; el.classList.add('show'); vis=true;
+    el.classList.remove('show','out'); void el.offsetWidth; el.classList.add('show'); vis=true; __ding();
     clearTimeout(tm); tm=setTimeout(function(){ el.classList.remove('show'); el.classList.add('out'); vis=false; },15000);
     if(!remote&&window.__ccCh){ try{ window.__ccCh.send({type:'broadcast',event:'claudenotif',payload:{idx:idx,from:window.__ccMyId}}); }catch(e){} }
   };
-  window.__cnText=function(html){ body.innerHTML=html; nlab.textContent=''; el.classList.remove('show','out'); void el.offsetWidth; el.classList.add('show'); vis=true; clearTimeout(tm); tm=setTimeout(function(){ el.classList.remove('show'); el.classList.add('out'); vis=false; },15000); };
+  window.__cnText=function(html){ body.innerHTML=html; nlab.textContent=''; el.classList.remove('show','out'); void el.offsetWidth; el.classList.add('show'); vis=true; __ding(); clearTimeout(tm); tm=setTimeout(function(){ el.classList.remove('show'); el.classList.add('out'); vis=false; },15000); };
   [['Sube de piso','<span class="ct-s">✫</span>che… ¿sabés que te dejaste el <b>micrófono</b> prendido? 🔴'],['La trampa de Jevons','<span class="ct-s">✫</span>…y te quedaste sin <b>tokens semanales</b> por bo████o 🙊'],['Los profetas conceden','<span class="ct-s">✫</span>si seguís así, sí te voy a <b>reemplazar</b> yo 😏']].forEach(function(p){ var sec=[].slice.call(document.querySelectorAll('#canvas>section')).filter(function(s){return s.getAttribute('data-label')===p[0];})[0]; if(!sec)return; new MutationObserver(function(){ if(sec.hasAttribute('data-deck-active')) window.__cnText(p[1]); }).observe(sec,{attributes:true,attributeFilter:['data-deck-active']}); if(sec.hasAttribute('data-deck-active')) window.__cnText(p[1]); });
   addEventListener('keydown',function(e){
     if((e.key==='n'||e.key==='N')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){
