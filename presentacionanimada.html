@@ -1398,16 +1398,85 @@ html,body{overflow:hidden}
   <div class="ad" aria-hidden="true"><div class="grid-bp"></div><div class="vig"></div><div class="scan"></div><div class="grain"></div><div class="mesh"></div><div class="neonframe"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">11 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Bloque 3</span></div></div></section>
 
   <!-- 8 · Hay cosas que ninguna máquina podrá hacer -->
-  <section class="sys-human" data-label="Límites matemáticos" data-speaker-notes="No es cuestión de potencia de cálculo, es un límite matemático demostrado. Tres barreras que vamos a recorrer." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
-    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Bloque 03 · Tres barreras</div>
-    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1450px">Hay cosas que ninguna máquina podrá hacer</h1>
-    <p class="r2" style="font-family:var(--serif);font-size:var(--t-lead);font-style:italic;color:var(--slate);margin-top:24px;max-width:1100px">No es una cuestión de potencia de cálculo. Es un límite matemático.</p>
-    <div style="flex:1;display:flex;align-items:stretch;gap:34px;margin-top:26px">
-      <div class="r3" style="flex:1;border-top:3px solid var(--ink);padding-top:26px;display:flex;flex-direction:column"><div style="font-family:var(--mono);font-size:52px;font-weight:600;color:var(--accent)">01</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:14px;line-height:1.05">Verificación</div><p style="font-family:var(--mono);font-size:24px;color:#3a4150;margin-top:12px;letter-spacing:.04em">Turing · Rice</p><p style="font-size:27px;color:#444b59;margin-top:auto;line-height:1.35;max-width:360px">Ningún algoritmo decide si un programa cumple una propiedad.</p></div>
-      <div class="r4" style="flex:1;border-top:3px solid var(--ink);padding-top:26px;display:flex;flex-direction:column"><div style="font-family:var(--mono);font-size:52px;font-weight:600;color:var(--accent)">02</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:14px;line-height:1.05">Complejidad</div><p style="font-family:var(--mono);font-size:24px;color:#3a4150;margin-top:12px;letter-spacing:.04em">P vs NP</p><p style="font-size:27px;color:#444b59;margin-top:auto;line-height:1.35;max-width:360px">No hay atajos: encontrar cuesta mucho más que verificar.</p></div>
-      <div class="r5" style="flex:1;border-top:3px solid var(--accent);padding-top:26px;display:flex;flex-direction:column"><div style="font-family:var(--mono);font-size:52px;font-weight:600;color:var(--accent)">03</div><div style="font-size:var(--t-h2);font-weight:600;margin-top:14px;line-height:1.05">Lenguaje</div><p style="font-family:var(--mono);font-size:24px;color:#3a4150;margin-top:12px;letter-spacing:.04em">Chomsky</p><p style="font-size:27px;color:#444b59;margin-top:auto;line-height:1.35;max-width:360px">Traducir lo ambiguo a reglas exactas no se automatiza.</p></div>
+  <section class="sys-human" data-label="Límites matemáticos" data-speaker-notes="No es cuestión de potencia de cálculo. Hay problemas donde la matemática pone una frontera: algunos son indecidibles, otros explotan combinatoriamente y otros nacen de una intención ambigua. Son las tres barreras que vamos a recorrer." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:76px 120px 82px;font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;position:relative">
+    <style>
+      .lm17-card{position:relative;flex:1;min-width:0;height:410px;padding:28px 30px 25px;border:2px solid rgba(42,48,64,.24);background:rgba(245,241,232,.74);display:flex;flex-direction:column;box-shadow:8px 10px 0 rgba(42,48,64,.07)}
+      .lm17-card:before{content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:9px;background:#D98200}
+      .lm17-icon{height:128px;display:flex;align-items:center;justify-content:center;margin:5px 0 10px}
+      .lm17-tag{align-self:flex-start;font-family:var(--mono);font-size:17px;letter-spacing:.17em;padding:7px 11px;border:1.5px solid currentColor;color:#D98200;transform:rotate(-1deg)}
+      .lm17-card:nth-child(2){transform:translateY(17px)}
+      .lm17-card:nth-child(3){transform:translateY(34px)}
+      .lm17-card:nth-child(2):before{background:#2a3040}
+      .lm17-card:nth-child(3):before{background:#D98200}
+      .lm17-route{stroke-dasharray:13 12;animation:lm17dash 7s linear infinite}
+      @keyframes lm17dash{to{stroke-dashoffset:-100}}
+    </style>
+
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:50px;position:relative;z-index:2">
+      <div>
+        <div class="r1" style="font-family:var(--mono);font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Bloque 03 · Fronteras matemáticas</div>
+        <h1 class="r1" style="font-size:78px;font-weight:650;line-height:1.01;letter-spacing:-.035em;margin-top:15px;max-width:1220px">Más potencia no rompe<br><span style="color:var(--accent)">estos tres límites.</span></h1>
+      </div>
+      <div class="r2" style="margin-top:7px;width:250px;height:122px;border:4px double var(--accent);color:var(--accent);font-family:var(--mono);font-size:21px;font-weight:700;line-height:1.35;letter-spacing:.1em;text-align:center;display:flex;align-items:center;justify-content:center;transform:rotate(3deg);background:rgba(217,130,0,.055)">MÁS FLOPS<br>≠ SOLUCIÓN</div>
     </div>
-  <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">12 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Límites matemáticos</span></div></div></section>
+
+    <div style="position:relative;z-index:2;display:flex;gap:30px;margin-top:28px;padding-right:8px">
+      <div class="lm17-card r2">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:var(--mono);font-size:46px;font-weight:700;color:var(--accent)">01</span><span class="lm17-tag">INDECIDIBLE</span></div>
+        <div class="lm17-icon">
+          <svg viewBox="0 0 220 120" width="230" height="126" aria-hidden="true">
+            <path d="M55 81 C26 48 54 15 96 22 C137 29 139 77 107 91 C78 104 52 88 48 67" fill="none" stroke="#2a3040" stroke-width="7" stroke-linecap="round"/>
+            <path d="M37 66 L50 48 L59 68" fill="#f5f1e8" stroke="#D98200" stroke-width="6" stroke-linejoin="round"/>
+            <rect x="139" y="31" width="56" height="56" rx="8" fill="none" stroke="#D98200" stroke-width="6"/>
+            <path d="M151 59 H183 M167 43 V75" stroke="#D98200" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:37px;font-weight:650;line-height:1">Verificación</div>
+        <div style="font-family:var(--mono);font-size:19px;letter-spacing:.08em;color:#596171;margin-top:9px">TURING · RICE</div>
+        <p style="font-family:var(--serif);font-size:25px;font-style:italic;line-height:1.27;color:#444b59;margin-top:auto">Hay preguntas sobre programas que ningún algoritmo puede decidir siempre.</p>
+      </div>
+
+      <div class="lm17-card r3">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:var(--mono);font-size:46px;font-weight:700;color:var(--accent)">02</span><span class="lm17-tag" style="color:#2a3040">EXPLOTA</span></div>
+        <div class="lm17-icon">
+          <svg viewBox="0 0 220 120" width="230" height="126" aria-hidden="true">
+            <path d="M25 94 H198 M35 99 V18" fill="none" stroke="#687080" stroke-width="4" stroke-linecap="round"/>
+            <path d="M38 91 C75 90 104 85 127 71 C151 56 166 32 187 10" fill="none" stroke="#D98200" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="128" cy="70" r="7" fill="#2a3040"/><circle cx="187" cy="10" r="9" fill="#D98200"/>
+            <path d="M188 29 V45 M174 35 L164 46 M202 35 L212 45" stroke="#D98200" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:37px;font-weight:650;line-height:1">Complejidad</div>
+        <div style="font-family:var(--mono);font-size:19px;letter-spacing:.08em;color:#596171;margin-top:9px">EXPLOSIÓN COMBINATORIA</div>
+        <p style="font-family:var(--serif);font-size:25px;font-style:italic;line-height:1.27;color:#444b59;margin-top:auto">Unos pasos más multiplican las opciones hasta volver inviable probarlas todas.</p>
+      </div>
+
+      <div class="lm17-card r4">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:var(--mono);font-size:46px;font-weight:700;color:var(--accent)">03</span><span class="lm17-tag">AMBIGUO</span></div>
+        <div class="lm17-icon">
+          <svg viewBox="0 0 220 120" width="230" height="126" aria-hidden="true">
+            <path d="M20 19 H113 V76 H70 L49 98 V76 H20 Z" fill="none" stroke="#2a3040" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M47 40 H86 M47 56 H74" stroke="#2a3040" stroke-width="5" stroke-linecap="round"/>
+            <path d="M124 37 C145 37 153 25 153 13 M124 55 C161 55 176 55 200 55 M124 73 C145 73 153 86 153 105" fill="none" stroke="#D98200" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="153" cy="13" r="7" fill="#D98200"/><circle cx="200" cy="55" r="7" fill="#D98200"/><circle cx="153" cy="105" r="7" fill="#D98200"/>
+          </svg>
+        </div>
+        <div style="font-size:37px;font-weight:650;line-height:1">Lenguaje</div>
+        <div style="font-family:var(--mono);font-size:19px;letter-spacing:.08em;color:#596171;margin-top:9px">INTENCIÓN → REGLAS</div>
+        <p style="font-family:var(--serif);font-size:25px;font-style:italic;line-height:1.27;color:#444b59;margin-top:auto">Una frase admite varias lecturas; alguien debe convertir intención en precisión.</p>
+      </div>
+    </div>
+
+    <div class="r5" style="position:relative;z-index:2;margin-top:45px;display:flex;align-items:center;gap:24px">
+      <div style="font-family:'Caveat',cursive;font-size:34px;color:#596171;white-space:nowrap">recorrido del bloque</div>
+      <svg viewBox="0 0 1000 40" style="height:40px;flex:1;overflow:visible" aria-hidden="true">
+        <path class="lm17-route" d="M5 20 H950" fill="none" stroke="#D98200" stroke-width="5" stroke-linecap="round"/>
+        <path d="M940 5 L966 20 L940 35" fill="none" stroke="#D98200" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-family:'Caveat',cursive;font-size:38px;font-weight:700;color:var(--ink);white-space:nowrap">no todo se arregla con más cómputo.</div>
+    </div>
+
+  <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">17 / 29</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Límites matemáticos</span></div></div></section>
 
   <!-- 9 · Barrera 1: Turing y Rice -->
   <section class="sys-human" data-label="Barrera 1 · Turing y Rice" data-speaker-notes="Problema de la parada y teorema de Rice: no existe un algoritmo general que decida propiedades no triviales de todo programa. Si existiera un verificador universal, podríamos hacer un programa que haga lo contrario de su respuesta, y la máquina nunca acertaría. Por eso no puede existir; siempre hace falta criterio humano." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
