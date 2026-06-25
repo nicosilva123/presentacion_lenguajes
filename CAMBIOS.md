@@ -35,3 +35,15 @@ para este paper". Saltar con click/botón · repetir con tecla `i`.
 
 ## Cómo verlo
 Abrí `presentacionanimada.html` en el navegador. **← →** / espacio · **F** fullscreen.
+
+## 5. Notificaciones de Claude (tecla N)
+Durante la charla, apretar **N** hace salir desde el **centro-derecha** una
+**notificación de Claude** estilo mini-terminal de Claude Code (semáforos, avatar
+Clawd, ✻ "Claude Code", barra de progreso con auto-cierre a 4.5s). Cada N avanza
+al siguiente de **10 mensajes** (chistes 4ta-pared: micrófono, tokens, los 6 Clawd,
+482026, "no vine a reemplazarlos, vine a tomar asistencia", etc.).
+- Funciona **siempre en local** (también en la URL pública).
+- En **modo control** (`?control=`) se **sincroniza** por Supabase (broadcast
+  `claudenotif`, mismo patrón que el gameplay): el que aprieta N la muestra en la
+  pantalla proyectada del otro presentador.
+- `N` no choca con navegación / `F` / `i` / `V` ni con los buffers `claude`/`premio`/dígitos.
