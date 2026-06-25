@@ -844,6 +844,10 @@ body[data-theme="light"] .egg-hud{color:#3a4150;background:rgba(255,255,255,.7)}
 #syncbadge.wait .dot{background:#D98200;animation:syncblink 1s infinite}
 #syncbadge.off .dot{background:#E5447B}
 @keyframes syncblink{50%{opacity:.25}}
+
+/* ---------- gameplay overlay (Cmd, modo control) ---------- */
+#gameplayov{position:fixed;top:18px;right:18px;width:162px;height:auto;z-index:285;background:#000;opacity:0;visibility:hidden;transform:translateY(-10px) scale(.95);border-radius:10px;border:2px solid rgba(255,255,255,.5);box-shadow:0 12px 32px rgba(0,0,0,.6);pointer-events:none;transition:opacity .35s,transform .35s,visibility .35s}
+#gameplayov.show{opacity:.72;visibility:visible;transform:none}
 </style></head><body>
 <!--
    egg #0 — para quien lee el codigo fuente.
@@ -1597,6 +1601,7 @@ fit();render();
       ch=sb.channel('deck-sync-'+room,{config:{broadcast:{self:false},presence:{key:myId}}});
       ch.on('broadcast',{event:'nav'},function(m){ if(m.payload&&m.payload.from!==myId) goTo(m.payload.i); });
       ch.on('broadcast',{event:'whereareyou'},function(m){ if(m.payload&&m.payload.from!==myId){ try{ch.send({type:'broadcast',event:'nav',payload:{i:curIdx(),from:myId}});}catch(e){} } });
+      ch.on('broadcast',{event:'gameplay'},function(m){ if(m.payload&&m.payload.from!==myId&&window.__gp) window.__gp(m.payload.show,true); });
       ch.on('presence',{event:'sync'},count); ch.on('presence',{event:'join'},count); ch.on('presence',{event:'leave'},count);
       ch.subscribe(function(status){
         if(status==='SUBSCRIBED'){ try{ch.track({id:myId,t:Date.now()});}catch(e){} count(); try{ch.send({type:'broadcast',event:'whereareyou',payload:{from:myId}});}catch(e){} }
@@ -1604,6 +1609,13 @@ fit();render();
       });
     }
     connect();
+    var gv=document.createElement('video'); gv.id='gameplayov'; gv.src='videoplayback.mp4'; gv.muted=true; gv.loop=true; gv.setAttribute('playsinline',''); gv.preload='auto'; document.body.appendChild(gv);
+    var gShown=false;
+    window.__gp=function(show,remote){ gShown=show; if(show){ gv.classList.add('show'); try{gv.currentTime=0;gv.play();}catch(e){} } else { gv.classList.remove('show'); try{gv.pause();}catch(e){} } if(!remote&&ch){ try{ch.send({type:'broadcast',event:'gameplay',payload:{show:show,from:myId}});}catch(e){} } };
+    var mD=false,cmb=false;
+    addEventListener('keydown',function(e){ if(e.key==='Meta'){ if(!mD){mD=true;cmb=false;} } else if(mD){ cmb=true; } });
+    addEventListener('keyup',function(e){ if(e.key==='Meta'){ if(mD&&!cmb){ e.preventDefault(); window.__gp(!gShown); } mD=false; } });
+    addEventListener('blur',function(){ mD=false; });
   });
 })();
 </script>
