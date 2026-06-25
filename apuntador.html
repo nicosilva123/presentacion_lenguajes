@@ -87,12 +87,14 @@
   }
 </style></head>
 <body>
+<div id="stage" style="flex:1;display:flex;flex-direction:column;min-height:0">
 
 <section id="screen" class="center">
   <div class="check" id="scIcon">🎤</div>
   <h1 id="scTitle">Apuntador <b>×</b> IA</h1>
   <p id="scSub">Solo las palabras clave. Se pasa <b style="color:#34d399">solo</b> con el tiempo de cada slide y te avisa con un sonido. Contador de 4:50 por bloque.</p>
   <button id="scBtn" class="big go" style="max-width:440px">▶ Empezar Bloque 2</button>
+  <button id="scFloat" class="gh" style="max-width:440px;font-size:16px;padding:14px">📌 Abrir como ventana flotante (siempre visible)</button>
   <p style="font-size:13px;color:#56607a">Una vez que arranca, va solo. Espacio = pausa · → / ← para corregir.</p>
 </section>
 
@@ -121,6 +123,7 @@
     <div class="hint">Va <b style="color:#34d399">solo</b>. El anillo = lo que falta de esta slide.</div>
   </footer>
 </div>
+</div><!--/stage-->
 
 <script>
 const B2 = [
@@ -146,7 +149,21 @@ const B4 = [
 ];
 
 let cur=null, idx=0, blockRem=0, slideRem=0, playing=false, key=null, tick=null, actx;
-const $=id=>document.getElementById(id);
+let doc=document;
+const $=id=>doc.getElementById(id);
+function copyStyles(w){ Array.prototype.forEach.call(document.querySelectorAll('style,link[rel="stylesheet"]'),function(s){ w.document.head.appendChild(s.cloneNode(true)); }); }
+async function pip(){
+  if(!('documentPictureInPicture' in window)){ alert('La ventana flotante anda en Chrome, Brave o Edge (en la compu). En el celu usá “Agregar a inicio”.'); return; }
+  try{
+    var w = await documentPictureInPicture.requestWindow({width:560, height:400});
+    copyStyles(w); w.document.documentElement.lang='es';
+    w.document.body.append($('stage')); doc = w.document;
+    w.addEventListener('keydown', keyHandler);
+    w.addEventListener('pagehide', function(){ document.body.append(doc.getElementById('stage')); doc=document; });
+  }catch(e){}
+}
+function keyHandler(e){ if($('run').classList.contains('hidden'))return;
+  if(e.code==='Space'){e.preventDefault();pp();} else if(e.key==='ArrowRight'){next(false);} else if(e.key==='ArrowLeft'){prev();} }
 function beep(){ /* apuntador MUDO — sin sonido (aviso solo visual) */ }
 function fmt(s){s=Math.max(0,Math.ceil(s));return (Math.floor(s/60))+':'+String(s%60).padStart(2,'0');}
 function total(arr){return arr.reduce(function(a,b){return a+b.d;},0);}
@@ -191,11 +208,12 @@ function endBlock(){ playing=false; clearInterval(tick);
 function pp(){ playing=!playing; $('btnPP').textContent= playing?'⏸ Pausa':'▶ Seguir'; setAuto(); if(playing&&actx&&actx.state==='suspended')actx.resume(); }
 
 $('scBtn').onclick=function(){startBlock('b2');};
+$('scFloat').onclick=pip;
+if(!('documentPictureInPicture' in window)) $('scFloat').style.display='none';
 $('btnPP').onclick=pp;
 $('btnNext').onclick=function(){next(false);};
 $('btnPrev').onclick=prev;
 $('btnRestart').onclick=function(){startBlock(key);};
-addEventListener('keydown',function(e){ if($('run').classList.contains('hidden'))return;
-  if(e.code==='Space'){e.preventDefault();pp();} else if(e.key==='ArrowRight'){next(false);} else if(e.key==='ArrowLeft'){prev();} });
+addEventListener('keydown',keyHandler);
 </script>
 </body></html>
