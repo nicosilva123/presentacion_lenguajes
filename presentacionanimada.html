@@ -1612,10 +1612,7 @@ fit();render();
     var gv=document.createElement('video'); gv.id='gameplayov'; gv.src='videoplayback.mp4'; gv.muted=true; gv.loop=true; gv.setAttribute('playsinline',''); gv.preload='auto'; document.body.appendChild(gv);
     var gShown=false;
     window.__gp=function(show,remote){ gShown=show; if(show){ gv.classList.add('show'); try{gv.currentTime=0;gv.play();}catch(e){} } else { gv.classList.remove('show'); try{gv.pause();}catch(e){} } if(!remote&&ch){ try{ch.send({type:'broadcast',event:'gameplay',payload:{show:show,from:myId}});}catch(e){} } };
-    var mD=false,cmb=false;
-    addEventListener('keydown',function(e){ if(e.key==='Meta'){ if(!mD){mD=true;cmb=false;} } else if(mD){ cmb=true; } });
-    addEventListener('keyup',function(e){ if(e.key==='Meta'){ if(mD&&!cmb){ e.preventDefault(); window.__gp(!gShown); } mD=false; } });
-    addEventListener('blur',function(){ mD=false; });
+    addEventListener('keydown',function(e){ if((e.key==='v'||e.key==='V')&&!e.metaKey&&!e.ctrlKey&&!e.altKey){ window.__gp(!gShown); } });
   });
 })();
 </script>
