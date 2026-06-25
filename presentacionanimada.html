@@ -1410,51 +1410,110 @@ html,body{overflow:hidden}
   <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">12 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Límites matemáticos</span></div></div></section>
 
   <!-- 9 · Barrera 1: Turing y Rice -->
-  <section class="sys-human" data-label="Barrera 1 · Turing y Rice" data-speaker-notes="Problema de la parada y teorema de Rice: no existe un algoritmo general que decida propiedades no triviales de todo programa. La verificación total es imposible; siempre hace falta criterio humano." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
-    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Bloque 03 · Barrera 01 · Verificación</div>
-    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1500px">Nadie puede verificarlo todo</h1>
-    <div style="flex:1;display:flex;align-items:center;gap:80px;margin-top:20px">
-      <div class="r2" style="flex:1.05">
-        <div style="display:flex;align-items:center;gap:22px">
-          <div style="font-family:var(--mono);font-size:27px;color:#444b59;text-align:center;line-height:1.15">programas<br>cualesquiera</div>
-          <svg width="96" height="58" viewBox="0 0 96 58" style="flex:0 0 auto"><g fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#rgh)"><path d="M8 29 H76"/><path d="M58 12 L82 29 L58 46"/></g></svg>
-          <div style="position:relative;padding:38px 36px;text-align:center;min-width:280px">
-            <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 280 170" preserveAspectRatio="none"><rect x="6" y="6" width="268" height="158" rx="13" fill="var(--bone2)" stroke="var(--accent)" stroke-width="3.4" filter="url(#rgh)"/></svg>
-            <div style="position:relative">
-              <div style="font-family:var(--mono);font-size:26px;color:var(--accent);letter-spacing:.06em">VERIFICADOR</div>
-              <div style="font-size:34px;font-weight:700;margin-top:8px;color:var(--ink);line-height:1.1">¿cumple la<br>propiedad?</div>
-            </div>
-          </div>
-        </div>
-        <div style="display:inline-block;margin-top:50px;position:relative;padding:16px 34px">
-          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 300 70" preserveAspectRatio="none"><rect x="5" y="5" width="290" height="60" rx="10" fill="none" stroke="var(--accent)" stroke-width="3.2" filter="url(#rgh)"/></svg>
-          <span style="position:relative;font-family:var(--mono);font-size:34px;font-weight:700;color:var(--accent)">INDECIDIBLE</span>
-        </div>
-      </div>
-      <div class="r3" style="flex:1;border-left:2px solid var(--ll);padding-left:60px">
-        <p style="font-size:var(--t-sub);font-weight:500;line-height:1.25;letter-spacing:-.01em">No existe un algoritmo que decida, para <span style="color:var(--accent)">todo</span> programa, si cumple una propiedad no trivial.</p>
-      </div>
-    </div>
-    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:#3a4150;border-top:1px solid var(--ll);padding-top:26px">→ Siempre hará falta criterio humano.</p>
-  <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">13 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Barrera 1 · Turing y Rice</span></div></div></section>
+  <section class="sys-human" data-label="Barrera 1 · Turing y Rice" data-speaker-notes="Problema de la parada y teorema de Rice: no existe un algoritmo general que decida propiedades no triviales de todo programa. Si existiera un verificador universal, podríamos hacer un programa que haga lo contrario de su respuesta, y la máquina nunca acertaría. Por eso no puede existir; siempre hace falta criterio humano." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
+    <style>
+      .p13gear{transform-box:fill-box;transform-origin:center;animation:p13spin 6s linear infinite}
+      @keyframes p13spin{to{transform:rotate(360deg)}}
+      .p13flow{animation:p13dash 1.1s linear infinite}
+      @keyframes p13dash{to{stroke-dashoffset:-32}}
+      .p13si{animation:p13a 1.6s steps(1) infinite}
+      .p13no{animation:p13b 1.6s steps(1) infinite}
+      @keyframes p13a{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+      @keyframes p13b{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+      .p13stamp{transform-box:fill-box;transform-origin:center;animation:p13wob 3.4s ease-in-out infinite}
+      @keyframes p13wob{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(-3.5deg)}}
+      .p13mono{font-family:'IBM Plex Mono',monospace}
+    </style>
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Barrera 01 · Indecidibilidad · Turing &amp; Rice</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:18px;max-width:1500px">Nadie puede verificarlo todo</h1>
 
-  <!-- 10 · Barrera 2: P vs NP -->
-  <section class="sys-ai" data-label="Barrera 2 · P vs NP" data-speaker-notes="Encontrar la solución puede ser muchísimo más difícil que comprobarla. Si P≠NP, hay problemas sin atajos: ni para humanos ni para máquinas." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
-    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Bloque 03 · Barrera 02 · Complejidad</div>
-    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:22px;max-width:1500px">Si P≠NP, hay problemas sin atajos</h1>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:50px">
-      <div class="r2" style="flex:1;background:var(--ink2);border-radius:14px;padding:50px;max-width:620px">
-        <div style="font-family:var(--mono);font-size:24px;letter-spacing:.14em;color:var(--slate-l)">RESOLVER</div>
-        <div style="font-size:64px;font-weight:600;margin-top:14px;color:var(--bone)">Difícil</div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:40px;margin-top:6px">
+      <svg viewBox="0 0 1480 470" style="width:100%;max-width:1480px;height:auto;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="p13arr" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D98200"/></marker>
+        </defs>
+
+        <!-- bucle de autorreferencia (el programa se analiza a sí mismo) -->
+        <path class="p13flow" d="M250,96 C250,40 760,40 760,150" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="11 11" marker-end="url(#p13arr)"/>
+        <text x="505" y="34" text-anchor="middle" font-size="33" fill="#a8631f" font-family="'Caveat',cursive">le das un programa que se analiza a sí mismo…</text>
+
+        <!-- LA MÁQUINA -->
+        <rect x="70" y="120" width="700" height="290" rx="22" fill="var(--bone2)" stroke="var(--accent)" stroke-width="4" filter="url(#rgh)"/>
+        <g transform="translate(726,150)"><g class="p13gear" stroke="var(--accent)" stroke-width="5" fill="none"><circle r="18"/><circle r="7"/><g stroke-width="7" stroke-linecap="round"><line x1="0" y1="-18" x2="0" y2="-28"/><line x1="0" y1="18" x2="0" y2="28"/><line x1="-18" y1="0" x2="-28" y2="0"/><line x1="18" y1="0" x2="28" y2="0"/><line x1="-13" y1="-13" x2="-20" y2="-20"/><line x1="13" y1="-13" x2="20" y2="-20"/><line x1="-13" y1="13" x2="-20" y2="20"/><line x1="13" y1="13" x2="20" y2="20"/></g></g></g>
+        <text class="p13mono" x="420" y="180" text-anchor="middle" font-size="34" font-weight="600" fill="var(--ink)">¿este programa se detiene?</text>
+        <rect x="150" y="214" width="540" height="150" rx="12" fill="#FFF8EC" stroke="var(--accent)" stroke-width="2.6" filter="url(#rgh)"/>
+        <text class="p13mono p13si" x="420" y="322" text-anchor="middle" font-size="96" font-weight="700" fill="var(--accent)">SÍ</text>
+        <text class="p13mono p13no" x="420" y="322" text-anchor="middle" font-size="96" font-weight="700" fill="var(--accent)">NO</text>
+        <text x="420" y="400" text-anchor="middle" font-size="30" fill="#7a7466" font-family="'Caveat',cursive">…y nunca se decide</text>
+
+        <!-- flecha al veredicto -->
+        <path d="M788,265 H902" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" marker-end="url(#p13arr)" filter="url(#rgh)"/>
+
+        <!-- SELLO -->
+        <g transform="translate(1160,262)"><g class="p13stamp">
+          <rect x="-244" y="-80" width="488" height="160" rx="12" fill="none" stroke="var(--accent)" stroke-width="7" filter="url(#rgh)"/>
+          <text class="p13mono" x="0" y="22" text-anchor="middle" font-size="60" font-weight="700" letter-spacing="2" fill="var(--accent)">INDECIDIBLE</text>
+        </g></g>
+      </svg>
+    </div>
+
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:#3a4150;border-top:1px solid var(--ll);padding-top:24px">Si hace lo contrario de la respuesta, la máquina nunca acierta → ese verificador <span style="color:var(--accent);font-style:normal;font-weight:600">no puede existir</span>. Siempre hará falta criterio humano.</p>
+  <div class="ad" aria-hidden="true"><div class="paper"></div><div class="grain"></div><div class="sketchframe"><svg viewBox="0 0 1000 560" preserveAspectRatio="none"><defs><filter id="rgh" x="-4%" y="-6%" width="108%" height="113%"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="6" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="10"/></filter></defs><rect x="7" y="7" width="986" height="546" rx="9" fill="none" stroke="#2a3040" stroke-opacity="0.5" stroke-width="2.2" filter="url(#rgh)" stroke-linejoin="round"/></svg></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">13 / 21</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Barrera 1 · Turing y Rice</span></div></div></section>
+
+  <section class="sys-ai" data-label="Barrera 2 · Complejidad" data-speaker-notes="Explosión combinatoria: en muchos problemas, cada paso que agregás multiplica las opciones. Con muy pocos elementos ya hay más combinaciones que átomos en el universo, así que probarlas todas es inviable: ni la máquina más rápida llega a tiempo. Hay que aproximar, podar y decidir con criterio." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--ink);color:var(--bone);display:flex;flex-direction:column;overflow:hidden">
+    <style>
+      .b14burst{transform-box:fill-box;transform-origin:center;animation:b14tw 1.3s ease-in-out infinite}
+      @keyframes b14tw{0%,100%{opacity:.45;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+      .b14glow{animation:b14g 2.4s ease-in-out infinite}
+      @keyframes b14g{0%,100%{opacity:.85}50%{opacity:1}}
+      .b14row{opacity:0;animation:b14pop .55s ease-out forwards}
+      .b14row.r1d{animation-delay:.3s}.b14row.r2d{animation-delay:.9s}.b14row.r3d{animation-delay:1.5s}.b14row.r4d{animation-delay:2.1s}
+      @keyframes b14pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+      .b14mono{font-family:'IBM Plex Mono',monospace}
+      .b14tbl .step{font-family:'IBM Plex Mono',monospace;font-size:28px;color:#cfd6e0}
+      .b14tbl .val{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#FFB23E;margin-top:4px}
+    </style>
+    <div class="r1" style="font-family:var(--mono);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)">Barrera 02 · Explosión combinatoria</div>
+    <h1 class="r1" style="font-size:var(--t-title);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-top:18px;max-width:1500px">Unos pasos más y todo <span style="color:var(--accent)">explota</span></h1>
+
+    <div style="flex:1;display:flex;align-items:center;gap:70px;margin-top:6px">
+      <!-- columna izquierda: la explosión en números -->
+      <div class="b14tbl r2" style="flex:0 0 600px;display:flex;flex-direction:column;gap:26px">
+        <div style="font-family:'Caveat',cursive;font-size:36px;color:var(--slate-l)">cada paso multiplica las opciones…</div>
+        <div class="b14row r1d"><div class="step">10 pasos</div><div class="val" style="font-size:38px">~ 1.000</div></div>
+        <div class="b14row r2d"><div class="step">20 pasos</div><div class="val" style="font-size:38px">~ 1.000.000</div></div>
+        <div class="b14row r3d"><div class="step">40 pasos</div><div class="val" style="font-size:38px">~ un billón de billones</div></div>
+        <div class="b14row r4d"><div class="step">60 pasos</div><div class="val" style="font-size:40px;color:var(--accent)">más que los átomos del universo</div></div>
       </div>
-      <div class="r3" style="font-family:var(--display);font-size:96px;font-weight:600;color:var(--accent)">≠?</div>
-      <div class="r4" style="flex:1;background:var(--accent);border-radius:14px;padding:50px;max-width:620px">
-        <div style="font-family:var(--mono);font-size:24px;letter-spacing:.14em;color:rgba(255,255,255,.8)">VERIFICAR</div>
-        <div style="font-size:64px;font-weight:600;margin-top:14px;color:#fff">Fácil</div>
+
+      <!-- columna derecha: el gráfico -->
+      <div class="r3" style="flex:1;min-width:0">
+        <svg viewBox="0 0 820 470" style="width:100%;max-width:1000px;height:auto;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="b14f" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <linearGradient id="b14grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#D98200" stop-opacity="0.55"/><stop offset="100%" stop-color="#FFB23E"/></linearGradient>
+          </defs>
+          <!-- ejes -->
+          <line x1="74" y1="40" x2="74" y2="404" stroke="#3a4150" stroke-width="2.5"/>
+          <line x1="74" y1="404" x2="780" y2="404" stroke="#3a4150" stroke-width="2.5"/>
+          <text class="b14mono" x="430" y="444" text-anchor="middle" font-size="21" fill="#9AA3B4">tamaño del problema  →</text>
+          <text class="b14mono" x="40" y="222" text-anchor="middle" font-size="21" fill="#9AA3B4" transform="rotate(-90 40 222)">intentos</text>
+          <!-- línea: lo que una máquina alcanza -->
+          <line x1="74" y1="392" x2="780" y2="360" stroke="#5b6577" stroke-width="3" stroke-dasharray="9 9"/>
+          <text class="b14mono" x="778" y="350" text-anchor="end" font-size="20" fill="#7f8a9c">lo que una máquina alcanza</text>
+          <!-- curva exponencial -->
+          <path class="b14glow" d="M74,398 C300,394 396,380 500,338 C604,296 672,222 720,132 C752,72 770,52 786,34" fill="none" stroke="url(#b14grad)" stroke-width="8" stroke-linecap="round" filter="url(#b14f)"/>
+          <circle cx="500" cy="338" r="7" fill="#FFB23E"/>
+          <circle cx="672" cy="190" r="7" fill="#FFB23E"/>
+          <!-- estallido final -->
+          <g transform="translate(790,32)"><g class="b14burst" fill="none" stroke="#FFB23E" stroke-width="5" stroke-linecap="round"><line x1="0" y1="-28" x2="0" y2="-15"/><line x1="0" y1="28" x2="0" y2="15"/><line x1="-28" y1="0" x2="-15" y2="0"/><line x1="28" y1="0" x2="15" y2="0"/><line x1="-20" y1="-20" x2="-10" y2="-10"/><line x1="20" y1="20" x2="10" y2="10"/><line x1="-20" y1="20" x2="-10" y2="10"/><line x1="20" y1="-20" x2="10" y2="-10"/></g></g>
+          <text x="690" y="60" text-anchor="end" font-size="24" fill="#FFB23E" font-family="'Caveat',cursive">¡imposible!</text>
+        </svg>
       </div>
     </div>
-    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--slate-l);border-top:1px solid var(--ld);padding-top:26px">P vs NP · Para muchos problemas no hay atajos. Ni para humanos ni para máquinas.</p>
-  <div class="ad" aria-hidden="true"><div class="grid-bp"></div><div class="vig"></div><div class="scan"></div><div class="grain"></div><div class="mesh"></div><div class="neonframe"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">14 / 22</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Barrera 2 · P vs NP</span></div></div></section>
+
+    <p class="fd" style="font-family:var(--serif);font-style:italic;font-size:var(--t-body);color:var(--slate-l);border-top:1px solid var(--ld);padding-top:24px">Probarlas todas es inviable, hasta para la máquina más rápida. Por eso el ingeniero <span style="color:var(--accent);font-style:normal;font-weight:600">aproxima, poda y decide</span> con criterio.</p>
+  <div class="ad" aria-hidden="true"><div class="grid-bp"></div><div class="vig"></div><div class="scan"></div><div class="grain"></div><div class="mesh"></div><div class="neonframe"></div><div class="hud"><i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i><span class="idx">14 / 21</span><span class="sig">El ingeniero × IA</span><span class="vlabel">Barrera 2 · Complejidad</span></div></div></section>
 
   <!-- 11 · Barrera 3: Chomsky -->
   <section class="sys-human" data-label="Barrera 3 · Chomsky" data-speaker-notes="El lenguaje humano es ambiguo y contextual; la máquina necesita una orden exacta. Una misma frase tiene varias lecturas válidas a la vez, y la máquina no sabe cuál elegir. Traducir esa intención ambigua en una especificación exacta es el trabajo del ingeniero. Jerarquía de Chomsky." style="isolation:isolate;--accent:#D98200;box-sizing:border-box;padding:var(--py) var(--px);font-family:var(--display);background:var(--bone);color:var(--ink);display:flex;flex-direction:column;overflow:hidden">
