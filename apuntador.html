@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>Apuntador · El ingeniero × IA</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ac:#28c6e0;--gr:#34d399;--rd:#f4506a;--mut:#7e8aa0}
+  html,body{height:100%}
+  body{background:radial-gradient(120% 90% at 50% -10%,#16203c,#0b0e16 60%);color:#eef3f7;
+       font-family:-apple-system,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+       height:100dvh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"SF Mono","JetBrains Mono",ui-monospace,monospace}
+  header{display:flex;align-items:center;gap:16px;padding:16px 26px;border-bottom:1px solid #222a3c;flex:0 0 auto}
+  .chip{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);
+        border:1px solid rgba(40,198,224,.4);border-radius:999px;padding:7px 15px;font-weight:700;white-space:nowrap}
+  .auto{font-size:12px;letter-spacing:.14em;font-weight:800;color:var(--gr);border:1px solid rgba(52,211,153,.5);
+        border-radius:999px;padding:6px 12px;display:flex;align-items:center;gap:7px}
+  .auto.paused{color:var(--rd);border-color:rgba(244,80,106,.5)}
+  .auto .dot{width:8px;height:8px;border-radius:50%;background:var(--gr);animation:bl 1.1s infinite}
+  .auto.paused .dot{background:var(--rd);animation:none}
+  @keyframes bl{50%{opacity:.25}}
+  .timer{margin-left:auto;font-size:58px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+  .timer.over{color:var(--rd)}
+  .scount{font-size:17px;color:var(--mut);min-width:58px;text-align:right}
+  .pbar{height:5px;background:#1c2335;flex:0 0 auto}
+  .pfill{height:100%;background:linear-gradient(90deg,var(--ac),var(--gr));width:0;transition:width .2s linear}
+  main{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center;padding:30px 52px;overflow:hidden}
+  .stitle{font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);font-weight:700;margin-bottom:30px}
+  .stitle small{color:var(--mut);font-weight:600;letter-spacing:.04em;text-transform:none;margin-left:10px}
+  .kw{list-style:none;display:flex;flex-direction:column;gap:clamp(14px,2vh,26px);max-width:1180px}
+  .kw li{font-size:clamp(30px,4.4vw,58px);line-height:1.16;font-weight:800;color:#cfd8e6;padding-left:46px;position:relative}
+  .kw li::before{content:"▸";position:absolute;left:0;color:var(--ac);font-size:.8em;top:.06em}
+  .kw li b{color:#fff}
+  .kw li em{font-style:normal;color:#fff;background:linear-gradient(transparent 58%, rgba(40,198,224,.34) 58%);padding:0 4px;border-radius:3px}
+  .next{margin-top:34px;font-size:17px;color:var(--mut)}
+  .next b{color:#aeb8cc;font-weight:700}
+  .sring{position:absolute;right:44px;bottom:30px;width:74px;height:74px}
+  .flash{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+         background:rgba(52,211,153,.16);backdrop-filter:blur(2px);z-index:9}
+  .flash.on{display:flex;animation:fl 1.1s ease}
+  .flash span{font-size:clamp(40px,7vw,92px);font-weight:900;color:var(--gr);text-shadow:0 0 40px rgba(52,211,153,.6)}
+  @keyframes fl{0%{opacity:0;transform:scale(.7)}18%{opacity:1;transform:scale(1.04)}80%{opacity:1}100%{opacity:0}}
+  footer{flex:0 0 auto;display:flex;gap:12px;padding:16px 26px;border-top:1px solid #222a3c;align-items:center;flex-wrap:wrap}
+  button{font:inherit;cursor:pointer;border:none;border-radius:13px;padding:15px 20px;font-weight:800;font-size:17px;
+         background:#1d2436;color:#dfe6f2;transition:transform .06s,background .15s}
+  button:active{transform:translateY(1px)}
+  button.big{font-size:22px;padding:20px}
+  button.go{background:linear-gradient(120deg,var(--ac),#1aa3ba);color:#06121a}
+  button.go4{background:linear-gradient(120deg,var(--gr),#16a34a);color:#062013}
+  button.gh{background:transparent;border:1px solid #2c3650;color:var(--mut)}
+  .hint{color:var(--mut);font-size:13px;margin-left:auto;text-align:right;line-height:1.4}
+  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;gap:28px}
+  .center h1{font-size:clamp(34px,6vw,64px);font-weight:900;letter-spacing:-.02em}
+  .center h1 b{color:var(--ac)}
+  .center p{font-size:20px;color:var(--mut);max-width:600px;line-height:1.5}
+  .check{font-size:80px}
+  .hidden{display:none!important}
+</style></head>
+<body>
+
+<section id="screen" class="center">
+  <div class="check" id="scIcon">🎤</div>
+  <h1 id="scTitle">Apuntador <b>×</b> IA</h1>
+  <p id="scSub">Solo las palabras clave. Se pasa <b style="color:#34d399">solo</b> con el tiempo de cada slide y te avisa con un sonido. Contador de 4:50 por bloque.</p>
+  <button id="scBtn" class="big go" style="max-width:440px">▶ Empezar Bloque 2</button>
+  <p style="font-size:13px;color:#56607a">Una vez que arranca, va solo. Espacio = pausa · → / ← para corregir.</p>
+</section>
+
+<div id="run" class="hidden" style="display:flex;flex-direction:column;height:100%">
+  <header>
+    <span class="chip" id="blkChip">Bloque 2</span>
+    <span class="auto" id="autoBadge"><span class="dot"></span>AUTO</span>
+    <span class="scount mono" id="sCount">1 / 9</span>
+    <span class="timer mono" id="timer">4:50</span>
+  </header>
+  <div class="pbar"><div class="pfill" id="pfill"></div></div>
+  <main>
+    <div class="stitle" id="sTitle">—</div>
+    <ul class="kw" id="sScript"></ul>
+    <div class="next" id="sNext"></div>
+    <svg class="sring" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="#222a3c" stroke-width="3"/>
+      <circle id="ring" cx="18" cy="18" r="16" fill="none" stroke="#28c6e0" stroke-width="3" stroke-linecap="round"
+              stroke-dasharray="100.5" stroke-dashoffset="0" transform="rotate(-90 18 18)"/></svg>
+    <div class="flash" id="flash"><span>→ PASÁ DE SLIDE ←</span></div>
+  </main>
+  <footer>
+    <button id="btnPP">⏸ Pausa</button>
+    <button class="gh" id="btnPrev">◀</button>
+    <button class="gh" id="btnNext">▶ adelantar</button>
+    <button class="gh" id="btnRestart">↺ reiniciar bloque</button>
+    <div class="hint">Va <b style="color:#34d399">solo</b>. El anillo = lo que falta de esta slide.</div>
+  </footer>
+</div>
+
+<script>
+const B2 = [
+  {t:"Portada · el tweet", d:15, k:["el <em>presente</em> de la IA","mostrá el <em>tweet</em> de Marte","el chiste = la <em>letra chica</em>"]},
+  {t:"El salto de la IA", d:35, k:["<em>tres años</em>","<em>2% → 88,6%</em> · SWE-bench","de 1/50 a 9 de cada 10","<em>examen saturó</em> · ‘ya no mide la frontera’"]},
+  {t:"Mythos clasificado", d:35, k:["<em>Claude Mythos</em>","<em>83,1%</em> ciberseguridad","fallas en sistemas <em>clasificados</em> de EE.UU.","<em>1ª vez</em> que el gobierno <em>frena</em> una IA"]},
+  {t:"La adopción", d:30, k:["<em>20 millones</em> de Copilot","Google 75 · MS 20-30 · 84% devs","IA <em>propone</em>, <em>aprueban ingenieros</em>","→ acá viene el truco"]},
+  {t:"Acelera y frena", d:35, k:["lab <em>+55,8%</em> · real <em>−19%</em>","<em>creían</em> ir +20%","el <em>contexto</em> lo cambia todo","tarea nueva vuela · sistema real se traba"]},
+  {t:"El 30% que duele", d:30, k:["<em>problema del 70%</em> · Osmani","el <em>30% final</em> necesita criterio","<em>tipear</em> nunca fue el cuello de botella"]},
+  {t:"Parece correcto", d:35, k:["<em>45%</em> con vulnerabilidad","Stanford: <em>creen</em> que es seguro","<em>slopsquatting</em> · librerías con malware"]},
+  {t:"¿Quién paga?", d:35, k:["<em>¿quién paga?</em>","Altman pierde con el plan de 200","MIT <em>95%</em> sin ROI · FMI ‘puntocom’","lo barato lo <em>subsidia el capital de riesgo</em>"]},
+  {t:"El cuello de botella", d:40, k:["se <em>mudó</em>: <em>escribir → verificar</em>","pasar los tests <em>≠</em> estar bien","verificar es <em>matemática</em>","→ se la paso a <em>Nico</em>"]}
+];
+const B4 = [
+  {t:"Portada Bloque 4", d:15, k:["vuelvo yo","queda un <em>núcleo humano</em>","rol · <em>empleo</em> · <em>cierre</em>"]},
+  {t:"Sube de piso", d:35, k:["<em>no desaparece: sube de piso</em>","<em>especificar · diseñar · validar · decidir</em>","cada una = una <em>barrera matemática</em>","pararse <em>sobre los límites</em>"]},
+  {t:"Tres trabajos", d:40, k:["<em>Arquitecto</em> · el qué","<em>Auditor</em> · valida la IA","<em>Responsable</em> · firma y responde","Brooks: <em>decidir qué construir</em>"]},
+  {t:"Jevons · empleo", d:40, k:["WEF <em>+78M</em> netos","desarrollador <em>+15%</em> · programador <em>−6%</em>","<em>Jevons</em>: el cajero no mató al bancario","lo barato → <em>más</em> demanda"]},
+  {t:"La puerta junior", d:40, k:["junior <em>−65%</em> big tech · <em>−76%</em> startups","ayuda <em>más al novato</em> (+34%)","pero el mercado se <em>cierra</em> para él"]},
+  {t:"Los profetas conceden", d:40, k:["<em>Amodei</em>: 90%… pero ‘especificar el diseño’","<em>Beck</em>: el 90% vale cero","el <em>10% — criterio, diseño</em> — vale mil veces más"]},
+  {t:"Conclusión", d:40, k:["<em>no es reemplazo: polarización</em>","se <em>vacía el medio</em>","menos del promedio, más <em>PRO</em>","alguien tiene que <em>responder</em>"]},
+  {t:"La paradoja · cierre", d:40, k:["+ automatización → + vale el <em>juicio humano</em>","no es el fin: <em>redefine quién lo es</em>","<em>Gracias</em> 🎤"]}
+];
+
+let cur=null, idx=0, blockRem=0, slideRem=0, playing=false, key=null, tick=null, actx;
+const $=id=>document.getElementById(id);
+function beep(){ /* apuntador MUDO — sin sonido (aviso solo visual) */ }
+function fmt(s){s=Math.max(0,Math.ceil(s));return (Math.floor(s/60))+':'+String(s%60).padStart(2,'0');}
+function total(arr){return arr.reduce(function(a,b){return a+b.d;},0);}
+
+function startBlock(k){
+  key=k; cur=(k==='b2'?B2:B4); idx=0; blockRem=total(cur); slideRem=cur[0].d; playing=true;
+  $('screen').classList.add('hidden'); $('run').classList.remove('hidden');
+  $('blkChip').textContent = (k==='b2'?'Bloque 2 · El presente':'Bloque 4 · El nuevo rol');
+  $('btnPP').textContent='⏸ Pausa'; setAuto();
+  beep(); render(); $('timer').textContent=fmt(blockRem);
+  clearInterval(tick); tick=setInterval(loop,100);
+}
+function setAuto(){ var b=$('autoBadge'); b.classList.toggle('paused',!playing); b.lastChild.textContent= playing?'AUTO':'PAUSA'; }
+function render(){
+  var s=cur[idx];
+  $('sTitle').innerHTML = s.t + ' <small>· '+s.d+'s</small>';
+  $('sScript').innerHTML = s.k.map(function(x){return '<li>'+x+'</li>';}).join('');
+  $('sCount').textContent = (idx+1)+' / '+cur.length;
+  $('sNext').innerHTML = idx<cur.length-1 ? 'Luego → <b>'+cur[idx+1].t+'</b>' : '<b>Última del bloque</b>';
+}
+function loop(){
+  if(playing){ blockRem-=0.1; slideRem-=0.1;
+    if(slideRem<=0){ if(idx<cur.length-1){ next(true); } else { endBlock(); return; } } }
+  var tEl=$('timer'); tEl.textContent=fmt(blockRem); tEl.classList.toggle('over',blockRem<0);
+  $('pfill').style.width = Math.min(100,Math.max(0,(1-blockRem/total(cur))*100))+'%';
+  var frac=Math.max(0,slideRem)/cur[idx].d;
+  $('ring').style.strokeDashoffset = (100.5*(1-frac)).toFixed(1);
+}
+function next(auto){
+  if(idx>=cur.length-1){ endBlock(); return; }
+  idx++; slideRem=cur[idx].d; render();
+  if(auto){ beep(); var f=$('flash'); f.classList.remove('on'); void f.offsetWidth; f.classList.add('on'); setTimeout(function(){f.classList.remove('on');},1100); }
+}
+function prev(){ if(idx>0){ idx--; slideRem=cur[idx].d; render(); } }
+function endBlock(){ playing=false; clearInterval(tick);
+  $('run').classList.add('hidden'); $('screen').classList.remove('hidden');
+  if(key==='b2'){ $('scIcon').textContent='✓'; $('scTitle').innerHTML='Fin del <b>Bloque 2</b>'; $('scSub').textContent='Buenísimo. Cuando termine la parte de Nico (Bloque 3) y vuelvas, arrancá el Bloque 4.';
+    var b=$('scBtn'); b.textContent='▶ Empezar Bloque 4'; b.className='big go4'; b.style.maxWidth='440px'; b.onclick=function(){startBlock('b4');}; }
+  else { $('scIcon').textContent='🎉'; $('scTitle').innerHTML='¡<b>Listo</b>!'; $('scSub').textContent='Cerraste los dos bloques. Crack.';
+    var b2=$('scBtn'); b2.textContent='↺ Volver al inicio'; b2.className='big gh'; b2.style.maxWidth='440px'; b2.onclick=function(){location.reload();}; }
+}
+function pp(){ playing=!playing; $('btnPP').textContent= playing?'⏸ Pausa':'▶ Seguir'; setAuto(); if(playing&&actx&&actx.state==='suspended')actx.resume(); }
+
+$('scBtn').onclick=function(){startBlock('b2');};
+$('btnPP').onclick=pp;
+$('btnNext').onclick=function(){next(false);};
+$('btnPrev').onclick=prev;
+$('btnRestart').onclick=function(){startBlock(key);};
+addEventListener('keydown',function(e){ if($('run').classList.contains('hidden'))return;
+  if(e.code==='Space'){e.preventDefault();pp();} else if(e.key==='ArrowRight'){next(false);} else if(e.key==='ArrowLeft'){prev();} });
+</script>
+</body></html>
