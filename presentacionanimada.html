@@ -1535,7 +1535,7 @@ fit();render();
   m.style.gridTemplateColumns='repeat('+COLS+',1fr)'; m.style.gridTemplateRows='repeat('+ROWS+',1fr)';
   for(var k=0;k<COLS*ROWS;k++){ var t=document.createElement('div'); t.className='mtile'; t.style.transitionDelay=(Math.random()*1.0).toFixed(3)+'s'; m.appendChild(t); }
   sec.appendChild(m);
-  function play(){ if(hint)hint.style.display='none'; if(outro){try{outro.currentTime=0;outro.play();}catch(e){}} m.classList.add('notrans'); m.classList.remove('go'); void m.offsetWidth; m.classList.remove('notrans'); requestAnimationFrame(function(){requestAnimationFrame(function(){ m.classList.add('go'); });}); }
+  function play(){ if(hint)hint.style.display='none'; if(outro){try{outro.currentTime=0;var pr=outro.play();if(pr&&pr.catch)pr.catch(function(){var go=function(){try{outro.currentTime=0;outro.play();}catch(e){}window.removeEventListener('pointerdown',go,true);window.removeEventListener('keydown',go,true);window.removeEventListener('click',go,true);};window.addEventListener('pointerdown',go,true);window.addEventListener('keydown',go,true);window.addEventListener('click',go,true);});}catch(e){}} m.classList.add('notrans'); m.classList.remove('go'); void m.offsetWidth; m.classList.remove('notrans'); requestAnimationFrame(function(){requestAnimationFrame(function(){ m.classList.add('go'); });}); }
   function leave(){ if(hint)hint.style.display=''; if(outro){try{outro.pause();outro.currentTime=0;}catch(e){}} m.classList.add('notrans'); m.classList.remove('go'); }
   new MutationObserver(function(){ if(sec.hasAttribute('data-deck-active')) play(); else leave(); }).observe(sec,{attributes:true,attributeFilter:['data-deck-active']});
   if(sec.hasAttribute('data-deck-active')) play();
@@ -1546,9 +1546,9 @@ fit();render();
 (function(){
   var done=false;
   function unlock(){ if(done)return; done=true;
-    [].slice.call(document.querySelectorAll('audio')).forEach(function(a){ try{ a.muted=true; var p=a.play();
-      if(p&&p.then){ p.then(function(){ a.pause(); a.currentTime=0; a.muted=false; }).catch(function(){ a.muted=false; }); }
-      else { a.pause(); a.currentTime=0; a.muted=false; } }catch(e){} });
+    [].slice.call(document.querySelectorAll('audio')).forEach(function(a){ try{ a.volume=0; var p=a.play();
+      if(p&&p.then){ p.then(function(){ a.pause(); a.currentTime=0; a.volume=1; }).catch(function(){ a.volume=1; }); }
+      else { a.pause(); a.currentTime=0; a.volume=1; } }catch(e){} });
     // si ya estamos en la ultima slide, arrancar el outro ahora
     setTimeout(function(){ var act=document.querySelector('section[data-deck-active]'); var au=document.getElementById('outroSound');
       if(au && act && act.getAttribute('data-label')==='Cierre'){ try{ au.currentTime=0; au.play(); }catch(e){} } }, 60);
